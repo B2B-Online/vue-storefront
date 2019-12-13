@@ -4,6 +4,7 @@
     <loader />
     <div id="viewport" class="w-100 relative">
       <main-header />
+
       <async-sidebar
         :async-component="SearchPanel"
         :is-open="isSearchPanelOpen"
@@ -25,6 +26,7 @@
         :is-open="isWishlistOpen"
         @close="$store.commit('ui/setWishlist')"
       />
+      <header-menu />
       <slot />
       <main-footer />
       <notification />
@@ -41,6 +43,7 @@
 import { mapState } from 'vuex'
 import AsyncSidebar from 'theme/components/theme/blocks/AsyncSidebar/AsyncSidebar.vue'
 import MainHeader from 'theme/components/core/blocks/Header/Header.vue'
+import HeaderMenu from 'theme/components/core/blocks/HeaderMenu/HeaderMenu.vue'
 import MainFooter from 'theme/components/core/blocks/Footer/Footer.vue'
 import Overlay from 'theme/components/core/Overlay.vue'
 import Loader from 'theme/components/core/Loader.vue'
@@ -110,6 +113,7 @@ export default {
   components: {
     MainHeader,
     MainFooter,
+    HeaderMenu,
     SidebarMenu, // eslint-disable-line vue/no-unused-components
     Overlay,
     Loader,

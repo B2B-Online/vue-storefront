@@ -8,8 +8,10 @@ const Checkout = () => import(/* webpackChunkName: "vsf-checkout" */ 'theme/page
 const Compare = () => import(/* webpackChunkName: "vsf-compare" */ 'theme/pages/Compare.vue')
 const MyAccount = () => import(/* webpackChunkName: "vsf-my-account" */ 'theme/pages/MyAccount.vue')
 const Static = () => import(/* webpackChunkName: "vsf-static" */ 'theme/pages/Static.vue')
+const StartPage = () => import(/* webpackChunkName: "vsf-start-page" */ 'theme/pages/StartPage.vue')
 
 let routes = [
+  { name: 'start-page', path: '/start', component: StartPage, alias: '/start.html', meta: { layout: 'empty' } },
   { name: 'home', path: '/', component: Home, alias: '/pwa.html' },
   { name: 'checkout', path: '/checkout', component: Checkout },
   { name: 'legal', path: '/legal', component: Static, props: {page: 'lorem', title: 'Legal Notice'}, meta: {title: 'Legal Notice', description: 'Legal Notice - example of description usage'} },

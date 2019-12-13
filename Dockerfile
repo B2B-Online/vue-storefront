@@ -30,5 +30,5 @@ COPY shims.d.ts /var/www/
 COPY package.json /var/www/
 ADD src /var/www/src
 ADD var /var/www/var
-
+#RUN mkdir /var/www/var
 CMD ["vue-storefront.sh"]

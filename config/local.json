@@ -1,5 +1,6 @@
 {
     "server": {
+      //"host": "localhost",
       "host": "0.0.0.0",
       "port": 3000,
       "protocol": "http",
@@ -159,7 +160,7 @@
       "category": {
         "includeFields": [ "id", "*.children_data.id", "*.id", "children_count", "sku", "name", "is_active", "parent_id", "level", "url_key", "url_path", "product_count", "path"],
         "excludeFields": [ "sgn" ],
-        "categoriesRootCategorylId": 2,
+        "categoriesRootCategorylId": 1,
         "categoriesDynamicPrefetchLevel": 1,
         "categoriesDynamicPrefetch": true
       },
@@ -425,6 +426,7 @@
       "sendConfirmation": true
     },
     "theme": "@vue-storefront/theme-default",
+    //"theme": "vuetique",
     "analytics": {
       "id": false
     },

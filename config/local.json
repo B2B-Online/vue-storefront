@@ -34,14 +34,14 @@
       "db": 0
     },
     "graphql":{
-      //"host": "store-api-develop.planetb2b.com",
-      "host":"localhost",
-      //"port": 443
-      "port": 8080
+      "host": "store-api-develop.planetb2b.com",
+      //"host":"localhost",
+      "port": 443
+      //"port": 8080
     },
     "api": {
-      //"url": "https://store-api-develop.planetb2b.com"
-      "url":"http://localhost:8080"
+      "url": "https://store-api-develop.planetb2b.com"
+      //"url":"http://localhost:8080"
     },
     "elasticsearch": {
       "httpAuth": "",

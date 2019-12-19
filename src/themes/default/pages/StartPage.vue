@@ -15,22 +15,22 @@
           <nav class="static-menu serif h4 mb35">
             <ul class="m0 p0">
               <li class="mb10">
-                <router-link :to="localizedRoute('/c/elektryka')" class="cl-accent relative">
+                <router-link :to="localizedRoute('/elektryka')" class="cl-accent relative">
                   {{ $t('Electricity') }}
                 </router-link>
               </li>
               <li class="mb10">
-                <router-link :to="localizedRoute('/c/oprawy-oswietleniowe-konsumenckie')" class="cl-accent relative">
-                  {{ $t('Food') }}
+                <router-link :to="localizedRoute('/elektryka/oprawy-oswietleniowe-konsumenckie')" class="cl-accent relative">
+                  {{ $t('Lighting') }}
                 </router-link>
               </li>
               <li class="mb10">
-                <router-link :to="localizedRoute('/c/chemia')" class="cl-accent relative">
+                <router-link :to="localizedRoute('/chemia')" class="cl-accent relative">
                   {{ $t('Chemistry') }}
                 </router-link>
               </li>
               <li class="mb10">
-                <router-link :to="localizedRoute('/c/spozywcze')" class="cl-accent relative">
+                <router-link :to="localizedRoute('/spozywcze')" class="cl-accent relative">
                   {{ $t('Food') }}
                 </router-link>
               </li>

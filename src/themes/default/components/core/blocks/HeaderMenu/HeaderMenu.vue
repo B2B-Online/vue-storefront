@@ -110,7 +110,7 @@ export default {
     categories () {
       return this.allCategories.filter((op) => {
         const path = this.$route.path;
-         if (path.toLowerCase().startsWith('elektryka') || path.toLowerCase().startsWith('/elektryka')) {
+        if (path.toLowerCase().startsWith('elektryka') || path.toLowerCase().startsWith('/elektryka')) {
           return op.level === 1 && op.name.toLowerCase() === 'elektryka';
         } else if (path.toLowerCase().startsWith('chemia') || path.toLowerCase().startsWith('/chemia')) {
           return op.level === 1 && op.name.toLowerCase() === 'chemia';
@@ -128,9 +128,9 @@ export default {
       const path = this.$route.path;
       if (path.toLowerCase().includes('oprawy-oswietleniowe-konsumenckie')) {
         return this.categories.filter(category => {
-          return category.url_path.includes('elektryka') && ( category.product_count > 0 || category.children_count > 0 )
+          return category.url_path.includes('elektryka') && (category.product_count > 0 || category.children_count > 0)
         });
-      } else { 
+      } else {
         return this.categories.filter(category => {
           return category.product_count > 0 || category.children_count > 0
         });

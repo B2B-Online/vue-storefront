@@ -35,7 +35,7 @@
           <router-link
             v-else
             class="px25 py20 cl-accent no-underline col-xs"
-            :to="localizedRoute({ name: 'category', fullPath: link.url_path, params: { id: link.id, slug: link.slug }})"
+            :to="localizedRoute({ name: 'category', fullPath: link.url_path, params: { id: link.id, slug: link.url_path }})"
           >
             {{ link.name }}
           </router-link>
@@ -45,7 +45,7 @@
           :category-links="link.children_data"
           :id="link.id"
           :parent-slug="link.slug"
-           :parent-path="link.url_path"
+          :parent-path="link.url_path"
         />
       </li>
     </ul>
@@ -109,7 +109,7 @@ export default {
       type: String,
       required: false,
       default: ''
-    },    
+    },
     myAccountLinks: {
       type: null,
       required: false,

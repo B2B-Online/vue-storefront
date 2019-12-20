@@ -87,7 +87,12 @@ export default {
         filterValues: defaultFilters, // TODO: assign specific filters/ attribute codes dynamicaly to specific categories
         includeFields: config.entities.optimize && isServer ? config.entities.attribute.includeFields : null
       })
-      const parentCategory = await store.dispatch('category/single', { key: config.products.useMagentoUrlKeys ? 'url_key' : 'slug', value: route.params.slug })
+      let parentCategory;
+      if (route.params.slug.includes('/')) {
+        parentCategory = await store.dispatch('category/single', { key: config.products.useMagentoUrlKeys ? 'url_path' : 'slug', value: route.params.slug })
+      } else {
+        parentCategory = await store.dispatch('category/single', { key: config.products.useMagentoUrlKeys ? 'url_key' : 'slug', value: route.params.slug })
+      }
       let query = store.getters['category/getCurrentCategoryProductQuery']
       if (!query.searchProductQuery) {
         store.dispatch('category/mergeSearchOptions', {
@@ -260,7 +265,7 @@ export default {
     onUserPricesRefreshed () {
       const defaultFilters = config.products.defaultFilters
       this.$store.dispatch('category/single', {
-        key: config.products.useMagentoUrlKeys ? 'url_key' : 'slug',
+        key: config.products.useMagentoUrlKeys ? 'url_path' : 'slug',
         value: this.$route.params.slug
       }).then((parentCategory) => {
         if (!this.getCurrentCategoryProductQuery.searchProductQuery) {

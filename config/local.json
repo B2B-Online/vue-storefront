@@ -1,7 +1,7 @@
 {
     "server": {
-      //"host": "localhost",
-      "host": "0.0.0.0",
+      "host": "localhost",
+      //"host": "0.0.0.0",
       "port": 3000,
       "protocol": "http",
       "api": "api",
@@ -28,8 +28,8 @@
       "verbosityLevel": "display-everything"
     },
     "redis": {
-      //"host": "vue-storefront-redis-develop.local",
-      "host":"localhost",
+      "host": "vue-storefront-redis-develop.local",
+      //"host":"localhost",
       "port": 6379,
       "db": 0
     },
@@ -466,7 +466,7 @@
           }
         ]
       },
-      "coolBags": {
+      "promotions": {
         "filter": [
           {
             "key": "category.name",
@@ -474,13 +474,119 @@
           }
         ]
       },
-      "bestSellers": {
+      "popularProducts": {
         "filter": [
           {
             "key": "category.name",
-            "value" : { "eq": "Żyrandole i zwisy" }
+            "value" : { "eq": "Ciastka" }
           }
         ]
+      }
+    },
+    "categoryQuery": {
+      "elektryka":{
+        "newProducts": {
+          "filter": [
+            {
+              "key": "category.name",
+              "value" : { "eq": "LED" }
+            }
+          ]
+        },
+        "promotions": {
+          "filter": [
+            {
+              "key": "category.name",
+              "value" : { "eq": "TV" }
+            }
+          ]
+        },
+        "popularProducts": {
+          "filter": [
+            {
+              "key": "category.name",
+              "value" : { "eq": "MODUŁOWE NT" }
+            }
+          ]
+        }
+      },
+      "spozywcze":{
+        "newProducts": {
+          "filter": [
+            {
+              "key": "category.name",
+              "value" : { "eq": "Pozostałe" }
+            }
+          ]
+        },
+        "promotions": {
+          "filter": [
+            {
+              "key": "category.name",
+              "value" : { "eq": "Ciastka" }
+            }
+          ]
+        },
+        "popularProducts": {
+          "filter": [
+            {
+              "key": "category.name",
+              "value" : { "eq": "Herbaty ekspresowe" }
+            }
+          ]
+        }
+      },
+      "chemia": {
+        "newProducts": {
+          "filter": [
+            {
+              "key": "category.name",
+              "value" : { "eq": "KĄPIELI" }
+            }
+          ]
+        },
+        "promotions": {
+          "filter": [
+            {
+              "key": "category.name",
+              "value" : { "eq": "KREMY" }
+            }
+          ]
+        },
+        "popularProducts": {
+          "filter": [
+            {
+              "key": "category.name",
+              "value" : { "eq": "FARBY KOLORYZUJĄCE" }
+            }
+          ]
+        }
+      },
+      "oswietlenie": {
+        "newProducts": {
+          "filter": [
+            {
+              "key": "category.name",
+              "value" : { "eq": "LED" }
+            }
+          ]
+        },
+        "promotions": {
+          "filter": [
+            {
+              "key": "category.name",
+              "value" : { "eq": "RAMKI" }
+            }
+          ]
+        },
+        "popularProducts": {
+          "filter": [
+            {
+              "key": "category.name",
+              "value" : { "eq": "KINKIETY I PLAFONIERY" }
+            }
+          ]
+        }
       }
     }
 }

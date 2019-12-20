@@ -9,9 +9,13 @@ const Compare = () => import(/* webpackChunkName: "vsf-compare" */ 'theme/pages/
 const MyAccount = () => import(/* webpackChunkName: "vsf-my-account" */ 'theme/pages/MyAccount.vue')
 const Static = () => import(/* webpackChunkName: "vsf-static" */ 'theme/pages/Static.vue')
 const StartPage = () => import(/* webpackChunkName: "vsf-start-page" */ 'theme/pages/StartPage.vue')
-
+const CategoryHomePage = () => import(/* webpackChunkName: "vsf-category-home-page" */ 'theme/pages/CategoryHomePage.vue')
 let routes = [
   { name: 'start-page', path: '/start', component: StartPage, alias: '/start.html', meta: { layout: 'empty' } },
+  { name: 'electricity', path: '/elektryka', component: CategoryHomePage, meta: { category: 'elektryka' } },
+  { name: 'chemistry', path: '/chemia', component: CategoryHomePage, meta: { category: 'chemia' } },
+  { name: 'lighting', path: '/elektryka/oprawy-oswietleniowe-konsumenckie', component: CategoryHomePage, meta: { category: 'oswietlenie' } },
+  { name: 'spozywcze', path: '/spozywcze', component: CategoryHomePage, meta: { category: 'spozywcze' } },
   { name: 'home', path: '/', component: Home, alias: '/pwa.html' },
   { name: 'checkout', path: '/checkout', component: Checkout },
   { name: 'legal', path: '/legal', component: Static, props: {page: 'lorem', title: 'Legal Notice'}, meta: {title: 'Legal Notice', description: 'Legal Notice - example of description usage'} },
@@ -44,7 +48,7 @@ let routes = [
   { name: 'grouped-product', path: '/p/:parentSku/:slug', component: Product }, // :sku param can be marked as optional with ":sku?" (https://github.com/vuejs/vue-router/blob/dev/examples/route-matching/app.js#L16), but it requires a lot of work to adjust the rest of the site
   { name: 'configurable-product', path: '/p/:parentSku/:slug/:childSku', component: Product }, // :sku param can be marked as optional with ":sku?" (https://github.com/vuejs/vue-router/blob/dev/examples/route-matching/app.js#L16), but it requires a lot of work to adjust the rest of the site
   { name: 'product', path: '/p/:parentSku/:slug/:childSku', component: Product }, // :sku param can be marked as optional with ":sku?" (https://github.com/vuejs/vue-router/blob/dev/examples/route-matching/app.js#L16), but it requires a lot of work to adjust the rest of the site
-  { name: 'category', path: '/c/:slug', component: Category },
+  { name: 'category', path: ':slug', component: Category },
   { name: 'cms-page', path: '/i/:slug', component: CmsPage }
 ]
 

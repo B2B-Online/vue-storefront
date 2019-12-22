@@ -1,5 +1,6 @@
 <template>
   <div>
+<<<<<<< HEAD
     <header-simple />
     <shop-info />
     <div class="container main_category">
@@ -36,6 +37,45 @@
             {{ $t("Food") }}
           </h3>
         </router-link>
+=======
+    <div class="bg-cl-secondary py35 pl20">
+      <div class="container">
+        <h2 class="fs-big">
+          {{ $t('Atat start page') }}
+        </h2>
+      </div>
+    </div>
+
+    <div class="container pt45 pb70">
+      <h3>{{ $t('Choose store industry') }}</h3>
+      <div class="row pl20 pt0">
+        <div class="col-sm-3">
+          <nav class="static-menu serif h4 mb35">
+            <ul class="m0 p0">
+              <li class="mb10">
+                <router-link :to="localizedRoute('/elektryka')" class="cl-accent relative">
+                  {{ $t('Electricity') }}
+                </router-link>
+              </li>
+              <li class="mb10">
+                <router-link :to="localizedRoute('/elektryka/oprawy-oswietleniowe-konsumenckie')" class="cl-accent relative">
+                  {{ $t('Lighting') }}
+                </router-link>
+              </li>
+              <li class="mb10">
+                <router-link :to="localizedRoute('/chemia')" class="cl-accent relative">
+                  {{ $t('Chemistry') }}
+                </router-link>
+              </li>
+              <li class="mb10">
+                <router-link :to="localizedRoute('/spozywcze')" class="cl-accent relative">
+                  {{ $t('Food') }}
+                </router-link>
+              </li>
+            </ul>
+          </nav>
+        </div>
+>>>>>>> 18d61600843cc492113af9a8fdd659452e68abcf
       </div>
     </div>
     <main-footer />

@@ -35,7 +35,7 @@
       <router-link
         v-else
         class="menu-link"
-        :to="localizedRoute({ name: 'category', params: { id: link.id, slug: link.slug }})"
+        :to="localizedRoute({ name: 'category', params: { id: link.id, slug: link.url_path}})"
       >
         {{ link.name }}
       </router-link>
@@ -77,9 +77,11 @@ export default {
   computed: {
     children () {
       if (!this.$store.state.config.entities.category.categoriesDynamicPrefetch && (this.categoryLinks && this.categoryLinks.length > 0 && this.categoryLinks[0].name)) { // we're using dynamic prefetching and getting just category.children_data.id from 1.7
-        return this.categoryLinks
+        const result = this.categoryLinks;
+        return result;
       } else {
-        return this.$store.state.category.list.filter(c => { return c.parent_id === this.id }) // return my child categories
+        const result = this.$store.state.category.list.filter(c => { return c.parent_id === this.id }); // return my child categories
+        return result;
       }
     }
   }
@@ -89,6 +91,7 @@ export default {
 <style lang="scss" scoped>
 .left-100 {
   left: 100%;
+  top: 10%
 }
 .submenu {
   @apply p-0 m-0 absolute min-w-full bg-grey-lighter shadow z-10;
@@ -108,7 +111,7 @@ export default {
     }
     &.active {
       @apply text-primary border-l-2 border-solid border-primary;
-      padding-left: 13px;
+      padding-left: 10px;
     }
   }
 }

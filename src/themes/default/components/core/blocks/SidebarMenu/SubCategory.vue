@@ -35,7 +35,7 @@
           <router-link
             v-else
             class="px25 py20 cl-accent no-underline col-xs"
-            :to="localizedRoute({ name: 'category', fullPath: link.url_path, params: { id: link.id, slug: link.slug }})"
+            :to="localizedRoute({ name: 'category', fullPath: link.url_path, params: { id: link.id, slug: link.url_path }})"
           >
             {{ link.name }}
           </router-link>

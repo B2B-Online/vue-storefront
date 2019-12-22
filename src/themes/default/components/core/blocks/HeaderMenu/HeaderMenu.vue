@@ -24,7 +24,7 @@
           <router-link
             v-else
             class="menu-link"
-            :to="localizedRoute({ name: 'category', params: { id: category.id, slug: category.slug }})"
+            :to="localizedRoute({ name: 'category', params: { id: category.id, slug: category.url, url: category.url }})"
           >
             {{ $t('Categories') }}
           </router-link>
@@ -33,7 +33,7 @@
             v-show="activeSubMenu === category.id"
             :category-links="category.children_data"
             :id="category.id"
-            :parent-slug="category.slug"
+            :parent-slug="category.url"
             class="left-0"
           />
         </li>
@@ -109,16 +109,32 @@ export default {
     ...mapGetters('category', ['getCategories']),
     categories () {
       return this.allCategories.filter((op) => {
-        return op.level === 1 && op.name.toUpperCase() === 'ELEKTRYKA'
+        const path = this.$route.path;
+        if (path.toLowerCase().startsWith('elektryka') || path.toLowerCase().startsWith('/elektryka')) {
+          return op.level === 1 && op.name.toLowerCase() === 'elektryka';
+        } else if (path.toLowerCase().startsWith('chemia') || path.toLowerCase().startsWith('/chemia')) {
+          return op.level === 1 && op.name.toLowerCase() === 'chemia';
+        } else if (path.toLowerCase().startsWith('spozywcze') || path.toLowerCase().startsWith('/spozywcze')) {
+          return op.level === 1 && op.name.toLowerCase() === 'spożywcze';
+        } else {
+          return op.level === 0;
+        }
       })
     },
     ...mapState({
       currentUser: state => state.user.current
     }),
     visibleCategories () {
-      return this.categories.filter(category => {
-        return category.product_count > 0 || category.children_count > 0
-      })
+      const path = this.$route.path;
+      if (path.toLowerCase().includes('oprawy-oswietleniowe-konsumenckie')) {
+        return this.categories.filter(category => {
+          return category.url_path.includes('elektryka') && (category.product_count > 0 || category.children_count > 0)
+        });
+      } else {
+        return this.categories.filter(category => {
+          return category.product_count > 0 || category.children_count > 0
+        });
+      }
     }
   },
   created () {

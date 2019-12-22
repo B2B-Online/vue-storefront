@@ -45,7 +45,7 @@
           :category-links="link.children_data"
           :id="link.id"
           :parent-slug="link.slug"
-           :parent-path="link.url_path"
+          :parent-path="link.url_path"
         />
       </li>
     </ul>
@@ -109,7 +109,7 @@ export default {
       type: String,
       required: false,
       default: ''
-    },    
+    },
     myAccountLinks: {
       type: null,
       required: false,

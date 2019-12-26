@@ -111,13 +111,13 @@ export default {
       return this.getCategories
     },
     everythingNewCollection () {
-      return this.$store.state.homepage.new_products
+      return this.$store.state.categoryhomepage.new_products
     },
     promotions () {
-      return this.$store.state.homepage.promotions
+      return this.$store.state.categoryhomepage.promotions
     },
     popularProducts () {
-      return this.$store.state.homepage.popular_products
+      return this.$store.state.categoryhomepage.popular_products
     },
     isOnline () {
       return onlineHelper.isOnline
@@ -159,7 +159,7 @@ export default {
       sort: 'created_at:desc'
     })
     if (newProductsResult) {
-      store.state.homepage.new_products = newProductsResult.items
+      store.state.categoryhomepage.new_products = newProductsResult.items
     }
 
     const promotionsResult = await store.dispatch('product/list', {
@@ -168,7 +168,7 @@ export default {
       sort: 'created_at:desc'
     })
     if (promotionsResult) {
-      store.state.homepage.promotions = promotionsResult.items
+      store.state.categoryhomepage.promotions = promotionsResult.items
     }
 
     const popularProductsResult = await store.dispatch('product/list', {
@@ -177,7 +177,7 @@ export default {
       sort: 'created_at:desc'
     })
     if (popularProductsResult) {
-      store.state.homepage.popular_products = popularProductsResult.items
+      store.state.categoryhomepage.popular_products = popularProductsResult.items
     }
 
     await store.dispatch('promoted/updateHeadImage')

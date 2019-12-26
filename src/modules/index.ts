@@ -11,6 +11,7 @@ import { Newsletter } from '@vue-storefront/core/modules/newsletter'
 import { Notification } from '@vue-storefront/core/modules/notification'
 import { RecentlyViewed } from '@vue-storefront/core/modules/recently-viewed'
 import { Url } from '@vue-storefront/core/modules/url'
+import { CategoryHomePage } from './categoryhomepage'
 import { Homepage } from './homepage'
 import { Claims } from './claims'
 import { PromotedOffers } from './promoted-offers'
@@ -64,6 +65,7 @@ export const registerModules: VueStorefrontModule[] = [
   Notification,
   Ui,
   RecentlyViewed,
+  CategoryHomePage,
   Homepage,
   Claims,
   PromotedOffers,

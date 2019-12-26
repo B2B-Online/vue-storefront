@@ -5,10 +5,7 @@ const KEY = 'homepage'
 const store = {
   namespaced: true,
   state: {
-    new_collection: [],
-    new_products: [],
-    promotions: [],
-    popular_products: []
+    new_collection: []
   }
 }
 export const Homepage = createModule({

@@ -96,13 +96,13 @@ export default {
 .submenu {
   @apply p-0 m-0 absolute min-w-full bg-grey-lighter shadow z-10;
   list-style: none;
-  min-width: 150px;
+  min-width: 200px;
   li {
     @apply border-t border-solid border-white;
   }
   .menu-link {
     @apply block w-full text-sm text-grey-dark text-left font-medium;
-    padding: 15px;
+    padding: 10px 2px 10px 2px;
     line-height: 1.25rem;
     text-decoration: none;
     &:hover, &:focus, &.router-link-active {

@@ -3,11 +3,11 @@ import { createModule } from '@vue-storefront/core/lib/module'
 const KEY = 'categoryhomepage'
 const store = {
   namespaced: true,
-  state: {    
+  state: {
     new_products: [],
     promotions: [],
     popular_products: [],
-    blogs: [],
+    blogs: []
   }
 }
 export const CategoryHomePage = createModule({

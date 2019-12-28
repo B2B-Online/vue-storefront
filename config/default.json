@@ -37,8 +37,7 @@
       "port": 8080
     },
     "api": {
-      // "url": "http://localhost:8080"
-      "url": "https://store-api-develop.planetb2b.com"
+      "url": "http://localhost:8080"
     },
     "elasticsearch": {
       "httpAuth": "",

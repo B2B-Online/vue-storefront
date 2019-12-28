@@ -7,7 +7,7 @@
             class="menu-link home-link"
             :to="localizedRoute('/')"
             exact
-          ></router-link>
+          />
         </li>
         <li
           class="menu-item relative"
@@ -99,42 +99,42 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from "vuex";
-import onEscapePress from "@vue-storefront/core/mixins/onEscapePress";
-import SubCategory from "theme/components/core/blocks/HeaderMenu/SubCategory";
-import CurrentPage from "theme/mixins/currentPage";
+import { mapGetters, mapState } from 'vuex';
+import onEscapePress from '@vue-storefront/core/mixins/onEscapePress';
+import SubCategory from 'theme/components/core/blocks/HeaderMenu/SubCategory';
+import CurrentPage from 'theme/mixins/currentPage';
 export default {
-  name: "HeaderMenu",
+  name: 'HeaderMenu',
   components: {
     SubCategory
   },
   mixins: [CurrentPage, onEscapePress],
-  data() {
+  data () {
     return {
       allCategories: [],
       activeSubMenu: null
     };
   },
   computed: {
-    ...mapGetters("category", ["getCategories"]),
-    categories() {
+    ...mapGetters('category', ['getCategories']),
+    categories () {
       return this.allCategories.filter(op => {
         const path = this.$route.path;
         if (
-          path.toLowerCase().startsWith("elektryka") ||
-          path.toLowerCase().startsWith("/elektryka")
+          path.toLowerCase().startsWith('elektryka') ||
+          path.toLowerCase().startsWith('/elektryka')
         ) {
-          return op.level === 1 && op.name.toLowerCase() === "elektryka";
+          return op.level === 1 && op.name.toLowerCase() === 'elektryka';
         } else if (
-          path.toLowerCase().startsWith("chemia") ||
-          path.toLowerCase().startsWith("/chemia")
+          path.toLowerCase().startsWith('chemia') ||
+          path.toLowerCase().startsWith('/chemia')
         ) {
-          return op.level === 1 && op.name.toLowerCase() === "chemia";
+          return op.level === 1 && op.name.toLowerCase() === 'chemia';
         } else if (
-          path.toLowerCase().startsWith("spozywcze") ||
-          path.toLowerCase().startsWith("/spozywcze")
+          path.toLowerCase().startsWith('spozywcze') ||
+          path.toLowerCase().startsWith('/spozywcze')
         ) {
-          return op.level === 1 && op.name.toLowerCase() === "spożywcze";
+          return op.level === 1 && op.name.toLowerCase() === 'spożywcze';
         } else {
           return op.level === 0;
         }
@@ -143,12 +143,12 @@ export default {
     ...mapState({
       currentUser: state => state.user.current
     }),
-    visibleCategories() {
+    visibleCategories () {
       const path = this.$route.path;
-      if (path.toLowerCase().includes("oprawy-oswietleniowe-konsumenckie")) {
+      if (path.toLowerCase().includes('oprawy-oswietleniowe-konsumenckie')) {
         return this.categories.filter(category => {
           return (
-            category.url_path.includes("elektryka") &&
+            category.url_path.includes('elektryka') &&
             (category.product_count > 0 || category.children_count > 0)
           );
         });
@@ -159,11 +159,11 @@ export default {
       }
     }
   },
-  created() {
+  created () {
     this.allCategories = this.getCategories;
   },
-  async mounted() {
-    let categories = await this.$store.dispatch("category/list", {
+  async mounted () {
+    let categories = await this.$store.dispatch('category/list', {
       skipCache: true,
       includeFields: this.$store.state.config.entities.optimize
         ? this.$store.state.config.entities.category.includeFields
@@ -172,18 +172,18 @@ export default {
     this.allCategories = categories.items;
   },
   methods: {
-    onEscapePress() {
+    onEscapePress () {
       this.closeMenu();
     },
-    openMenu(id) {
+    openMenu (id) {
       this.activeSubMenu = id;
       // this.$store.commit('ui/setOverlay', true)
     },
-    closeMenu() {
+    closeMenu () {
       this.activeSubMenu = null;
       // this.$store.commit('ui/setOverlay', false)
     },
-    toggleSubMenu(id) {
+    toggleSubMenu (id) {
       if (this.activeSubMenu === id) {
         this.closeMenu();
       } else {

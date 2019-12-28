@@ -35,7 +35,7 @@
 </template>
 <script>
 export default {
-  name: "SubCategory",
+  name: 'SubCategory',
   props: {
     id: {
       type: [String, Number],
@@ -44,7 +44,7 @@ export default {
     parentSlug: {
       type: String,
       required: false,
-      default: ""
+      default: ''
     },
     categoryLinks: {
       type: null,
@@ -52,13 +52,13 @@ export default {
       default: false
     }
   },
-  data() {
+  data () {
     return {
       activeSubMenu: null
     };
   },
   computed: {
-    children() {
+    children () {
       if (
         !this.$store.state.config.entities.category.categoriesDynamicPrefetch &&
         this.categoryLinks &&

@@ -14,7 +14,7 @@
       </ul>
       <div class="newsletter__button flex center-xs">
         <button
-          v-on:click="showNewsletterPopup"
+          @click="showNewsletterPopup"
           class="btn--orange btn--big"
           data-testid="openNewsletterButton"
         >
@@ -27,18 +27,18 @@
 </template>
 
 <script>
-import SubscriptionStatus from "@vue-storefront/core/modules/newsletter/mixins/SubscriptionStatus";
-import ButtonOutline from "theme/components/theme/ButtonOutline";
-import { mapState } from "vuex";
+import SubscriptionStatus from '@vue-storefront/core/modules/newsletter/mixins/SubscriptionStatus';
+import ButtonOutline from 'theme/components/theme/ButtonOutline';
+import { mapState } from 'vuex';
 const NewsletterPopup = () =>
   import(
-    /* webpackChunkName: "vsf-newsletter-modal" */ "theme/components/core/NewsletterPopup.vue"
+    /* webpackChunkName: "vsf-newsletter-modal" */ 'theme/components/core/NewsletterPopup.vue'
   );
 
 export default {
-  name: "Newsletter",
+  name: 'Newsletter',
   mixins: [SubscriptionStatus],
-  data() {
+  data () {
     return {
       loadNewsletterPopup: false
     };
@@ -49,9 +49,9 @@ export default {
     })
   },
   methods: {
-    showNewsletterPopup() {
+    showNewsletterPopup () {
       this.loadNewsletterPopup = true;
-      this.$bus.$emit("modal-show", "modal-newsletter");
+      this.$bus.$emit('modal-show', 'modal-newsletter');
     }
   },
   components: {

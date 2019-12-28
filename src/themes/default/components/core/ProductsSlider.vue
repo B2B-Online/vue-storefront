@@ -26,23 +26,23 @@
 </template>
 
 <script>
-import NoSSR from "vue-no-ssr";
-import ProductTile from "theme/components/core/ProductTile";
+import NoSSR from 'vue-no-ssr';
+import ProductTile from 'theme/components/core/ProductTile';
 
 export default {
-  name: "ProductsSlider",
+  name: 'ProductsSlider',
   props: {
     title: {
       type: String,
-      default: ""
+      default: ''
     },
     linkMore: {
       type: String,
-      default: ""
+      default: ''
     },
     linkMoreText: {
       type: String,
-      default: ""
+      default: ''
     },
     products: {
       type: Array,
@@ -54,18 +54,18 @@ export default {
     }
   },
   components: {
-    Carousel: () => import("vue-carousel").then(Slider => Slider.Carousel),
-    Slide: () => import("vue-carousel").then(Slider => Slider.Slide),
+    Carousel: () => import('vue-carousel').then(Slider => Slider.Carousel),
+    Slide: () => import('vue-carousel').then(Slider => Slider.Slide),
     ProductTile,
-    "no-ssr": NoSSR
+    'no-ssr': NoSSR
   },
-  data() {
+  data () {
     return {
       currentPage: 0
     };
   },
   methods: {
-    setMuted(currentPage) {
+    setMuted (currentPage) {
       this.currentPage = currentPage;
     }
   }

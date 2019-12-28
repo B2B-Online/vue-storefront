@@ -9,8 +9,8 @@
             :products="promotions"
             :config="configSliderPromo"
             v-if="promotions && promotions.length"
-            linkMore="/wiecej-promocji"
-            :linkMoreText="$t('Wszystkie promocje dnia')"
+            link-more="/wiecej-promocji"
+            :link-more-text="$t('Wszystkie promocje dnia')"
             id="promo"
           />
           <products-slider
@@ -18,8 +18,8 @@
             :products="popularProducts"
             :config="configSliderPopular"
             v-if="popularProducts && popularProducts.length"
-            linkMore="/wiecej-popularnych"
-            :linkMoreText="$t('Wszystkie popularne')"
+            link-more="/wiecej-popularnych"
+            :link-more-text="$t('Wszystkie popularne')"
             id="popular"
           />
           <products-slider
@@ -27,8 +27,8 @@
             :products="newProducts"
             :config="configSliderNew"
             v-if="newProducts && newProducts.length"
-            linkMore="/wiecej-nowosci"
-            :linkMoreText="$t('Wszystkie nowości')"
+            link-more="/wiecej-nowosci"
+            :link-more-text="$t('Wszystkie nowości')"
             id="newprod"
           />
           <!-- <section
@@ -43,10 +43,10 @@
               </header>
             </div>
             <div class="row center-xs">
-              
+
             </div>
           </section> -->
-          <!-- 
+          <!--
           <section
             class="new-collection container px15"
             v-if="popularProducts && popularProducts.length"
@@ -106,25 +106,25 @@
 
 <script>
 // query constructor
-import { prepareCategoryQuery } from "@vue-storefront/core/modules/catalog/queries/categoryQuery";
-import { isServer, onlineHelper } from "@vue-storefront/core/helpers";
+import { prepareCategoryQuery } from '@vue-storefront/core/modules/catalog/queries/categoryQuery';
+import { isServer, onlineHelper } from '@vue-storefront/core/helpers';
 
 // Core pages
-import Home from "@vue-storefront/core/pages/Home";
+import Home from '@vue-storefront/core/pages/Home';
 
 // Theme core components
-import ProductsSlider from "theme/components/core/ProductsSlider";
-import MainSlider from "theme/components/core/blocks/MainSlider/MainSlider";
-import Newsletter from "theme/components/core/blocks/Footer/Newsletter";
-import ManufacturerSlider from "theme/components/core/blocks/MultiSlider/ManufacturerSlider";
+import ProductsSlider from 'theme/components/core/ProductsSlider';
+import MainSlider from 'theme/components/core/blocks/MainSlider/MainSlider';
+import Newsletter from 'theme/components/core/blocks/Footer/Newsletter';
+import ManufacturerSlider from 'theme/components/core/blocks/MultiSlider/ManufacturerSlider';
 
 // Theme local components
-import Onboard from "theme/components/theme/blocks/Home/Onboard";
-import PromotedOffers from "theme/components/theme/blocks/PromotedOffers/PromotedOffers";
-import TileLinks from "theme/components/theme/blocks/TileLinks/TileLinks";
-import { Logger } from "@vue-storefront/core/lib/logger";
-import { mapGetters } from "vuex";
-import config from "config";
+import Onboard from 'theme/components/theme/blocks/Home/Onboard';
+import PromotedOffers from 'theme/components/theme/blocks/PromotedOffers/PromotedOffers';
+import TileLinks from 'theme/components/theme/blocks/TileLinks/TileLinks';
+import { Logger } from '@vue-storefront/core/lib/logger';
+import { mapGetters } from 'vuex';
+import config from 'config';
 
 export default {
   mixins: [Home],
@@ -137,9 +137,9 @@ export default {
     TileLinks,
     ManufacturerSlider
   },
-  data() {
+  data () {
     return {
-      configSliderPromo:{
+      configSliderPromo: {
         perPageCustom: [
           [1, 1],
           [600, 2],
@@ -154,7 +154,7 @@ export default {
         speed: 1000,
         navigationEnabled: true
       },
-      configSliderPopular:{
+      configSliderPopular: {
         perPageCustom: [
           [1, 1],
           [600, 2],
@@ -169,7 +169,7 @@ export default {
         speed: 1000,
         navigationEnabled: true
       },
-      configSliderNew:{
+      configSliderNew: {
         perPageCustom: [
           [1, 1],
           [600, 2],
@@ -185,74 +185,74 @@ export default {
       },
       manufacturers: [
         {
-          link: "abinbev",
-          image: "/assets/atat/loga/abinbev.png"
+          link: 'abinbev',
+          image: '/assets/atat/loga/abinbev.png'
         },
         {
-          link: "alcatel",
-          image: "/assets/atat/loga/alcatel.png"
+          link: 'alcatel',
+          image: '/assets/atat/loga/alcatel.png'
         },
         {
-          link: "alstom",
-          image: "/assets/atat/loga/alstom.png"
+          link: 'alstom',
+          image: '/assets/atat/loga/alstom.png'
         },
         {
-          link: "armstrong",
-          image: "/assets/atat/loga/armstrong.png"
+          link: 'armstrong',
+          image: '/assets/atat/loga/armstrong.png'
         },
         {
-          link: "astrazeneca",
-          image: "/assets/atat/loga/astrazeneca.png"
+          link: 'astrazeneca',
+          image: '/assets/atat/loga/astrazeneca.png'
         },
         {
-          link: "bayer",
-          image: "/assets/atat/loga/bayer.png"
+          link: 'bayer',
+          image: '/assets/atat/loga/bayer.png'
         },
         {
-          link: "cooper",
-          image: "/assets/atat/loga/cooper.png"
+          link: 'cooper',
+          image: '/assets/atat/loga/cooper.png'
         },
         {
-          link: "dsm",
-          image: "/assets/atat/loga/dsm.png"
+          link: 'dsm',
+          image: '/assets/atat/loga/dsm.png'
         },
         {
-          link: "eaton",
-          image: "/assets/atat/loga/eaton.png"
+          link: 'eaton',
+          image: '/assets/atat/loga/eaton.png'
         },
         {
-          link: "electrolux",
-          image: "/assets/atat/loga/electrolux.png"
+          link: 'electrolux',
+          image: '/assets/atat/loga/electrolux.png'
         },
         {
-          link: "evonik",
-          image: "/assets/atat/loga/evonik.png"
+          link: 'evonik',
+          image: '/assets/atat/loga/evonik.png'
         },
         {
-          link: "federalmogul",
-          image: "/assets/atat/loga/federalmogul.png"
+          link: 'federalmogul',
+          image: '/assets/atat/loga/federalmogul.png'
         },
         {
-          link: "finisar",
-          image: "/assets/atat/loga/finisar.png"
+          link: 'finisar',
+          image: '/assets/atat/loga/finisar.png'
         },
         {
-          link: "henkel",
-          image: "/assets/atat/loga/henkel.png"
+          link: 'henkel',
+          image: '/assets/atat/loga/henkel.png'
         },
         {
-          link: "hp",
-          image: "/assets/atat/loga/hp.png"
+          link: 'hp',
+          image: '/assets/atat/loga/hp.png'
         }
       ]
     };
   },
-  metaInfo() {
+  metaInfo () {
     return {
       category: this.$route.meta.category || this.$props.category,
       title: this.$route.meta.title || this.$props.title,
       meta: this.$route.meta.description
-        ? [{ vmid: "description", description: this.$route.meta.description }]
+        ? [{ vmid: 'description', description: this.$route.meta.description }]
         : []
     };
   },
@@ -271,113 +271,112 @@ export default {
     }
   },
   computed: {
-    ...mapGetters("user", ["isLoggedIn"]),
-    categories() {
+    ...mapGetters('user', ['isLoggedIn']),
+    categories () {
       return this.getCategories;
     },
-    newProducts() {
+    newProducts () {
       return this.$store.state.categoryhomepage.new_products;
     },
-    promotions() {
+    promotions () {
       return this.$store.state.categoryhomepage.promotions;
     },
-    popularProducts() {
+    popularProducts () {
       return this.$store.state.categoryhomepage.popular_products;
     },
-    isOnline() {
+    isOnline () {
       return onlineHelper.isOnline;
     }
   },
-  created() {
+  created () {
     // Load personal and shipping details for Checkout page from IndexedDB
-    this.$store.dispatch("checkout/load");
+    this.$store.dispatch('checkout/load');
   },
-  async beforeMount() {
+  async beforeMount () {
     if (this.$store.state.__DEMO_MODE__) {
-      const onboardingClaim = await this.$store.dispatch("claims/check", {
-        claimCode: "onboardingAccepted"
+      const onboardingClaim = await this.$store.dispatch('claims/check', {
+        claimCode: 'onboardingAccepted'
       });
       if (!onboardingClaim) {
         // show onboarding info
-        this.$bus.$emit("modal-toggle", "modal-onboard");
-        this.$store.dispatch("claims/set", {
-          claimCode: "onboardingAccepted",
+        this.$bus.$emit('modal-toggle', 'modal-onboard');
+        this.$store.dispatch('claims/set', {
+          claimCode: 'onboardingAccepted',
           value: true
         });
       }
     }
   },
-  mounted() {
-    if (!this.isLoggedIn && localStorage.getItem("redirect"))
-      this.$bus.$emit("modal-show", "modal-signup");
+  mounted () {
+    if (!this.isLoggedIn && localStorage.getItem('redirect')) { this.$bus.$emit('modal-show', 'modal-signup'); }
   },
   watch: {
-    isLoggedIn() {
-      const redirectObj = localStorage.getItem("redirect");
+    isLoggedIn () {
+      const redirectObj = localStorage.getItem('redirect');
       if (redirectObj) this.$router.push(redirectObj);
-      localStorage.removeItem("redirect");
+      localStorage.removeItem('redirect');
     }
   },
-  async asyncData({ store, route }) {
+  async asyncData ({ store, route }) {
     // this is for SSR purposes to prefetch data
-    Logger.info("Calling asyncData in CategoryHome (theme)")();
+    Logger.info('Calling asyncData in CategoryHome (theme)')();
 
     let newProductsQuery = prepareCategoryQuery({
       category: route.meta.category,
-      queryConfig: "newProducts"
+      queryConfig: 'newProducts'
     });
     let promotionsQuery = prepareCategoryQuery({
       category: route.meta.category,
-      queryConfig: "promotions"
+      queryConfig: 'promotions'
     });
     let popularProductsQuery = prepareCategoryQuery({
       category: route.meta.category,
-      queryConfig: "popularProducts"
+      queryConfig: 'popularProducts'
     });
 
-    const newProductsResult = await store.dispatch("product/list", {
+    const newProductsResult = await store.dispatch('product/list', {
       query: newProductsQuery,
       size: 8,
-      sort: "created_at:desc"
+      sort: 'created_at:desc'
     });
     if (newProductsResult) {
       store.state.categoryhomepage.new_products = newProductsResult.items;
     }
 
-    const promotionsResult = await store.dispatch("product/list", {
+    const promotionsResult = await store.dispatch('product/list', {
       query: promotionsQuery,
       size: 8,
-      sort: "created_at:desc"
+      sort: 'created_at:desc'
     });
     if (promotionsResult) {
       store.state.categoryhomepage.promotions = promotionsResult.items;
     }
 
-    const popularProductsResult = await store.dispatch("product/list", {
+    const popularProductsResult = await store.dispatch('product/list', {
       query: popularProductsQuery,
       size: 8,
-      sort: "created_at:desc"
+      sort: 'created_at:desc'
     });
     if (popularProductsResult) {
       store.state.categoryhomepage.popular_products =
         popularProductsResult.items;
     }
 
-    await store.dispatch("promoted/updateHeadImage");
-    await store.dispatch("promoted/updatePromotedOffers");
+    await store.dispatch('promoted/updateHeadImage');
+    await store.dispatch('promoted/updatePromotedOffers');
   },
-  beforeRouteEnter(to, from, next) {
+  beforeRouteEnter (to, from, next) {
     if (!isServer && !from.name) {
       // Loading products to cache on SSR render
       next(vm => {
         let newProductsQuery = prepareCategoryQuery({
-          category: "chemia",
-          queryConfig: "newProducts"
+          category: 'chemia',
+          queryConfig: 'newProducts'
         });
-        vm.$store.dispatch("product/list", {
+        vm.$store.dispatch('product/list', {
           query: newProductsQuery,
           size: 8,
-          sort: "created_at:desc"
+          sort: 'created_at:desc'
         });
       });
     } else {

@@ -1,41 +1,24 @@
 <template>
-  <ul
-    v-if="children" class="submenu"
-  >
+  <ul v-if="children" class="submenu">
     <li
-      v-if="parentSlug"
-    >
-      <router-link
-        class="menu-link"
-        :to="localizedRoute({ name: 'category', params: { id: id, slug: parentSlug }})"
-        data-testid="categoryLink"
-      >
-        {{ $t('View all') }}
-      </router-link>
-    </li>
-    <li
-      class="relative"
+      class="relative submenu-item"
       :key="link.slug"
       v-for="link in children"
-      :class="{'with-submenu': (link.children_data && link.children_data.length)}"
+      :class="{
+        'with-submenu': link.children_data && link.children_data.length
+      }"
+      @mouseenter="activeSubMenu = link.id"
+      @mouseleave="activeSubMenu = null"
     >
-      <button
-        v-if="link.children_count > 0"
-        class="menu-link"
-        :class="{active: activeSubMenu == link.id}"
-        type="button"
-        :aria-label="$t('Show subcategories')"
-        data-testid="categoryButton"
-        @click="activeSubMenu == link.id ? activeSubMenu = null : activeSubMenu = link.id"
-        @mouseenter="activeSubMenu = link.id"
-        @mouseleave="activeSubMenu = null"
-      >
-        {{ link.name }}
-      </button>
       <router-link
-        v-else
         class="menu-link"
-        :to="localizedRoute({ name: 'category', params: { id: link.id, slug: link.url_path}})"
+        :class="{ active: activeSubMenu == link.id }"
+        :to="
+          localizedRoute({
+            name: 'category',
+            params: { id: link.id, slug: link.url_path }
+          })
+        "
       >
         {{ link.name }}
       </router-link>
@@ -45,14 +28,14 @@
         :id="link.id"
         v-if="link.children_count > 0"
         :parent-slug="link.slug"
-        class="top-0 left-100"
+        class=""
       />
     </li>
   </ul>
 </template>
 <script>
 export default {
-  name: 'SubCategory',
+  name: "SubCategory",
   props: {
     id: {
       type: [String, Number],
@@ -61,7 +44,7 @@ export default {
     parentSlug: {
       type: String,
       required: false,
-      default: ''
+      default: ""
     },
     categoryLinks: {
       type: null,
@@ -69,58 +52,86 @@ export default {
       default: false
     }
   },
-  data () {
+  data() {
     return {
       activeSubMenu: null
-    }
+    };
   },
   computed: {
-    children () {
-      if (!this.$store.state.config.entities.category.categoriesDynamicPrefetch && (this.categoryLinks && this.categoryLinks.length > 0 && this.categoryLinks[0].name)) { // we're using dynamic prefetching and getting just category.children_data.id from 1.7
+    children() {
+      if (
+        !this.$store.state.config.entities.category.categoriesDynamicPrefetch &&
+        this.categoryLinks &&
+        this.categoryLinks.length > 0 &&
+        this.categoryLinks[0].name
+      ) {
+        // we're using dynamic prefetching and getting just category.children_data.id from 1.7
         const result = this.categoryLinks;
         return result;
       } else {
-        const result = this.$store.state.category.list.filter(c => { return c.parent_id === this.id }); // return my child categories
+        const result = this.$store.state.category.list.filter(c => {
+          return c.parent_id === this.id;
+        }); // return my child categories
         return result;
       }
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-.left-100 {
-  left: 100%;
-  top: 10%
-}
 .submenu {
-  @apply p-0 m-0 absolute min-w-full bg-grey-lighter shadow z-10;
+  z-index: 1000;
+  position: absolute;
+  background: #f15c2c;
   list-style: none;
-  min-width: 200px;
-  li {
-    @apply border-t border-solid border-white;
-  }
-  .menu-link {
-    @apply block w-full text-sm text-grey-dark text-left font-medium;
-    padding: 10px 2px 10px 2px;
-    line-height: 1.25rem;
-    text-decoration: none;
-    &:hover, &:focus, &.router-link-active {
-      @apply text-primary;
-      outline: none;
+  padding: 0px 0px;
+  margin: 0px;
+  width: 350px;
+  box-shadow: 1px 3px 3px rgba(#000, 0.1);
+  .submenu-item {
+    border-bottom: solid 1px #f58966;
+    display: block;
+    cursor: pointer;
+    transition: all 0.1s ease-in;
+    .menu-link {
+      color: #fff;
+      font-size: 18px;
+      display: block;
+      padding: 10px 20px;
     }
-    &.active {
-      @apply text-primary border-l-2 border-solid border-primary;
-      padding-left: 10px;
+    &:hover {
+      background: #0b5ca2;
+      box-shadow: 0px 3px 3px rgba(#000, 0.1);
     }
   }
-}
-.with-submenu:hover {
-  > .menu-link {
-    @extend .menu-link.active;
-  }
-  > .submenu {
-    display: block !important;
+  .submenu {
+    background: #0b5ca2;
+    position: absolute;
+    left: 100%;
+    top: 0px;
+    .submenu-item {
+      // border-bottom: solid 1px rgba(#fff, 0.5);
+      border-bottom: none;
+      &:hover {
+        background: #fff;
+        .menu-link {
+          color: #000000;
+        }
+      }
+    }
+    .submenu {
+      background: #fff;
+      .submenu-item {
+        &:hover {
+          background: none;
+          box-shadow: none;
+          .menu-link {
+            color: #626d79;
+          }
+        }
+      }
+    }
   }
 }
 </style>

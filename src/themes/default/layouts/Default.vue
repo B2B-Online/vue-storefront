@@ -26,6 +26,7 @@
         :is-open="isWishlistOpen"
         @close="$store.commit('ui/setWishlist')"
       />
+      <shop-info />
       <header-menu />
       <slot />
       <main-footer />
@@ -43,6 +44,7 @@
 import { mapState } from 'vuex'
 import AsyncSidebar from 'theme/components/theme/blocks/AsyncSidebar/AsyncSidebar.vue'
 import MainHeader from 'theme/components/core/blocks/Header/Header.vue'
+import ShopInfo from 'theme/components/theme/blocks/Static/ShopInfo'
 import HeaderMenu from 'theme/components/core/blocks/HeaderMenu/HeaderMenu.vue'
 import MainFooter from 'theme/components/core/blocks/Footer/Footer.vue'
 import Overlay from 'theme/components/core/Overlay.vue'
@@ -112,6 +114,7 @@ export default {
   metaInfo: Head,
   components: {
     MainHeader,
+    ShopInfo,
     MainFooter,
     HeaderMenu,
     SidebarMenu, // eslint-disable-line vue/no-unused-components

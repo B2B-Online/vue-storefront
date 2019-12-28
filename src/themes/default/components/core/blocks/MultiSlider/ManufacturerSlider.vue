@@ -59,7 +59,6 @@ export default {
 <style lang="scss" scope>
 .manufacturer-slider {
   border-top: solid 1px #cbd3dd;
-  border-bottom: solid 1px #cbd3dd;
   .VueCarousel {
     .VueCarousel-wrapper {
       .VueCarousel-slide {

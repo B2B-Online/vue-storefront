@@ -44,11 +44,11 @@
   </div>
 </template>
 <script>
-import HeaderSimple from 'theme/components/theme/blocks/Static/HeaderSimple';
+import HeaderSimple from 'theme/components/theme/blocks/Static/HeaderSimple'
 import MainSlider from 'theme/components/core/blocks/MainSlider/MainSlider'
-import ShopInfo from 'theme/components/theme/blocks/Static/ShopInfo';
-import MainFooter from 'theme/components/core/blocks/Footer/Footer';
-import ManufacturerSlider from 'theme/components/core/blocks/MultiSlider/ManufacturerSlider';
+import ShopInfo from 'theme/components/theme/blocks/Static/ShopInfo'
+import MainFooter from 'theme/components/core/blocks/Footer/Footer'
+import ManufacturerSlider from 'theme/components/core/blocks/MultiSlider/ManufacturerSlider'
 
 export default {
   components: {

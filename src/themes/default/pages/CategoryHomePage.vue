@@ -120,8 +120,6 @@ import ManufacturerSlider from 'theme/components/core/blocks/MultiSlider/Manufac
 
 // Theme local components
 import Onboard from 'theme/components/theme/blocks/Home/Onboard';
-import PromotedOffers from 'theme/components/theme/blocks/PromotedOffers/PromotedOffers';
-import TileLinks from 'theme/components/theme/blocks/TileLinks/TileLinks';
 import { Logger } from '@vue-storefront/core/lib/logger';
 import { mapGetters } from 'vuex';
 import config from 'config';
@@ -133,8 +131,6 @@ export default {
     MainSlider,
     Onboard,
     ProductsSlider,
-    PromotedOffers,
-    TileLinks,
     ManufacturerSlider
   },
   data () {
@@ -259,15 +255,18 @@ export default {
   props: {
     category: {
       type: String,
-      required: false
+      required: false,
+      default: ''
     },
     title: {
       type: String,
-      required: false
+      required: false,
+      default: ''
     },
     page: {
       type: String,
-      required: false
+      required: false,
+      default: ''
     }
   },
   computed: {

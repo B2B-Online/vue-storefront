@@ -85,7 +85,6 @@
     "vue-no-ssr": "^0.2.2",
     "vue-observe-visibility": "^0.4.1",
     "vue-offline": "^1.0.8",
-    "vue-owl-carousel": "^2.0.3",
     "vue-router": "^3.0.1",
     "vue-server-renderer": "^2.6.6",
     "vuelidate": "^0.6.2",

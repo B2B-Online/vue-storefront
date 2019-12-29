@@ -16,7 +16,7 @@ let routes = [
   { name: 'chemistry', path: '/chemia', component: CategoryHomePage, meta: { category: 'chemia' } },
   { name: 'lighting', path: '/elektryka/oprawy-oswietleniowe-konsumenckie', component: CategoryHomePage, meta: { category: 'oswietlenie' } },
   { name: 'spozywcze', path: '/spozywcze', component: CategoryHomePage, meta: { category: 'spozywcze' } },
-  { name: 'home', path: '/', component: Home, alias: '/pwa.html' },
+  { name: 'home', path: '/', component: StartPage, alias: '/pwa.html', meta: { layout: 'empty' } },
   { name: 'checkout', path: '/checkout', component: Checkout },
   { name: 'legal', path: '/legal', component: Static, props: {page: 'lorem', title: 'Legal Notice'}, meta: {title: 'Legal Notice', description: 'Legal Notice - example of description usage'} },
   { name: 'privacy', path: '/privacy', component: Static, props: {page: 'lorem', title: 'Privacy'} },

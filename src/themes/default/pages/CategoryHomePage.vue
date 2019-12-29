@@ -186,7 +186,7 @@ export default {
   beforeRouteEnter (to, from, next) {
     if (!isServer && !from.name) { // Loading products to cache on SSR render
       next(vm => {
-        let newProductsQuery = prepareCategoryQuery({ category: 'chemia', queryConfig: 'newProducts' })
+        let newProductsQuery = prepareCategoryQuery({ category: vm.$route.meta.category, queryConfig: 'newProducts' })
         vm.$store.dispatch('product/list', {
           query: newProductsQuery,
           size: 8,

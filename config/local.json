@@ -1,7 +1,7 @@
 {
     "server": {
-      "host": "localhost",
-      //"host": "0.0.0.0",
+      //"host": "localhost",
+      "host": "0.0.0.0",
       "port": 3000,
       "protocol": "http",
       "api": "api",
@@ -28,20 +28,20 @@
       "verbosityLevel": "display-everything"
     },
     "redis": {
-      "host": "vue-storefront-redis-develop.local",
-      //"host":"localhost",
+      //"host": "vue-storefront-redis-develop.local",
+      "host":"localhost",
       "port": 6379,
       "db": 0
     },
     "graphql":{
-      "host": "store-api-develop.planetb2b.com",
-      //"host":"localhost",
-      "port": 443
-      //"port": 8080
+      //"host": "store-api-develop.planetb2b.com",
+      "host":"localhost",
+      //"port": 443
+      "port": 8080
     },
     "api": {
-      "url": "https://store-api-develop.planetb2b.com"
-      //"url":"http://localhost:8080"
+      //"url": "https://store-api-develop.planetb2b.com"
+      "url":"http://localhost:8080"
     },
     "elasticsearch": {
       "httpAuth": "",
@@ -488,24 +488,36 @@
         "newProducts": {
           "filter": [
             {
-              "key": "category.name",
-              "value" : { "eq": "LED" }
+              "key": "is_new_product",
+              "value" : { "eq": "true" }
+            },
+            {
+              "key": "catalog",
+              "value" : { "eq": "elektryka" }
             }
           ]
         },
         "promotions": {
           "filter": [
             {
-              "key": "category.name",
-              "value" : { "eq": "TV" }
+              "key": "catalog",
+              "value" : { "eq": "elektryka" }
+            },
+            {
+              "key": "is_promotion",
+              "value" : { "eq": "true" }
             }
           ]
         },
         "popularProducts": {
           "filter": [
             {
-              "key": "category.name",
-              "value" : { "eq": "MODUŁOWE NT" }
+              "key": "catalog",
+              "value" : { "eq": "elektryka" }
+            },
+            {
+              "key": "is_suggested",
+              "value" : { "eq": "true" }
             }
           ]
         }
@@ -514,24 +526,36 @@
         "newProducts": {
           "filter": [
             {
-              "key": "category.name",
-              "value" : { "eq": "Pozostałe" }
+              "key": "catalog",
+              "value" : { "eq": "spozywcze" }
+            },
+            {
+              "key": "is_new_product",
+              "value" : { "eq": "true" }
             }
           ]
         },
         "promotions": {
           "filter": [
             {
-              "key": "category.name",
-              "value" : { "eq": "Ciastka" }
+              "key": "catalog",
+              "value" : { "eq": "spozywcze" }
+            },
+            {
+              "key": "is_promotion",
+              "value" : { "eq": "true" }
             }
           ]
         },
         "popularProducts": {
           "filter": [
             {
-              "key": "category.name",
-              "value" : { "eq": "Herbaty ekspresowe" }
+              "key": "catalog",
+              "value" : { "eq": "spozywcze" }
+            },
+            {
+              "key": "is_suggested",
+              "value" : { "eq": "true" }
             }
           ]
         }
@@ -540,24 +564,36 @@
         "newProducts": {
           "filter": [
             {
-              "key": "category.name",
-              "value" : { "eq": "KĄPIELI" }
+              "key": "catalog",
+              "value" : { "eq": "chemia" }
+            },
+            {
+              "key": "is_new_product",
+              "value" : { "eq": "true" }
             }
           ]
         },
         "promotions": {
           "filter": [
             {
-              "key": "category.name",
-              "value" : { "eq": "KREMY" }
+              "key": "catalog",
+              "value" : { "eq": "chemia" }
+            },
+            {
+              "key": "is_promotion",
+              "value" : { "eq": "true" }
             }
           ]
         },
         "popularProducts": {
           "filter": [
             {
-              "key": "category.name",
-              "value" : { "eq": "FARBY KOLORYZUJĄCE" }
+              "key": "catalog",
+              "value" : { "eq": "chemia" }
+            },
+            {
+              "key": "is_suggested",
+              "value" : { "eq": "true" }
             }
           ]
         }
@@ -566,24 +602,36 @@
         "newProducts": {
           "filter": [
             {
-              "key": "category.name",
-              "value" : { "eq": "LED" }
+              "key": "catalog",
+              "value" : { "eq": "oswietlenie" }
+            },
+            {
+              "key": "is_new_product",
+              "value" : { "eq": "true" }
             }
           ]
         },
         "promotions": {
           "filter": [
             {
-              "key": "category.name",
-              "value" : { "eq": "RAMKI" }
+              "key": "catalog",
+              "value" : { "eq": "oswietlenie" }
+            },
+            {
+              "key": "is_promotion",
+              "value" : { "eq": "true" }
             }
           ]
         },
         "popularProducts": {
           "filter": [
             {
-              "key": "category.name",
-              "value" : { "eq": "KINKIETY I PLAFONIERY" }
+              "key": "catalog",
+              "value" : { "eq": "oswietlenie" }
+            },
+            {
+              "key": "is_suggested",
+              "value" : { "eq": "true" }
             }
           ]
         }

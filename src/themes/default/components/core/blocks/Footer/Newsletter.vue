@@ -1,21 +1,25 @@
 <template>
-  <div class="newsletter py25 px15 bg-cl-secondary" v-if="!isSubscribed">
-    <div class="container">
-      <div class="newsletter-content m0 row middle-sm start-md">
-        <div class="col-md-8 col-xs-12">
-          <h3 class="h3 cl-accent weight-400 m0">
-            {{ $t('Subscribe to the newsletter and receive a coupon for 10% off') }}
-          </h3>
-        </div>
-        <div class="newsletter-button col-md-4 col-xs-12 end-md">
-          <button-outline
-            @click.native="showNewsletterPopup"
-            color="dark"
-            data-testid="openNewsletterButton"
-          >
-            {{ $t('Subscribe') }}
-          </button-outline>
-        </div>
+  <div class="newsletter" v-if="!isSubscribed">
+    <div class="newsletter__content">
+      <h3 class="newsletter__title">
+        {{ $t("Newsletter") }}
+      </h3>
+      <p class="newsletter__text">
+        Zapisz się teraz do newslettera i zyskaj:
+      </p>
+      <ul class="newsletter__list">
+        <li>Dostęp do aktualnych promocji</li>
+        <li>Specjalne kody rabatowe</li>
+        <li>Informacje o najnowszych trendach</li>
+      </ul>
+      <div class="newsletter__button flex center-xs">
+        <button
+          @click="showNewsletterPopup"
+          class="btn--orange btn--big"
+          data-testid="openNewsletterButton"
+        >
+          {{ $t("Subscribe") }}
+        </button>
       </div>
     </div>
     <newsletter-popup v-if="loadNewsletterPopup" />
@@ -23,10 +27,13 @@
 </template>
 
 <script>
-import SubscriptionStatus from '@vue-storefront/core/modules/newsletter/mixins/SubscriptionStatus'
-import ButtonOutline from 'theme/components/theme/ButtonOutline'
-import { mapState } from 'vuex'
-const NewsletterPopup = () => import(/* webpackChunkName: "vsf-newsletter-modal" */ 'theme/components/core/NewsletterPopup.vue')
+import SubscriptionStatus from '@vue-storefront/core/modules/newsletter/mixins/SubscriptionStatus';
+// import ButtonOutline from 'theme/components/theme/ButtonOutline';
+import { mapState } from 'vuex';
+const NewsletterPopup = () =>
+  import(
+    /* webpackChunkName: "vsf-newsletter-modal" */ 'theme/components/core/NewsletterPopup.vue'
+  );
 
 export default {
   name: 'Newsletter',
@@ -34,7 +41,7 @@ export default {
   data () {
     return {
       loadNewsletterPopup: false
-    }
+    };
   },
   computed: {
     ...mapState({
@@ -43,31 +50,65 @@ export default {
   },
   methods: {
     showNewsletterPopup () {
-      this.loadNewsletterPopup = true
-      this.$bus.$emit('modal-show', 'modal-newsletter')
+      this.loadNewsletterPopup = true;
+      this.$bus.$emit('modal-show', 'modal-newsletter');
     }
   },
   components: {
-    ButtonOutline,
     NewsletterPopup
   }
-}
+};
 </script>
 
-<style scoped>
-  @media (min-width: 767px) and (max-width: 1200px){
-    .button-outline{
-      min-width: 100%;
+<style lang="scss" scoped>
+.newsletter {
+  margin-bottom: 30px;
+  * {
+    box-sizing: border-box;
+  }
+  &__content {
+    border: 1px solid #cbd3dd;
+    border-radius: 5px;
+    padding: 20px;
+  }
+  &__title {
+    padding: 0px;
+    margin: 0px;
+    font-size: 22px;
+    color: #000;
+    font-weight: 400;
+  }
+
+  &__text {
+    color: #626d79;
+    padding: 0px;
+    margin: 0px;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  &__list {
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+    margin-bottom: 20px;
+    li {
+      padding-left: 10px;
+      position: relative;
+      color: #626d79;
+      line-height: 19px;
+      font-weight: 300;
+      &::before {
+        position: absolute;
+        top: -1px;
+        left: 0px;
+        content: "-";
+        color: #626d79;
+      }
     }
   }
-  @media (max-width: 767px) {
-    .h3 {
-      font-size: 18px;
-      text-align: center;
-    }
-    .newsletter-button {
-      padding-top: 25px;
-      text-align: center;
-    }
+  &__button {
+    margin-top: 30px;
+    margin-bottom: 10px;
   }
+}
 </style>

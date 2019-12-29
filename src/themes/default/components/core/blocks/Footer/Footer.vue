@@ -1,149 +1,192 @@
 <template>
   <footer :class="{ 'brdr-top-1 brdr-cl-secondary': isCheckoutPage }">
-    <newsletter class=" flex brdr-bottom-1 brdr-cl-secondary" v-if="!isCheckoutPage" />
     <div
-      class="footer-links flex pt30 pb60 px40 bg-cl-secondary"
+      class="footer-links flex"
       v-if="!isCheckoutPage"
     >
       <div class="container">
-        <div class="row m0 center-xs between-md">
+        <div class="row center-xs between-md">
           <div
-            class="row m0 col-lg-7 col-md-8 col-xs-12 start-md between-md between-xs no-mobile"
+            class="col-lg-7 col-md-8 col-xs-12 no-mobile center-xs start-md flex"
           >
-            <div class="start-md">
-              <h3 class="cl-accent weight-400">
-                {{ $t('Orders') }}
+            <div class="footer-links__box">
+              <h3 class="footer-links__title">
+                {{ $t('Informacje') }}
               </h3>
-              <div class="mt15">
-                <router-link class="cl-secondary" :to="localizedRoute('/my-account')" exact>
-                  {{ $t('My account') }}
-                </router-link>
-              </div>
-              <div class="mt15">
-                <router-link class="cl-secondary" :to="localizedRoute('/delivery')" exact>
-                  {{ $t('Delivery') }}
-                </router-link>
-              </div>
-              <div class="mt15">
-                <router-link class="cl-secondary" :to="localizedRoute('/returns')" exact>
-                  {{ $t('Return policy') }}
-                </router-link>
-              </div>
+              <ul class="footer-links__list">
+                <li class="footer-links__elem">
+                  <router-link :to="localizedRoute('/')" exact>
+                    {{ $t('Strona główna') }}
+                  </router-link>
+                </li>
+                <li class="footer-links__elem">
+                  <router-link :to="localizedRoute('/')" exact>
+                    {{ $t('O firmie') }}
+                  </router-link>
+                </li>
+                <li class="footer-links__elem">
+                  <router-link :to="localizedRoute('/')" exact>
+                    {{ $t('Pomoc') }}
+                  </router-link>
+                </li>
+                <li class="footer-links__elem">
+                  <router-link :to="localizedRoute('/')" exact>
+                    {{ $t('Kontakt') }}
+                  </router-link>
+                </li>
+                <li class="footer-links__elem">
+                  <router-link :to="localizedRoute('/')" exact>
+                    {{ $t('Zwroty i reklamacje') }}
+                  </router-link>
+                </li>
+                <li class="footer-links__elem">
+                  <router-link :to="localizedRoute('/')" exact>
+                    {{ $t('Śledzenie przesyłki') }}
+                  </router-link>
+                </li>
+                <li class="footer-links__elem">
+                  <router-link :to="localizedRoute('/')" exact>
+                    {{ $t('Dostawa') }}
+                  </router-link>
+                </li>
+                <li class="footer-links__elem">
+                  <router-link :to="localizedRoute('/')" exact>
+                    {{ $t('Zużyty sprzęt elektryczny i elektroniczny') }}
+                  </router-link>
+                </li>
+              </ul>
             </div>
-            <div class="start-md">
-              <h3 class="cl-accent weight-400">
-                {{ $t('Help') }}
+            <div class="footer-links__box">
+              <h3 class="footer-links__title">
+                {{ $t('Bezpieczeństwo') }}
               </h3>
-              <div class="mt15">
-                <router-link class="cl-secondary" :to="localizedRoute('/customer-service')" exact>
-                  {{ $t('Customer service') }}
-                </router-link>
-              </div>
-              <div class="mt15">
-                <router-link class="cl-secondary" :to="localizedRoute('/size-guide')" exact>
-                  {{ $t('Size guide') }}
-                </router-link>
-              </div>
-              <div class="mt15">
-                <router-link class="cl-secondary" :to="localizedRoute('/contact')" exact>
-                  {{ $t('Contact us') }}
-                </router-link>
-              </div>
-            </div>
-            <div class="start-md">
-              <h3 class="cl-accent weight-400">
-                {{ $t('About us') }}
-              </h3>
-              <div class="mt15">
-                <router-link class="cl-secondary" :to="localizedRoute('/i/about-us')" exact>
-                  {{ $t('About us (Magento CMS)') }}
-                </router-link>
-              </div>
-              <div class="mt15">
-                <router-link class="cl-secondary" :to="localizedRoute('/i/customer-service')" exact>
-                  {{ $t('Customer service (Magento CMS)') }}
-                </router-link>
-              </div>
-              <div class="mt15">
-                <router-link class="cl-secondary" :to="localizedRoute('/store-locator')" exact>
-                  {{ $t('Store locator') }}
-                </router-link>
-              </div>
+              <ul class="footer-links__list">
+                <li class="footer-links__elem">
+                  <router-link :to="localizedRoute('/')" exact>
+                    {{ $t('Regulamin') }}
+                  </router-link>
+                </li>
+                <li class="footer-links__elem">
+                  <router-link :to="localizedRoute('/')" exact>
+                    {{ $t('Prawo odstąpienia od umowy') }}
+                  </router-link>
+                </li>
+                <li class="footer-links__elem">
+                  <router-link :to="localizedRoute('/')" exact>
+                    {{ $t('Polityka prywatności') }}
+                  </router-link>
+                </li>
+                <li class="footer-links__elem">
+                  <router-link :to="localizedRoute('/')" exact>
+                    {{ $t('Polityka plików cookies') }}
+                  </router-link>
+                </li>
+                <li class="footer-links__elem">
+                  <router-link :to="localizedRoute('/')" exact>
+                    {{ $t('Formularz reklamacji') }}
+                  </router-link>
+                </li>
+                <li class="footer-links__elem">
+                  <router-link :to="localizedRoute('/')" exact>
+                    {{ $t('Formularz odstąpienia') }}
+                  </router-link>
+                </li>
+              </ul>
             </div>
           </div>
-          <div class="row social mt30">
-            <a
-              class="social-icon mx10 brdr-circle no-underline"
-              href="https://www.facebook.com/"
-              :aria-label="$t('Go to Facebook')"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" class="facebook icon" width="40" height="40" viewBox="0 0 40 40" fill="#BDBDBD">
-                <path d="M20,0 C8.9541,0 0,8.95435 0,20 C0,31.0457 8.9541,40 20,40 C31.0459,40 40,31.0457 40,20 C40,8.95435 31.0459,0 20,0 Z M22.085,20.8785 L22.085,31.7595 L17.5825,31.7595 L17.5825,20.8789 L15.3335,20.8789 L15.3335,17.1293 L17.5825,17.1293 L17.5825,14.8779 C17.5825,11.819 18.8525,10 22.4609,10 L25.4653,10 L25.4653,13.7501 L23.5874,13.7501 C22.1826,13.7501 22.0898,14.2742 22.0898,15.2521 L22.085,17.1288 L25.4863,17.1288 L25.0884,20.8785 L22.085,20.8785 Z" />
-              </svg>
-            </a>
-            <a
-              class="social-icon mx10 brdr-circle no-underline"
-              href="https://www.instagram.com"
-              :aria-label="$t('Go to Instagram')"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" class="instagram icon" width="40" height="40" viewBox="0 0 40 40" fill="#BDBDBD">
-                <path d="M20,0 C8.9541,0 0,8.95435 0,20 C0,31.0457 8.9541,40 20,40 C31.0459,40 40,31.0457 40,20 C40,8.95435 31.0459,0 20,0 Z M15.603,9.39783 C16.7407,9.34607 17.104,9.33337 20.001,9.33337 C22.8955,9.33337 23.2578,9.34607 24.3955,9.39783 C25.5312,9.44983 26.3066,9.62964 26.9868,9.89343 C27.689,10.1656 28.2822,10.53 28.8755,11.1234 C29.4692,11.7163 29.8335,12.3114 30.1069,13.0129 C30.3691,13.6912 30.5488,14.4663 30.6025,15.6019 C30.6533,16.7396 30.667,17.1033 30.667,20.0001 C30.667,22.8971 30.6533,23.2598 30.6025,24.3976 C30.5488,25.5327 30.3691,26.308 30.1069,26.9865 C29.8335,27.6877 29.4692,28.283 28.8755,28.8759 C28.2832,29.4691 27.689,29.8345 26.9873,30.1069 C26.3086,30.3707 25.5327,30.5505 24.397,30.6025 C23.2593,30.6543 22.897,30.6669 20,30.6669 C17.103,30.6669 16.7397,30.6543 15.6021,30.6025 C14.4668,30.5505 13.6914,30.3707 13.0127,30.1069 C12.3115,29.8345 11.7163,29.4691 11.1235,28.8759 C10.5308,28.283 10.166,27.6877 9.89355,26.9862 C9.62988,26.308 9.4502,25.5328 9.39795,24.3973 C9.34619,23.2595 9.3335,22.8971 9.3335,20.0001 C9.3335,17.1033 9.34668,16.7395 9.39795,15.6017 C9.44873,14.4666 9.62891,13.6912 9.89307,13.0127 C10.1665,12.3114 10.5312,11.7163 11.1245,11.1234 C11.7173,10.5303 12.3125,10.1658 13.0142,9.89343 C13.6924,9.62964 14.4673,9.44983 15.603,9.39783 Z" />
-                <path d="M7.7876,1.2868e-05 L8.74463,1.2868e-05 C11.5928,1.2868e-05 11.9302,0.0102668 13.0547,0.0612922 C14.0947,0.1089 14.6592,0.282606 15.0352,0.428724 C15.5332,0.621961 15.8882,0.853162 16.2612,1.22645 C16.6343,1.59974 16.8657,1.95534 17.0591,2.45314 C17.2051,2.82875 17.3794,3.3932 17.4268,4.43312 C17.4775,5.55763 17.4888,5.8954 17.4888,8.74208 C17.4888,11.5888 17.4775,11.9265 17.4268,13.051 C17.3789,14.0911 17.2051,14.6555 17.0591,15.031 C16.8657,15.5288 16.6343,15.8833 16.2612,16.2564 C15.8877,16.6298 15.5332,16.8609 15.0352,17.0542 C14.6597,17.2008 14.0947,17.3742 13.0547,17.4218 C11.9302,17.4728 11.5928,17.4839 8.74463,17.4839 C5.89648,17.4839 5.55859,17.4728 4.43408,17.4218 C3.39404,17.3738 2.82959,17.2 2.45361,17.054 C1.95557,16.8606 1.6001,16.6295 1.22705,16.2561 C0.853516,15.8828 0.622559,15.5282 0.428711,15.0302 C0.282715,14.6546 0.108887,14.0901 0.0615234,13.0502 C0.0102539,11.9257 0,11.5879 0,8.73939 C0,5.891 0.0102539,5.55494 0.0615234,4.43043 C0.108887,3.39052 0.282715,2.82606 0.428711,2.44996 C0.62207,1.95228 0.853516,1.59669 1.22705,1.22328 C1.6001,0.849988 1.95557,0.618909 2.45361,0.425062 C2.82959,0.278455 3.39404,0.105115 4.43408,0.0573859 C5.41846,0.0128303 5.7998,-0.000475413 7.7876,1.2868e-05 Z M14.438,1.77113 C13.7314,1.77113 13.1582,2.34376 13.1582,3.05067 C13.1582,3.75734 13.7314,4.3307 14.438,4.3307 C15.145,4.3307 15.7183,3.75734 15.7183,3.05067 C15.7183,2.34401 15.145,1.77064 14.438,1.77113 Z M3.2666,8.74452 C3.2666,5.71937 5.71924,3.26674 8.74463,3.26674 C11.7695,3.26674 14.2212,5.71937 14.2212,8.74452 C14.2212,11.7697 11.7695,14.2213 8.74463,14.2213 C5.71924,14.2213 3.2666,11.7697 3.2666,8.74452 Z" transform="translate(11.26 11.26)" />
-                <path stroke="#FFF" stroke-width="2" d="M4.55499342,0 C7.07049549,0 9.10999966,2.03920952 9.10999966,4.55499342 C9.10999966,7.07049549 7.07049549,9.10999966 4.55499342,9.10999966 C2.03920952,9.10999966 0,7.07049549 0,4.55499342 C0,2.03920952 2.03920952,2.02282451e-15 4.55499342,2.02282451e-15 L4.55499342,0 Z" transform="translate(15.45 15.44)" />
-              </svg>
-            </a>
-            <a
-              class="social-icon mx10 brdr-circle no-underline"
-              href="https://www.pinterest.com"
-              :aria-label="$t('Go to Pinterest')"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" class="pinterest icon" width="40" height="40" viewBox="0 0 40 40" fill="#BDBDBD">
-                <path d="M0,19.9989 C0,31.0437 8.95264,40 20,40 C31.0454,40 40,31.0437 40,19.9989 C40,8.9541 31.0454,0 20,0 C8.95264,0 0,8.9541 0,19.9989 Z M13.3696,36.8771 C6.62793,34.2357 1.85059,27.6766 1.85059,19.9991 C1.85059,9.98682 9.96533,1.87463 19.9761,1.87463 C29.9868,1.87463 38.1016,9.98682 38.1016,19.9991 C38.1016,30.0094 29.9868,38.1238 19.9761,38.1238 C18.106,38.1238 16.3042,37.8409 14.6099,37.314 C15.3467,36.1101 16.4521,34.1372 16.8613,32.5627 C17.082,31.7145 17.9902,28.255 17.9902,28.255 C18.5815,29.3817 20.3081,30.3372 22.146,30.3372 C27.6108,30.3372 31.5508,25.3096 31.5508,19.0631 C31.5508,13.0758 26.6641,8.59448 20.3765,8.59448 C12.5552,8.59448 8.40137,13.847 8.40137,19.5643 C8.40137,22.2206 9.81543,25.5323 12.0776,26.5862 C12.4224,26.7448 12.6069,26.6741 12.686,26.342 L12.8516,25.6682 C12.9653,25.2057 13.1074,24.6292 13.1895,24.2877 C13.2324,24.1035 13.2109,23.9471 13.063,23.7672 C12.3135,22.8589 11.7158,21.1881 11.7158,19.6307 C11.7158,15.6335 14.7427,11.7649 19.8989,11.7649 C24.3525,11.7649 27.4697,14.7981 27.4697,19.1381 C27.4697,24.0414 24.9932,27.4388 21.7715,27.4388 C19.9932,27.4388 18.6606,25.9694 19.0869,24.1635 C19.272,23.3851 19.519,22.5848 19.7598,21.8065 C20.1851,20.4301 20.5889,19.1227 20.5889,18.1292 C20.5889,16.7367 19.8413,15.5757 18.2964,15.5757 C16.4756,15.5757 15.0166,17.4564 15.0166,19.9778 C15.0166,21.5823 15.5586,22.6683 15.5586,22.6683 C15.5586,22.6683 13.7612,30.2621 13.4336,31.6759 C13.0693,33.244 13.2109,35.444 13.3696,36.8771 Z" />
-              </svg>
-            </a>
-            <a
-              class="social-icon mx10 brdr-circle no-underline"
-              href="https://www.youtube.com"
-              :aria-label="$t('Go to Youtube')"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" class="youtube icon" width="40" height="40" viewBox="0 0 40 40" fill="#BDBDBD">
-                <path d="M20,0 C8.9541,0 0,8.95435 0,20 C0,31.0457 8.9541,40 20,40 C31.0459,40 40,31.0457 40,20 C40,8.95435 31.0459,0 20,0 Z M28.335,13.1244 C29.2529,13.3763 29.9756,14.1185 30.2212,15.061 C30.667,16.7692 30.667,20.3333 30.667,20.3333 C30.667,20.3333 30.667,23.8973 30.2212,25.6056 C29.9756,26.5481 29.2529,27.2903 28.335,27.5424 C26.6714,28 20,28 20,28 C20,28 13.3291,28 11.6655,27.5424 C10.7476,27.2903 10.0244,26.5481 9.7793,25.6056 C9.3335,23.8973 9.3335,20.3333 9.3335,20.3333 C9.3335,20.3333 9.3335,16.7692 9.7793,15.061 C10.0244,14.1185 10.7476,13.3763 11.6655,13.1244 C13.3291,12.6666 20,12.6666 20,12.6666 C20,12.6666 26.6714,12.6666 28.335,13.1244 Z" />
-                <polygon points="0 6.667 0 0 5.333 3.333" transform="translate(18 17.33)" />
-              </svg>
-            </a>
+          <div class="social center-xs">
+            <div class="">
+              <a
+                class="social-icon brdr-circle no-underline"
+                href="https://www.facebook.com/"
+                :aria-label="$t('Go to Facebook')"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="13.316" height="28.316" viewBox="0 0 13.316 28.316">
+                  <path id="Op_component_3" data-name="Op component 3" d="M1245.03,1123.575V1121.3a1.194,1.194,0,0,1,1.252-1.352h3.2v-4.855h-4.4c-4.9,0-5.994,3.6-5.994,5.931v2.551h-2.843v5.669h2.873v14.166h5.7v-14.166h4.217l.186-2.228.34-3.442Z" transform="translate(-1236.24 -1115.094)" fill="#626d79" />
+                </svg>
+              </a>
+              <a
+                class="social-icon brdr-circle no-underline"
+                href="https://www.twitter.com"
+                :aria-label="$t('Go to Twitter')"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="28.407" height="22.648" viewBox="0 0 28.407 22.648">
+                  <path id="Op_component_2" data-name="Op component 2" d="M1322.513,1121.1a12.452,12.452,0,0,1-3.343.906,5.731,5.731,0,0,0,2.573-3.178,11.9,11.9,0,0,1-3.713,1.4,5.857,5.857,0,0,0-10.091,3.9,5.958,5.958,0,0,0,.17,1.306,16.562,16.562,0,0,1-12.017-5.973,5.63,5.63,0,0,0,1.787,7.631,5.657,5.657,0,0,1-2.634-.707v.077a5.392,5.392,0,0,0,.4,2.057,5.807,5.807,0,0,0,4.284,3.532,5.739,5.739,0,0,1-1.541.215,5.235,5.235,0,0,1-1.095-.122,5.875,5.875,0,0,0,5.439,3.992,11.814,11.814,0,0,1-7.226,2.441c-.478,0-.924-.031-1.4-.077a16.862,16.862,0,0,0,8.935,2.564,16.2,16.2,0,0,0,16.19-12.806,15.672,15.672,0,0,0,.385-3.455v-.737a12.035,12.035,0,0,0,2.9-2.964Z" transform="translate(-1294.106 -1118.412)" fill="#626d79" />
+                </svg>
+
+              </a>
+              <a
+                class="social-icon brdr-circle no-underline"
+                href="https://www.pinterest.com"
+                :aria-label="$t('Go to Pinterest')"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="22.723" height="28.294" viewBox="0 0 22.723 28.294">
+                  <path id="Op_component_2" data-name="Op component 2" d="M1374.813,1115.592c-7.979,0-12.031,5.514-12.031,10.137a8.92,8.92,0,0,0,.308,2.442,5.374,5.374,0,0,0,3.143,3.778.564.564,0,0,0,.832-.4c.093-.292.261-1,.354-1.306a.754.754,0,0,0-.231-.906,4.393,4.393,0,0,1-.924-1.69,5.545,5.545,0,0,1-.2-1.5c0-4.1,3.189-7.787,8.3-7.787,4.514,0,7.009,2.657,7.009,6.221a14.554,14.554,0,0,1-.308,3.01c-.708,3.271-2.557,5.637-5.037,5.637a2.544,2.544,0,0,1-2.665-3.133c.247-.967.6-1.981.909-2.964a10.4,10.4,0,0,0,.6-2.8,2.2,2.2,0,0,0-2.295-2.442c-1.8,0-3.251,1.812-3.251,4.208a6.6,6.6,0,0,0,.108,1.2,5.925,5.925,0,0,0,.432,1.383s-1.849,7.541-2.157,8.862a17.439,17.439,0,0,0-.046,6.174c.015.184.277.23.4.092a17.182,17.182,0,0,0,3.05-5.314c.185-.737,1.187-4.484,1.187-4.484a4.813,4.813,0,0,0,4.113,2.043c4.39,0,7.656-3.179,8.72-7.8a14.686,14.686,0,0,0,.37-3.348c0-4.839-4.236-9.307-10.691-9.307Z" transform="translate(-1362.782 -1115.592)" fill="#626d79" />
+                </svg>
+
+              </a>
+              <a
+                class="social-icon brdr-circle no-underline"
+                href="https://www.linkedin.com"
+                :aria-label="$t('Go to LinkedIn')"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="25.111" height="25.034" viewBox="0 0 25.111 25.034">
+                  <path id="Op_component_2" data-name="Op component 2" d="M1427.027,1130v12.256h5.854v-16.695h-5.854Zm24.972.691c-.386-3.164-1.833-5.13-6.116-5.13-2.511,0-4.206.922-4.914,2.258h-.077v-2.258h-4.668v16.695h4.884v-8.278c0-2.182.431-4.285,3.113-4.285s2.895,2.488,2.895,4.438v8.125h5.023v-9.169a19.482,19.482,0,0,0-.138-2.4Zm-22.045-13.47a2.918,2.918,0,1,0,2.927,2.918,2.922,2.922,0,0,0-2.927-2.918Z" transform="translate(-1427.027 -1117.219)" fill="#626d79" />
+                </svg>
+
+              </a>
+              <a
+                class="social-icon brdr-circle no-underline"
+                href="https://www.instagram.com"
+                :aria-label="$t('Go to Instagram')"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path id="Op_component_2" data-name="Op component 2" d="M1505.04,1121.874a7.852,7.852,0,1,0,7.852,7.852A7.861,7.861,0,0,0,1505.04,1121.874Zm0,13.249a5.4,5.4,0,1,1,5.4-5.4A5.4,5.4,0,0,1,1505.04,1135.123Z" transform="translate(-1493 -1118)" fill="#626d79" />
+                  <circle id="Op_component_3" data-name="Op component 3" cx="1.65" cy="1.65" r="1.65" transform="translate(17.64 2.87)" fill="#626d79" />
+                  <path id="Op_component_4" data-name="Op component 4" d="M1517,1123.877a5.878,5.878,0,0,0-5.878-5.878h-12.245a5.878,5.878,0,0,0-5.878,5.878v12.244a5.877,5.877,0,0,0,5.878,5.878h12.245a5.878,5.878,0,0,0,5.878-5.878Zm-2.308,12.214a3.6,3.6,0,0,1-3.6,3.6h-12.183a3.6,3.6,0,0,1-3.6-3.6v-12.184a3.6,3.6,0,0,1,3.6-3.6h12.183a3.6,3.6,0,0,1,3.6,3.6Z" transform="translate(-1493 -1118)" fill="#626d79" />
+                </svg>
+
+              </a>
+              <a
+                class="social-icon brdr-circle no-underline"
+                href="https://www.allegro.pl"
+                :aria-label="$t('Go to Allegro')"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="36.822" height="12.324" viewBox="0 0 36.822 12.324">
+                  <path id="Op_component_2" data-name="Op component 2" d="M1589.748,1127.414a3.378,3.378,0,0,0-5.332,0,3.63,3.63,0,0,0,0,4.1,3.379,3.379,0,0,0,5.332,0,3.631,3.631,0,0,0,0-4.1Zm-1.055,2.82a1.648,1.648,0,0,1-3.222,0,2.376,2.376,0,0,1,0-1.541,1.648,1.648,0,0,1,3.222,0,2.376,2.376,0,0,1,0,1.541Zm-24.273,2.417a.191.191,0,0,1-.191.19h-1.108a.191.191,0,0,1-.191-.19v-9.075a.191.191,0,0,1,.191-.191h1.108a.191.191,0,0,1,.191.191Zm-2.6,0a.191.191,0,0,1-.191.19h-1.108a.191.191,0,0,1-.191-.19v-9.075a.191.191,0,0,1,.191-.191h1.108a.191.191,0,0,1,.191.191Zm21.716-6.15v.774a.2.2,0,0,1-.262.219c-1.251-.257-2.021.3-2.021,1.451l0,3.705a.191.191,0,0,1-.191.19h-1.108a.191.191,0,0,1-.191-.19v-3.8a2.552,2.552,0,0,1,.816-1.923,2.88,2.88,0,0,1,2.025-.815,4.336,4.336,0,0,1,.769.073h0C1583.514,1126.226,1583.533,1126.3,1583.533,1126.5Zm-4.74,2.963a3.434,3.434,0,0,0-.634-2.05,3.377,3.377,0,0,0-5.332,0,3.6,3.6,0,0,0,0,4.1,3.283,3.283,0,0,0,2.666,1.3,3.416,3.416,0,0,0,1.9-.569v.811c0,1.1-.966,1.3-1.584,1.339a7.253,7.253,0,0,1-1.271-.07c-.17-.025-.288,0-.288.181,0,0,0,.974,0,.976,0,.072.055.15.174.16a5.45,5.45,0,0,0,3.128-.315,2.359,2.359,0,0,0,1.06-1.342,4.485,4.485,0,0,0,.182-1.341Zm-3.3,2.071a1.743,1.743,0,0,1-1.611-1.3,2.376,2.376,0,0,1,0-1.541,1.743,1.743,0,0,1,1.611-1.3c1.779,0,1.839,1.811,1.84,2.072S1577.272,1131.535,1575.493,1131.535Zm-16.178-2.735a2.836,2.836,0,0,0-.618-2,2.8,2.8,0,0,0-2.007-.688,4.3,4.3,0,0,0-2.206.6.14.14,0,0,0-.07.122.031.031,0,0,0,0,.008s.059.963.059.966c.01.131.115.173.233.1a3.07,3.07,0,0,1,2.661-.416,1.116,1.116,0,0,1,.522,1.068h-1.514c-.692,0-2.815.246-2.815,2.2,0,.006,0,.013,0,.02s0,.007,0,.012a1.88,1.88,0,0,0,.688,1.561,2.725,2.725,0,0,0,1.719.49h3.159a.191.191,0,0,0,.191-.19Zm-1.425,2.847h-1.827a1.19,1.19,0,0,1-.684-.238.754.754,0,0,1-.323-.631c0-.345.234-1.041,1.407-1.041h1.427Zm10.607-5.535a3.043,3.043,0,0,0-3.109,2.432,3.74,3.74,0,0,0-.113.92,3.486,3.486,0,0,0,.634,2.05,3.387,3.387,0,0,0,2.666,1.3,4.157,4.157,0,0,0,2.306-.45c.1-.06.126-.132.126-.324v-.857c0-.176-.1-.255-.269-.151a3.372,3.372,0,0,1-2.144.519,1.754,1.754,0,0,1-1.686-1.564h4.371a.179.179,0,0,0,.179-.178C1571.531,1128.62,1571.188,1126.112,1568.5,1126.112Zm-1.576,2.7a1.488,1.488,0,0,1,1.576-1.416,1.322,1.322,0,0,1,1.4,1.416Z" transform="translate(-1553.56 -1123.385)" fill="#626d79" />
+                </svg>
+
+              </a>
+              <a
+                class="social-icon brdr-circle no-underline"
+                href="/"
+                :aria-label="$t('Go to Blog')"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="25.802" height="13.353" viewBox="0 0 25.802 13.353">
+                  <g id="Group_5" data-name="Group 5" transform="translate(-1623.354 -1123.64)">
+                    <path id="Op_component_2" data-name="Op component 2" d="M1623.854,1124.742a13.909,13.909,0,0,1,2.414-.188,4.317,4.317,0,0,1,2.6.578,1.91,1.91,0,0,1,.944,1.694,2.109,2.109,0,0,1-1.51,1.963v.027a2.286,2.286,0,0,1,1.834,2.245,2.348,2.348,0,0,1-.876,1.869,5.063,5.063,0,0,1-3.372.847,16.165,16.165,0,0,1-2.036-.121Zm1.646,3.576h.849c1.146,0,1.794-.538,1.794-1.3,0-.847-.647-1.237-1.7-1.237a4.5,4.5,0,0,0-.944.068Zm0,4.168a5.255,5.255,0,0,0,.876.041c1.066,0,2.009-.4,2.009-1.52,0-1.049-.917-1.479-2.063-1.479h-.822Z" fill="#626d79" stroke="rgba(0,0,0,0)" stroke-miterlimit="10" stroke-width="1" />
+                    <rect id="Op_component_3" data-name="Op component 3" width="1.67" height="9.55" transform="translate(1631.55 1124.14)" fill="#626d79" stroke="rgba(0,0,0,0)" stroke-miterlimit="10" stroke-width="1" />
+                    <path id="Op_component_4" data-name="Op component 4" d="M1641.262,1130.348a3.249,3.249,0,0,1-3.372,3.482,3.171,3.171,0,0,1-3.291-3.375,3.238,3.238,0,0,1,3.4-3.469A3.146,3.146,0,0,1,1641.262,1130.348Zm-4.949.067c0,1.264.62,2.219,1.632,2.219.944,0,1.6-.928,1.6-2.245,0-1.022-.458-2.192-1.591-2.192C1636.785,1128.2,1636.313,1129.326,1636.313,1130.415Z" fill="#626d79" stroke="rgba(0,0,0,0)" stroke-miterlimit="10" stroke-width="1" />
+                    <path id="Op_component_5" data-name="Op component 5" d="M1648.571,1132.728a3.159,3.159,0,0,1-3.506,3.765,4.664,4.664,0,0,1-2.292-.524l.364-1.25a3.976,3.976,0,0,0,1.915.5,1.743,1.743,0,0,0,1.888-1.977v-.564h-.027a2.221,2.221,0,0,1-1.915.968,2.908,2.908,0,0,1-2.792-3.2c0-2.152,1.4-3.456,2.981-3.456a2.069,2.069,0,0,1,1.9,1.022h.027l.068-.874h1.442c-.027.444-.054.981-.054,1.882Zm-1.659-2.971a1.619,1.619,0,0,0-.054-.444,1.377,1.377,0,0,0-1.349-1.062c-.931,0-1.619.807-1.619,2.138,0,1.116.567,2.016,1.6,2.016a1.416,1.416,0,0,0,1.349-.995,2.837,2.837,0,0,0,.068-.592Z" fill="#626d79" stroke="rgba(0,0,0,0)" stroke-miterlimit="10" stroke-width="1" />
+                  </g>
+                </svg>
+              </a>
+            </div>
+            <div class="programs_we_participate">
+              <a href="" class="no-underline"><img src="/assets/atat/rzetelnafirma.png"></a>
+              <a href="" class="no-underline"><img src="/assets/atat/opineo.png"></a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="container">
-      <div class="row middle-xs px15 bottom-links">
-        <div class="col-xs-5 col-sm-3 cl-tertiary">
+    <div class="container-fluid">
+      <div class="row bottom-links">
+        <div class="col-md-5">
+          <p class="copy">
+            Copyright 2019 © atat.pl
+          </p>
           <language-switcher v-if="multistoreEnabled" />
-        </div>
-        <div class="col-xs col-sm-9 end-xs">
-          <ul class="pl0 links" data-testid="bottomLinks">
-            <li class="footer__version-info">
-              {{ getVersionInfo }}
-            </li>
-            <li class="inline-flex">
-              <router-link
-                class="cl-tertiary mr10 underline"
-                to="/legal"
-                exact
-              >
-                {{ $t('Legal notice') }}
-              </router-link>
-            </li>
-            <li class="inline-flex">
-              <router-link
-                class="cl-tertiary underline"
-                to="/privacy"
-                exact
-              >
-                {{ $t('Privacy policy') }}
-              </router-link>
-            </li>
-          </ul>
         </div>
       </div>
     </div>
@@ -160,7 +203,7 @@
 <script>
 import CurrentPage from 'theme/mixins/currentPage'
 import LanguageSwitcher from '../../LanguageSwitcher.vue'
-import Newsletter from 'theme/components/core/blocks/Footer/Newsletter'
+// import Newsletter from 'theme/components/core/blocks/Footer/Newsletter'
 import BackToTop from 'theme/components/core/BackToTop'
 import config from 'config'
 
@@ -176,7 +219,7 @@ export default {
     }
   },
   components: {
-    Newsletter,
+    // Newsletter,
     LanguageSwitcher,
     BackToTop
   }
@@ -184,87 +227,164 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~theme/css/variables/colors';
-@import '~theme/css/helpers/functions/color';
-$color-secondary: color(secondary);
-
-.icon {
-  transition: 0.3s all;
-}
-
-.social-icon {
-  width: 40px;
-  height: 40px;
-  &:hover,
-  &:focus,
-  &:active {
-    .icon {
-      fill: $color-secondary;
-    }
-  }
-}
-.links {
-  list-style-type: none;
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: flex-end;
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-  }
-}
-
 .bottom-links {
-  @media (max-width: 767px) {
-    padding: 0;
+  padding: 20px 0px;
+  .col-md-5{
+    text-align: left;
+    @media (max-width: 767px) {
+      text-align: center;
+    }
   }
-}
-
-.footer__version-info {
-  display: flex;
-  color: $color-secondary;
-  font-size: 0.7rem;
-  @media (min-width: 768px) {
-    margin-right: 1rem;
-    font-size: 0.8rem;
+  .copy{
+    position: relative;
+    color: #626D79;
+    font-size: 14px;
+    padding-left: 50px;
+    display: inline-block;
+    &:before{
+      position: absolute;
+      top: 0px;
+      bottom: 0px;
+      left: 0px;
+      margin: auto;
+      content: "";
+      display: block;
+      width: 43px;
+      height: 34px;
+      background: url("/assets/atat/logo_footer.png");
+    }
   }
-}
+  .links{
+    text-align: right;
+    ul{
+      padding-right: 40px;
+      a{
+        font-size: 14px;
+        color: #626D79;
+        margin-right: 20px;
+        &:after{
+          display: none;
+        }
+        &:last-child{
+          padding-right: 0px;
+        }
+        @media (max-width: 767px) {
+          margin-bottom: 20px;
+        }
+      }
+      @media (max-width: 767px) {
 
-.underline {
-  &:hover {
-    color: $color-secondary;
-    &:after {
-      background-color: $color-secondary;
+      }
+    }
+    @media (max-width: 767px) {
+      text-align: center;
     }
   }
 }
-.legal-entity-link {
-  text-align: center;
-  @media (min-width: 768px) {
-    display: none;
+.footer-links{
+  background: #F7F9FC;
+  border-bottom: #CBD3DD solid 1px;
+  border-top: #CBD3DD solid 1px;
+  padding: 60px 0px;
+  &__title{
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 22px;
+    color: #000000;
+    line-height: 22px;
+    text-align: left;
+  }
+  &__box{
+    max-width: 300px;
+    width: 50%;
+    padding-right: 40px;
+    box-sizing: border-box;
+    &:last-child{
+      padding-right: 0px;
+    }
+  }
+  &__list{
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+  }
+  &__elem{
+    position: relative;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    text-align: left;
+    &:before{
+      content: "•";
+      position: absolute;
+      top: 2px;
+      left: 0px;
+      font-size: 16px;
+      color: #626D79;
+    }
+    a{
+      font-size: 14px;
+      color: #626D79;
+      &:after{
+        display: none;
+      }
+    }
+  }
+  @media (max-width: 595px) {
+    padding: 30px 0px;
   }
 }
+.social{
+  margin-top: 30px;
+  padding: 0px 10px;
+  @media (max-width: 595px) {
+    margin-top: 0px;
+  }
+  @media (max-width: 767px) {
 
-.privacy-policy-link {
-  text-align: right;
-  @media (min-width: 768px) {
-    display: none;
+  }
+  .social-icon{
+    display: inline-block;
+    width: 55px;
+    height: 55px;
+    position: relative;
+    margin: 0px 2px;
+    svg{
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      bottom: 0px;
+      right: 0px;
+      margin: auto;
+      display: inline-block;
+    }
+  }
+
+  .brdr-circle{
+    border: #626D79 solid 2px;
+  }
+}
+.programs_we_participate{
+  margin-top: 20px;
+  text-align: left;
+  @media (max-width: 595px) {
+    text-align: center;
+  }
+  a{
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 30px;
+    &:last-child{
+      margin-right: 0px;
+    }
+    img{
+      display: block;
+    }
   }
 }
 
 @media (max-width: 595px) {
   .no-mobile {
     display: none;
-  }
-
-  .social {
-    margin-top: 0;
-  }
-
-  .footer-links {
-    padding-bottom: 30px;
   }
 }
 </style>

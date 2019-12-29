@@ -1,32 +1,50 @@
 <template>
-  <div v-if="!isCheckoutPage">
+  <div v-if="!isCheckoutPage" class="header-menu">
     <div class="container">
       <ul class="flex menu">
+        <li class="menu-item">
+          <router-link
+            class="menu-link home-link"
+            :to="localizedRoute('/')"
+            exact
+          />
+        </li>
         <li
-          class="relative"
+          class="menu-item relative"
           :key="category.slug"
           v-for="category in visibleCategories"
-          :class="{'with-submenu': (category.children_data && category.children_data.length)}"
+          :class="{
+            'with-submenu':
+              category.children_data && category.children_data.length
+          }"
+          @mouseenter="activeSubMenu = category.id"
+          @mouseleave="activeSubMenu = null"
         >
-          <button
+          <a
             v-if="category.children_count > 0"
             class="menu-link"
-            :class="{active: activeSubMenu == category.id}"
-            type="button"
+            :class="{ active: activeSubMenu == category.id }"
             :aria-label="$t('Show subcategories')"
             data-testid="categoryButton"
             @click="toggleSubMenu(category.id)"
-            @mouseenter="activeSubMenu = category.id"
-            @mouseleave="activeSubMenu = null"
           >
-            {{ $t('Categories') }}
-          </button>
+            {{ $t("Categories") }}
+          </a>
           <router-link
             v-else
             class="menu-link"
-            :to="localizedRoute({ name: 'category', params: { id: category.id, slug: category.url, url: category.url }})"
+            :to="
+              localizedRoute({
+                name: 'category',
+                params: {
+                  id: category.id,
+                  slug: category.url,
+                  url: category.url
+                }
+              })
+            "
           >
-            {{ $t('Categories') }}
+            {{ $t("Categories") }}
           </router-link>
 
           <sub-category
@@ -34,53 +52,45 @@
             :category-links="category.children_data"
             :id="category.id"
             :parent-slug="category.url"
-            class="left-0"
+            class=""
           />
         </li>
 
-        <li>
+        <li class="menu-item">
           <router-link
             class="menu-link"
             :to="localizedRoute('/promotions')"
             exact
           >
-            {{ $t('Promotions') }}
+            {{ $t("Promotions") }}
           </router-link>
         </li>
-        <li>
+        <li class="menu-item">
           <router-link
             class="menu-link"
             :to="localizedRoute('/new-products')"
             exact
           >
-            {{ $t('Everything new') }}
+            {{ $t("Everything new") }}
           </router-link>
         </li>
-        <li>
+        <li class="menu-item">
           <router-link
             class="menu-link"
             :to="localizedRoute('/popular-products')"
             exact
           >
-            {{ $t('Popular products') }}
+            {{ $t("Popular products") }}
           </router-link>
         </li>
-        <li>
-          <router-link
-            class="menu-link"
-            :to="localizedRoute('/design')"
-            exact
-          >
-            {{ $t('Design') }}
+        <li class="menu-item">
+          <router-link class="menu-link" :to="localizedRoute('/design')" exact>
+            {{ $t("Design") }}
           </router-link>
         </li>
-        <li>
-          <router-link
-            class="menu-link"
-            :to="localizedRoute('/contact')"
-            exact
-          >
-            {{ $t('Contact us') }}
+        <li class="menu-item">
+          <router-link class="menu-link" :to="localizedRoute('/contact')" exact>
+            {{ $t("Contact us") }}
           </router-link>
         </li>
       </ul>
@@ -89,10 +99,10 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex'
-import onEscapePress from '@vue-storefront/core/mixins/onEscapePress'
-import SubCategory from 'theme/components/core/blocks/HeaderMenu/SubCategory'
-import CurrentPage from 'theme/mixins/currentPage'
+import { mapGetters, mapState } from 'vuex';
+import onEscapePress from '@vue-storefront/core/mixins/onEscapePress';
+import SubCategory from 'theme/components/core/blocks/HeaderMenu/SubCategory';
+import CurrentPage from 'theme/mixins/currentPage';
 export default {
   name: 'HeaderMenu',
   components: {
@@ -103,23 +113,32 @@ export default {
     return {
       allCategories: [],
       activeSubMenu: null
-    }
+    };
   },
   computed: {
     ...mapGetters('category', ['getCategories']),
     categories () {
-      return this.allCategories.filter((op) => {
+      return this.allCategories.filter(op => {
         const path = this.$route.path;
-        if (path.toLowerCase().startsWith('elektryka') || path.toLowerCase().startsWith('/elektryka')) {
+        if (
+          path.toLowerCase().startsWith('elektryka') ||
+          path.toLowerCase().startsWith('/elektryka')
+        ) {
           return op.level === 1 && op.name.toLowerCase() === 'elektryka';
-        } else if (path.toLowerCase().startsWith('chemia') || path.toLowerCase().startsWith('/chemia')) {
+        } else if (
+          path.toLowerCase().startsWith('chemia') ||
+          path.toLowerCase().startsWith('/chemia')
+        ) {
           return op.level === 1 && op.name.toLowerCase() === 'chemia';
-        } else if (path.toLowerCase().startsWith('spozywcze') || path.toLowerCase().startsWith('/spozywcze')) {
+        } else if (
+          path.toLowerCase().startsWith('spozywcze') ||
+          path.toLowerCase().startsWith('/spozywcze')
+        ) {
           return op.level === 1 && op.name.toLowerCase() === 'spożywcze';
         } else {
           return op.level === 0;
         }
-      })
+      });
     },
     ...mapState({
       currentUser: state => state.user.current
@@ -128,70 +147,93 @@ export default {
       const path = this.$route.path;
       if (path.toLowerCase().includes('oprawy-oswietleniowe-konsumenckie')) {
         return this.categories.filter(category => {
-          return category.url_path.includes('elektryka') && (category.product_count > 0 || category.children_count > 0)
+          return (
+            category.url_path.includes('elektryka') &&
+            (category.product_count > 0 || category.children_count > 0)
+          );
         });
       } else {
         return this.categories.filter(category => {
-          return category.product_count > 0 || category.children_count > 0
+          return category.product_count > 0 || category.children_count > 0;
         });
       }
     }
   },
   created () {
-    this.allCategories = this.getCategories
+    this.allCategories = this.getCategories;
   },
   async mounted () {
-    let categories = await this.$store.dispatch('category/list', { skipCache: true, includeFields: this.$store.state.config.entities.optimize ? this.$store.state.config.entities.category.includeFields : null })
-    this.allCategories = categories.items
+    let categories = await this.$store.dispatch('category/list', {
+      skipCache: true,
+      includeFields: this.$store.state.config.entities.optimize
+        ? this.$store.state.config.entities.category.includeFields
+        : null
+    });
+    this.allCategories = categories.items;
   },
   methods: {
     onEscapePress () {
-      this.closeMenu()
+      this.closeMenu();
     },
     openMenu (id) {
-      this.activeSubMenu = id
+      this.activeSubMenu = id;
       // this.$store.commit('ui/setOverlay', true)
     },
     closeMenu () {
-      this.activeSubMenu = null
+      this.activeSubMenu = null;
       // this.$store.commit('ui/setOverlay', false)
     },
     toggleSubMenu (id) {
       if (this.activeSubMenu === id) {
-        this.closeMenu()
+        this.closeMenu();
       } else {
-        this.openMenu(id)
+        this.openMenu(id);
       }
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-.menu {
-  @apply p-0 m-0;
-  list-style: none;
-  .menu-link {
-    @apply block text-black font-medium;
-    padding: 15px;
-    line-height: 1.25rem;
-    text-decoration: none;
-    &:hover, &:focus {
-      @apply text-primary bg-grey-lighter;
-      outline: none;
-    }
-    &.active, &.router-link-active {
-      @apply text-primary bg-grey-lighter border-t-2 border-solid border-primary;
-      padding-top: 13px;
-    }
+.header-menu {
+  background: #0b5ca2;
+  @media (max-width: 991px) {
+    display: none;
   }
-}
-.with-submenu:hover {
-  > .menu-link {
-    @extend .menu-link.active;
+  * {
+    box-sizing: border-box;
   }
-  > .submenu {
-    display: block !important;
+  .menu {
+    margin: 0px;
+    padding: 0px;
+    min-height: 76px;
+    list-style: none;
+    .menu-item {
+      .menu-link {
+        transition: all 0.2s ease-in-out;
+        color: #fff;
+        font-size: 20px;
+        line-height: 76px;
+        display: block;
+        padding: 0px 20px;
+        cursor: pointer;
+      }
+      &:hover {
+        .menu-link {
+          background-color: #f15c2c;
+        }
+      }
+      .home-link {
+        background: url("/assets/atat/ico_home.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 26px 25px;
+        display: block;
+        width: 26px;
+        height: 76px;
+        padding: 0px 40px;
+      }
+    }
   }
 }
 </style>

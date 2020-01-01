@@ -88,6 +88,7 @@ export default {
         includeFields: config.entities.optimize && isServer ? config.entities.attribute.includeFields : null
       })
       let parentCategory;
+      // MUST FIX use route.params.url_path not slug
       if (route.params.slug.includes('/')) {
         parentCategory = await store.dispatch('category/single', { key: config.products.useMagentoUrlKeys ? 'url_path' : 'slug', value: route.params.slug })
       } else {
@@ -227,8 +228,8 @@ export default {
     validateRoute (route = this.$route) {
       this.$store.dispatch('category/resetFilters')
       this.$bus.$emit('filter-reset')
-
-      this.$store.dispatch('category/single', { key: config.products.useMagentoUrlKeys ? 'url_key' : 'slug', value: route.params.slug }).then(category => {
+      // MUST FIX use route.params.url_path not slug
+      this.$store.dispatch('category/single', { key: config.products.useMagentoUrlKeys ? 'url_path' : 'slug', value: route.params.slug }).then(category => {
         if (!category) {
           this.$router.push(this.localizedRoute('/'))
         } else {

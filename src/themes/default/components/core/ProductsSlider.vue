@@ -125,6 +125,9 @@ export default {
       position: absolute;
       top: -42px;
       right: 250px;
+      @media (max-width: 768px) {
+        right: 10px;
+      }
       .VueCarousel-navigation-button {
         width: 21px;
         height: 21px;

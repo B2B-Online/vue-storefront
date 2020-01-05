@@ -1,16 +1,19 @@
 <template>
   <div
-    class="product align-center w-100 pb20"
+    class="product relative align-center w-100"
     v-observe-visibility="visibilityChanged"
   >
-    <router-link
-      class="block no-underline product-link"
-      :to="productLink"
-      data-testid="productLink"
+    <div
+      class="block no-underline product__link"
+      @click="goTo($event, productLink)"
     >
+      <badge :product="product" />
       <div
-        class="product-image relative bg-cl-secondary"
-        :class="[{ sale: labelsActive && isOnSale }, { new: labelsActive && isNew }]"
+        class="product-image relative"
+        :class="[
+          { sale: labelsActive && isOnSale },
+          { new: labelsActive && isNew }
+        ]"
       >
         <product-image
           class="product-image__content"
@@ -20,44 +23,74 @@
         />
       </div>
 
-      <p class="mb0 cl-accent mt10" v-if="!onlyImage">
+      <router-link :to="productLink" class="product__name" v-if="!onlyImage">
         {{ product.name | htmlDecode }}
-      </p>
+      </router-link>
 
-      <span
-        class="price-original mr5 lh30 cl-secondary"
-        v-if="product.special_price && parseFloat(product.originalPriceInclTax) > 0 && !onlyImage"
-      >
-        {{ product.originalPriceInclTax | price }}
-      </span>
+      <div class="row align-items-center middle-xs ">
+        <div class="col-xs-6 price center">
+          <span
+            class="price--original"
+            v-if="
+              product.special_price &&
+                parseFloat(product.originalPriceInclTax) > 0 &&
+                !onlyImage
+            "
+          >
+            {{ product.originalPriceInclTax | price }}
+          </span>
 
-      <span
-        class="price-special lh30 cl-accent weight-700"
-        v-if="product.special_price && parseFloat(product.special_price) > 0 && !onlyImage"
-      >
-        {{ product.priceInclTax | price }}
-      </span>
+          <span
+            class="price--special"
+            v-if="
+              product.special_price &&
+                parseFloat(product.special_price) > 0 &&
+                !onlyImage
+            "
+          >
+            {{ product.priceInclTax | price }}
+          </span>
 
-      <span
-        class="lh30 cl-secondary"
-        v-if="!product.special_price && parseFloat(product.priceInclTax) > 0 && !onlyImage"
-      >
-        {{ product.priceInclTax | price }}
-      </span>
-    </router-link>
+          <span
+            class="price--standard"
+            v-if="
+              !product.special_price &&
+                parseFloat(product.priceInclTax) > 0 &&
+                !onlyImage
+            "
+          >
+            {{ product.priceInclTax | price }}
+          </span>
+        </div>
+        <div class="col-xs-6">
+          <add-to-cart
+            :product="product"
+            :disabled="$v.product.qty.$error && !$v.product.qty.minValue"
+            class="product-add-to-cart btn--orange btn--small btn--add-to-cart"
+          />
+        </div>
+      </div>
+    </div>
+    <!-- {{product}} -->
   </div>
 </template>
 
 <script>
-import rootStore from '@vue-storefront/core/store'
-import { ProductTile } from '@vue-storefront/core/modules/catalog/components/ProductTile.ts'
-import config from 'config'
-import ProductImage from './ProductImage'
+import rootStore from "@vue-storefront/core/store";
+import { ProductTile } from "@vue-storefront/core/modules/catalog/components/ProductTile.ts";
+import config from "config";
+import ProductImage from "./ProductImage";
+import AddToCart from "theme/components/core/AddToCart";
+import Badge from "theme/components/core/Badge";
+
+import { minValue } from "vuelidate/lib/validators";
 
 export default {
   mixins: [ProductTile],
   components: {
-    ProductImage
+    ProductImage,
+    AddToCart,
+    Badge
   },
   props: {
     labelsActive: {
@@ -70,123 +103,100 @@ export default {
     }
   },
   computed: {
-    thumbnailObj () {
+    thumbnailObj() {
       return {
         src: this.thumbnail,
         loading: this.thumbnail
-      }
+      };
     }
   },
   methods: {
-    onProductPriceUpdate (product) {
+    goTo(event, link) {
+      if (event.target.classList.contains("product-add-to-cart")) {
+        return false;
+      }
+      this.$router.push({ path: link });
+    },
+    onProductPriceUpdate(product) {
       if (product.sku === this.product.sku) {
-        Object.assign(this.product, product)
+        Object.assign(this.product, product);
       }
     },
-    visibilityChanged (isVisible, entry) {
+    visibilityChanged(isVisible, entry) {
       if (isVisible) {
-        if (config.products.configurableChildrenStockPrefetchDynamic && rootStore.products.filterUnavailableVariants) {
-          const skus = [this.product.sku]
-          if (this.product.type_id === 'configurable' && this.product.configurable_children && this.product.configurable_children.length > 0) {
+        if (
+          config.products.configurableChildrenStockPrefetchDynamic &&
+          rootStore.products.filterUnavailableVariants
+        ) {
+          const skus = [this.product.sku];
+          if (
+            this.product.type_id === "configurable" &&
+            this.product.configurable_children &&
+            this.product.configurable_children.length > 0
+          ) {
             for (const confChild of this.product.configurable_children) {
-              const cachedItem = rootStore.state.stock.cache[confChild.id]
-              if (typeof cachedItem === 'undefined' || cachedItem === null) {
-                skus.push(confChild.sku)
+              const cachedItem = rootStore.state.stock.cache[confChild.id];
+              if (typeof cachedItem === "undefined" || cachedItem === null) {
+                skus.push(confChild.sku);
               }
             }
             if (skus.length > 0) {
-              rootStore.dispatch('stock/list', { skus: skus }) // store it in the cache
+              rootStore.dispatch("stock/list", { skus: skus }); // store it in the cache
             }
           }
         }
       }
     }
   },
-  beforeMount () {
-    this.$bus.$on('product-after-priceupdate', this.onProductPriceUpdate)
+  validations: {
+    product: {
+      qty: {
+        minValue: minValue(1)
+      }
+    }
   },
-  beforeDestroy () {
-    this.$bus.$off('product-after-priceupdate', this.onProductPriceUpdate)
+  beforeMount() {
+    this.$bus.$on("product-after-priceupdate", this.onProductPriceUpdate);
+  },
+  beforeDestroy() {
+    this.$bus.$off("product-after-priceupdate", this.onProductPriceUpdate);
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '~theme/css/animations/transitions';
-@import '~theme/css/variables/colors';
-@import '~theme/css/helpers/functions/color';
-
-$bg-secondary: color(secondary, $colors-background);
-$border-secondary: color(secondary, $colors-border);
-$color-white: color(white);
-
 .product {
-  @media (max-width: 767px) {
-    padding-bottom: 10px;
+  &__link {
+    padding: 20px;
+    cursor: pointer;
   }
-}
-
-.price-original {
-  text-decoration: line-through;
-}
-
-%label {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-  background-color: $border-secondary;
-  text-transform: uppercase;
-  color: $color-white;
-  font-size: 12px;
-}
-
-.product-image{
-  overflow: hidden;
-  width:100%;
-  height: 100%;
-  max-height: 300px;
-
-  &:hover{
-    .product-image__content{
-      opacity: 1;
-      transform: scale(1.1);
-    }
-    &.sale::after,
-    &.new::after{
-      opacity: .8;
-    }
+  &__name {
+    margin: 20px 0px;
+    display: block;
+    color: #000000;
+    font-size: 18px;
   }
-  &__content{
-
-    padding-bottom: calc(300% / (257 / 100));
-    mix-blend-mode: darken;
-    opacity: .8;
-    transform: scale(1);
-    will-change: transform;
-    transition: .3s opacity $motion-main, .3s transform $motion-main;
+  &__link {
     @media (min-width: 768px) {
-      padding-bottom: calc(208% / (168 / 100));
-    }
-    @media (min-width: 1200px) {
-      padding-bottom: calc(300% / (276 / 100));
+      .product-image {
+        &__content {
+          transition: all 0.5s ease-in-out;
+        }
+      }
+      &:hover {
+        .product-image {
+          &__content {
+            transform: scale(1.1);
+          }
+        }
+      }
     }
   }
-
-  &.sale{
-    &::after {
-      @extend %label;
-      content: 'Sale';
-    }
-  }
-  &.new{
-    &::after {
-      @extend %label;
-      content: 'New';
+  .price{
+    &--standard{
+      color: #0B5CA2;
+      font-size: 20px;
+      text-align: center;
     }
   }
 }

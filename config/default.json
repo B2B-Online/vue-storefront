@@ -379,9 +379,9 @@
     },
     "demomode": false,
     "tax": {
-      "defaultCountry": "US",
+      "defaultCountry": "PL",
       "defaultRegion": "",
-      "sourcePriceIncludesTax": false,
+      "sourcePriceIncludesTax": true,
       "calculateServerSide": true
     },
     "shipping": {

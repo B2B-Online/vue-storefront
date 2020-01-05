@@ -48,7 +48,7 @@ button,
 
 .btn {
   &--orange {
-    background: #f15c2c;
+    background: #F15C2C;
     border: none;
     border-radius: 3px;
     color: #fff;
@@ -60,8 +60,31 @@ button,
     &:hover{
       transform: scale(1.05);
     }
+    &.disabled{
+      background: lighten(#f15c2c, 10%);
+    }
   }
   &--big{
     padding: 15px 40px;
+  }
+  &--small{
+    padding: 5px 10px;
+    font-size: 14px;
+  }
+  &--add-to-cart{
+    position: relative;
+    text-align: left;
+    padding-left: 35px;
+    &::before{
+      content: "";
+      position: absolute;
+      top: 0px;
+      left: 10px;
+      bottom: 0px;
+      margin: auto;
+      width: 19px;
+      height: 17px;
+      background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOSAxNy4wMDEiPgogIDxwYXRoIGlkPSJTaGFwZV82IiBkYXRhLW5hbWU9IlNoYXBlIDYiIGQ9Ik0xMDIwLjIyLDE0MzQuMjNhMS43MywxLjczLDAsMSwxLDEuNzMsMS43N0ExLjc1LDEuNzUsMCwwLDEsMTAyMC4yMiwxNDM0LjIzWm0tOC45NDEsMGExLjczMSwxLjczMSwwLDEsMSwxLjczMSwxLjc3QTEuNzUxLDEuNzUxLDAsMCwxLDEwMTEuMjgsMTQzNC4yM1ptLjIxOC0yLjUyMi0xLjAyMi02LjQ2MS0uNzQzLTQuMzc3SDEwMDZWMTQxOWg1LjI2NWwuNTkyLDMuNDkxSDEwMjVsLTEuNDU5LDkuMjE4WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTEwMDYgLTE0MTguOTk5KSIgZmlsbD0iI2ZmZiIvPgo8L3N2Zz4K");
+    }
   }
 }

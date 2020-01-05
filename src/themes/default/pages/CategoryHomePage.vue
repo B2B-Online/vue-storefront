@@ -92,6 +92,7 @@
           </section> -->
         </div>
         <div class="col-lg-3 first-lg">
+          <main-category-menu /> 
           <newsletter class="" />
         </div>
       </div>
@@ -117,6 +118,7 @@ import ProductsSlider from 'theme/components/core/ProductsSlider';
 import MainSlider from 'theme/components/core/blocks/MainSlider/MainSlider';
 import Newsletter from 'theme/components/core/blocks/Footer/Newsletter';
 import ManufacturerSlider from 'theme/components/core/blocks/MultiSlider/ManufacturerSlider';
+import MainCategoryMenu  from 'theme/components/core/blocks/Category/MainCategoryMenu';
 
 // Theme local components
 import Onboard from 'theme/components/theme/blocks/Home/Onboard';
@@ -131,7 +133,8 @@ export default {
     MainSlider,
     Onboard,
     ProductsSlider,
-    ManufacturerSlider
+    ManufacturerSlider,
+    MainCategoryMenu
   },
   data () {
     return {

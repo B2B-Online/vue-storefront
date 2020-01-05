@@ -98,8 +98,7 @@ export default {
       position: absolute;
       top: 50%;
       left: 50%;
-      width: auto;
-      height: 100%;
+      width: 100%;
       transform: translate3d(-50%, -50%, 0);
       &--placeholder{
         width: auto;

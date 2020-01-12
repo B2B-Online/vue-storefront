@@ -13,7 +13,7 @@
             <div class="logo">
               <logo width="auto" height="58px" class="logo__img px15" />
               <h2 class="logo__text">
-                Przedsiębiorstwo Handlowe A-T S.A.<br />
+                Przedsiębiorstwo Handlowe A-T S.A.<br>
                 <span>już 28 lat na rynku!</span>
               </h2>
             </div>
@@ -80,18 +80,18 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-import CurrentPage from "theme/mixins/currentPage";
-import AccountIcon from "theme/components/core/blocks/Header/AccountIcon";
-import CompareIcon from "theme/components/core/blocks/Header/CompareIcon";
-import HamburgerIcon from "theme/components/core/blocks/Header/HamburgerIcon";
-import Logo from "theme/components/core/Logo";
-import MicrocartIcon from "theme/components/core/blocks/Header/MicrocartIcon";
-import SearchIcon from "theme/components/core/blocks/Header/SearchIcon";
-import WishlistIcon from "theme/components/core/blocks/Header/WishlistIcon";
+import { mapState } from 'vuex';
+import CurrentPage from 'theme/mixins/currentPage';
+import AccountIcon from 'theme/components/core/blocks/Header/AccountIcon';
+import CompareIcon from 'theme/components/core/blocks/Header/CompareIcon';
+import HamburgerIcon from 'theme/components/core/blocks/Header/HamburgerIcon';
+import Logo from 'theme/components/core/Logo';
+import MicrocartIcon from 'theme/components/core/blocks/Header/MicrocartIcon';
+import SearchIcon from 'theme/components/core/blocks/Header/SearchIcon';
+import WishlistIcon from 'theme/components/core/blocks/Header/WishlistIcon';
 
 export default {
-  name: "Header",
+  name: 'Header',
   components: {
     AccountIcon,
     CompareIcon,
@@ -102,7 +102,7 @@ export default {
     WishlistIcon
   },
   mixins: [CurrentPage],
-  data() {
+  data () {
     return {
       navVisible: true,
       isScrolling: false,
@@ -116,15 +116,15 @@ export default {
       isOpenLogin: state => state.ui.signUp,
       currentUser: state => state.user.current
     }),
-    isThankYouPage() {
+    isThankYouPage () {
       return this.$store.state.checkout.isThankYouPage
         ? this.$store.state.checkout.isThankYouPage
         : false;
     }
   },
-  beforeMount() {
+  beforeMount () {
     window.addEventListener(
-      "scroll",
+      'scroll',
       () => {
         this.isScrolling = true;
       },
@@ -139,10 +139,10 @@ export default {
     }, 250);
   },
   methods: {
-    gotoAccount() {
-      this.$bus.$emit("modal-toggle", "modal-signup");
+    gotoAccount () {
+      this.$bus.$emit('modal-toggle', 'modal-signup');
     },
-    hasScrolled() {
+    hasScrolled () {
       this.scrollTop = window.scrollY;
       if (
         this.scrollTop > this.lastScrollTop &&

@@ -1,10 +1,7 @@
 <template>
   <div class="sidebar-menu fixed mw-100 bg-cl-secondary">
     <div class="row brdr-bottom-1 brdr-cl-bg-secondary">
-      <div
-        v-if="submenu.depth"
-        class="col-xs bg-cl-primary"
-      >
+      <div v-if="submenu.depth" class="col-xs bg-cl-primary">
         <sub-btn type="back" class="bg-cl-transparent brdr-none" />
       </div>
       <div class="col-xs bg-cl-primary">
@@ -30,7 +27,7 @@
               :to="localizedRoute('/')"
               exact
             >
-              {{ $t('Home') }}
+              {{ $t("Home") }}
             </router-link>
           </li>
           <li
@@ -39,10 +36,7 @@
             @click="closeMenu"
             v-for="category in visibleCategories"
           >
-            <div
-              v-if="isCurrentMenuShowed"
-              class="subcategory-item"
-            >
+            <div v-if="isCurrentMenuShowed" class="subcategory-item">
               <sub-btn
                 v-if="category.children_count > 0"
                 class="bg-cl-transparent brdr-none fs-medium"
@@ -52,7 +46,13 @@
               <router-link
                 v-else
                 class="px25 py20 cl-accent no-underline col-xs"
-                :to="localizedRoute({ name: 'category', fullPath: category.url_path, params: { id: category.id, slug: category.slug }})"
+                :to="
+                  localizedRoute({
+                    name: 'category',
+                    fullPath: category.url_path,
+                    params: { id: category.id, slug: category.slug }
+                  })
+                "
               >
                 {{ category.name }}
               </router-link>
@@ -66,7 +66,7 @@
             />
           </li>
           <li
-            v-if="isCurrentMenuShowed"
+            v-if="false && isCurrentMenuShowed"
             @click="closeMenu"
             class="bg-cl-secondary"
           >
@@ -75,11 +75,11 @@
               :to="localizedRoute('/sale')"
               exact
             >
-              {{ $t('Sale') }}
+              {{ $t("Sale") }}
             </router-link>
           </li>
           <li
-            v-if="isCurrentMenuShowed"
+            v-if="false && isCurrentMenuShowed"
             @click="closeMenu"
             class="bg-cl-secondary"
           >
@@ -88,7 +88,7 @@
               :to="localizedRoute('/magazine')"
               exact
             >
-              {{ $t('Magazine') }}
+              {{ $t("Magazine") }}
             </router-link>
           </li>
           <li
@@ -101,9 +101,57 @@
               :to="localizedRoute('/compare')"
               exact
             >
-              {{ $t('Compare products') }}
+              {{ $t("Compare products") }}
             </router-link>
           </li>
+
+          <li class="">
+            <router-link
+              class="block px25 py20 brdr-bottom-1 brdr-cl-secondary bg-cl-secondary cl-accent no-underline fs-medium-small"
+              :to="localizedRoute('/promotions')"
+              exact
+            >
+              {{ $t("Promotions") }}
+            </router-link>
+          </li>
+          <li class="">
+            <router-link
+              class="block px25 py20 brdr-bottom-1 brdr-cl-secondary bg-cl-secondary cl-accent no-underline fs-medium-small"
+              :to="localizedRoute('/new-products')"
+              exact
+            >
+              {{ $t("Everything new") }}
+            </router-link>
+          </li>
+
+          <li class="">
+            <router-link
+              class="block px25 py20 brdr-bottom-1 brdr-cl-secondary bg-cl-secondary cl-accent no-underline fs-medium-small"
+              :to="localizedRoute('/popular-products')"
+              exact
+            >
+              {{ $t("Popular products") }}
+            </router-link>
+          </li>
+          <li>
+            <router-link
+              class="block px25 py20 brdr-bottom-1 brdr-cl-secondary bg-cl-secondary cl-accent no-underline fs-medium-small"
+              :to="localizedRoute('/design')"
+              exact
+            >
+              {{ $t("Design") }}
+            </router-link>
+          </li>
+          <li>
+            <router-link
+              class="block px25 py20 brdr-bottom-1 brdr-cl-secondary bg-cl-secondary cl-accent no-underline fs-medium-small"
+              :to="localizedRoute('/contact')"
+              exact
+            >
+              {{ $t("Contact us") }}
+            </router-link>
+          </li>
+
           <li
             @click="login"
             class="brdr-bottom-1 brdr-cl-secondary bg-cl-secondary flex"
@@ -125,7 +173,7 @@
               @click.prevent="closeMenu"
               class="block w-100 px25 py20 cl-accent no-underline fs-medium-small"
             >
-              {{ $t('My account') }}
+              {{ $t("My account") }}
             </a>
           </li>
         </ul>
@@ -135,11 +183,11 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import i18n from '@vue-storefront/i18n'
-import SidebarMenu from '@vue-storefront/core/compatibility/components/blocks/SidebarMenu/SidebarMenu'
-import SubBtn from 'theme/components/core/blocks/SidebarMenu/SubBtn'
-import SubCategory from 'theme/components/core/blocks/SidebarMenu/SubCategory'
+import { mapState } from "vuex";
+import i18n from "@vue-storefront/i18n";
+import SidebarMenu from "@vue-storefront/core/compatibility/components/blocks/SidebarMenu/SidebarMenu";
+import SubBtn from "theme/components/core/blocks/SidebarMenu/SubBtn";
+import SubCategory from "theme/components/core/blocks/SidebarMenu/SubCategory";
 
 export default {
   components: {
@@ -147,86 +195,88 @@ export default {
     SubBtn
   },
   mixins: [SidebarMenu],
-  data () {
+  data() {
     return {
       myAccountLinks: [
         {
           id: 1,
-          name: i18n.t('My profile'),
-          url: '/my-account'
+          name: i18n.t("My profile"),
+          url: "/my-account"
         },
         {
           id: 2,
-          name: i18n.t('My shipping details'),
-          url: '/my-account/shipping-details'
+          name: i18n.t("My shipping details"),
+          url: "/my-account/shipping-details"
         },
         {
           id: 3,
-          name: i18n.t('My newsletter'),
-          url: '/my-account/newsletter'
+          name: i18n.t("My newsletter"),
+          url: "/my-account/newsletter"
         },
         {
           id: 4,
-          name: i18n.t('My orders'),
-          url: '/my-account/orders'
+          name: i18n.t("My orders"),
+          url: "/my-account/orders"
         },
         {
           id: 5,
-          name: i18n.t('My loyalty card'),
-          url: '#'
+          name: i18n.t("My loyalty card"),
+          url: "#"
         },
         {
           id: 6,
-          name: i18n.t('My product reviews'),
-          url: '#'
+          name: i18n.t("My product reviews"),
+          url: "#"
         }
       ],
       componentLoaded: false
-    }
+    };
   },
   computed: {
-    mainListStyles () {
-      return this.submenu.depth ? `transform: translateX(${this.submenu.depth * 100}%)` : false
+    mainListStyles() {
+      return this.submenu.depth
+        ? `transform: translateX(${this.submenu.depth * 100}%)`
+        : false;
     },
     ...mapState({
       submenu: state => state.ui.submenu,
       currentUser: state => state.user.current
     }),
-    getSubmenu () {
-      return this.submenu
+    getSubmenu() {
+      return this.submenu;
     },
-    visibleCategories () {
+    visibleCategories() {
       return this.categories.filter(category => {
-        return category.product_count > 0 || category.children_count > 0
-      })
+        return category.product_count > 0 || category.children_count > 0;
+      });
     },
-    isCurrentMenuShowed () {
-      return !this.getSubmenu || !this.getSubmenu.depth
+    isCurrentMenuShowed() {
+      return !this.getSubmenu || !this.getSubmenu.depth;
     }
   },
-  mounted () {
+  mounted() {
     this.$nextTick(() => {
-      this.componentLoaded = true
-    })
+      this.componentLoaded = true;
+    });
   },
   methods: {
-    login () {
+    login() {
       if (!this.currentUser && this.isCurrentMenuShowed) {
         this.$nextTick(() => {
-          this.$store.commit('ui/setAuthElem', 'login')
-          this.$bus.$emit('modal-show', 'modal-signup')
-          this.$router.push({ name: 'my-account' })
-        })
+          this.$store.commit("ui/setAuthElem", "login");
+          this.$bus.$emit("modal-show", "modal-signup");
+          this.$router.push({ name: "my-account" });
+        });
       }
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
 @import "~theme/css/animations/transitions";
-@import '~theme/css/variables/colors';
-@import '~theme/css/helpers/functions/color';
+@import "~theme/css/variables/colors";
+@import "~theme/css/helpers/functions/color";
 $bg-secondary: color(secondary, $colors-background);
 $color-gainsboro: color(gainsboro);
 $color-matterhorn: color(matterhorn);
@@ -278,7 +328,8 @@ $color-mine-shaft: color(mine-shaft);
   }
 
   button {
-    color: $color-mine-shaft;a {
+    color: $color-mine-shaft;
+    a {
       color: $color-mine-shaft;
     }
   }
@@ -294,6 +345,5 @@ $color-mine-shaft: color(mine-shaft);
       }
     }
   }
-
 }
 </style>

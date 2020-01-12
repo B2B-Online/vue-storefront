@@ -29,7 +29,6 @@
 <style lang="scss" scoped>
 .shop-info {
   background: #f7f9fc;
-  border-top: solid 1px #cbd3dd;
   ul {
     display: flex;
     flex-wrap: wrap;

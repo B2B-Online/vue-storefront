@@ -27,8 +27,8 @@
         {{ product.name | htmlDecode }}
       </router-link>
 
-      <div class="row align-items-center middle-xs ">
-        <div class="col-xs-6 price center">
+      <div class="row price align-items-center middle-xs ">
+        <div class="col-xs-6 center">
           <span
             class="price--original"
             v-if="
@@ -166,6 +166,7 @@ export default {
 
 <style lang="scss" scoped>
 .product {
+  position: relative;
   &__link {
     padding: 20px;
     cursor: pointer;
@@ -175,6 +176,22 @@ export default {
     display: block;
     color: #000000;
     font-size: 18px;
+    line-height: 24px;
+    display: block;
+    max-height: 62px;
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+    position: absolute;
+    z-index: 1;
+    background: rgba(#fff, 0.5);
+    padding-bottom: 10px;
+    left: 10px;
+    font-weight: 400;
+    right: 10px;
+    &:hover{
+      max-height: 200px;
+      background: rgba(#fff, 1);
+    }
   }
   &__link {
     @media (min-width: 768px) {
@@ -193,10 +210,17 @@ export default {
     }
   }
   .price{
+    padding-top: 110px;
     &--standard{
       color: #0B5CA2;
       font-size: 20px;
       text-align: center;
+    }
+    .col-xs-6:nth-child(1){
+      text-align: center;
+    }
+    .col-xs-6:nth-child(2){
+      text-align: right;
     }
   }
 }

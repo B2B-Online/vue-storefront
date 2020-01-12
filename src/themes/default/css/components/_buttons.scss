@@ -74,17 +74,56 @@ button,
   &--add-to-cart{
     position: relative;
     text-align: left;
-    padding-left: 35px;
+    padding: 20px 25px;
+    display: inline-block;
+    span{
+      display: none;
+    }
     &::before{
       content: "";
       position: absolute;
       top: 0px;
-      left: 10px;
+      left: 0px;
       bottom: 0px;
+      right: 0px;
       margin: auto;
       width: 19px;
       height: 17px;
       background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOSAxNy4wMDEiPgogIDxwYXRoIGlkPSJTaGFwZV82IiBkYXRhLW5hbWU9IlNoYXBlIDYiIGQ9Ik0xMDIwLjIyLDE0MzQuMjNhMS43MywxLjczLDAsMSwxLDEuNzMsMS43N0ExLjc1LDEuNzUsMCwwLDEsMTAyMC4yMiwxNDM0LjIzWm0tOC45NDEsMGExLjczMSwxLjczMSwwLDEsMSwxLjczMSwxLjc3QTEuNzUxLDEuNzUxLDAsMCwxLDEwMTEuMjgsMTQzNC4yM1ptLjIxOC0yLjUyMi0xLjAyMi02LjQ2MS0uNzQzLTQuMzc3SDEwMDZWMTQxOWg1LjI2NWwuNTkyLDMuNDkxSDEwMjVsLTEuNDU5LDkuMjE4WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTEwMDYgLTE0MTguOTk5KSIgZmlsbD0iI2ZmZiIvPgo8L3N2Zz4K");
+    }
+  }
+  &__top{
+    background: #CBD3DD;
+    height: 48px;
+    width: 57px;
+    border-radius: 5px;
+    margin: 0px 5px;
+    position: relative;
+    transition: all 0.5s ease-in-out;
+    .material-icons{
+      position: absolute;
+      top: 12px;
+      left: 0px;
+      right: 0px;
+      bottom: 0px;
+      margin: auto;
+      color: #fff;
+    }
+    .minicart-count{
+      top: -10px;
+      background: #23B145;
+      min-width: 23px;
+      min-height: 23px;
+      font-size: 13px;
+      padding: 0px 0px 2px 0px;
+      line-height: 13px;
+      border-radius: 100%;
+    }
+    &:hover{
+      background: #626D79;
+    }
+    &--orange{
+      background: #F15C2C;
     }
   }
 }

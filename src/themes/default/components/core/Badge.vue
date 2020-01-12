@@ -16,9 +16,9 @@ export default {
     showBadge () {
       if (this.product.is_promotion) {
         return true;
-      } else if (this.product.is_suggested) {
-        return true;
       } else if (this.product.is_new_product) {
+        return true;
+      } else if (this.product.is_suggested) {
         return true;
       }
       return false;
@@ -26,19 +26,19 @@ export default {
     getClass () {
       if (this.product.is_promotion) {
         return 'badge--promotion';
-      } else if (this.product.is_suggested) {
-        return 'badge--top';
       } else if (this.product.is_new_product) {
         return 'badge--novelty';
+      } else if (this.product.is_suggested) {
+        return 'badge--top';
       }
     },
     getTextLabel () {
       if (this.product.is_promotion) {
         return 'Promotion';
-      } else if (this.product.is_suggested) {
-        return 'Top';
       } else if (this.product.is_new_product) {
         return 'Novelty';
+      } else if (this.product.is_suggested) {
+        return 'Top';
       }
     }
   }

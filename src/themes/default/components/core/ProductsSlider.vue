@@ -99,6 +99,7 @@ export default {
     display: block;
     position: relative;
     padding-right: 25px;
+    font-weight: 300;
     &::after {
       right: 0px;
       width: 17px;

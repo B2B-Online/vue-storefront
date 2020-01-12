@@ -10,7 +10,7 @@
         class="brdr-bottom-1 brdr-cl-bg-secondary bg-cl-primary flex"
       >
         <router-link
-          class="px25 py20 cl-accent no-underline col-xs"
+          class="px25 py15 cl-accent no-underline col-xs"
           :to="localizedRoute({ name: 'category', fullPath: parentPath, params: { id: id, slug: parentSlug }})"
           data-testid="categoryLink"
         >
@@ -28,13 +28,13 @@
         >
           <sub-btn
             v-if="link.children_count > 0"
-            class="bg-cl-transparent brdr-none fs-medium"
+            class="bg-cl-transparent brdr-none fs-medium align-left"
             :id="link.id"
             :name="link.name"
           />
           <router-link
             v-else
-            class="px25 py20 cl-accent no-underline col-xs"
+            class="px25 py15 cl-accent no-underline col-xs"
             :to="localizedRoute({ name: 'category', fullPath: link.url_path, params: { id: link.id, slug: link.url_path }})"
           >
             {{ link.name }}
@@ -61,7 +61,7 @@
         @click="notify(link.name)"
       >
         <router-link
-          class="px25 py20 cl-accent no-underline col-xs"
+          class="px25 py15 cl-accent no-underline col-xs"
           :to="localizedRoute(link.url)"
         >
           {{ link.name }}
@@ -70,7 +70,7 @@
       <li class="brdr-bottom-1 brdr-cl-bg-secondary bg-cl-primary flex">
         <a
           href="#"
-          class="px25 py20 cl-accent no-underline col-xs"
+          class="px25 py15 cl-accent no-underline col-xs"
           @click.prevent="logout"
         >
           {{ $t('Logout') }}

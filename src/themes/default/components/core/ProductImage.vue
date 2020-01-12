@@ -89,7 +89,7 @@ export default {
     position: relative;
     width: 100%;
     height: 0;
-    padding-bottom: calc(740% / (600 / 100));
+    padding-bottom: calc(100%);
     overflow: hidden;
     mix-blend-mode: multiply;
     &__thumb{

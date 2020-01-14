@@ -13,7 +13,7 @@ function getConfig (queryText) {
   let multiMatchConfig = {
     'query': queryText,
     'operator': scoringConfig.operator ? scoringConfig.operator : 'or',
-    'fuzziness': scoringConfig.fuzziness ? scoringConfig.fuzziness : '2',
+    'fuzziness': scoringConfig.fuzziness ? scoringConfig.fuzziness : '0',
     'cutoff_frequency': scoringConfig.cutoff_frequency ? scoringConfig.cutoff_frequency : '0.01',
     'max_expansions': scoringConfig.max_expansions ? scoringConfig.max_expansions : '3',
     'prefix_length': scoringConfig.prefix_length ? scoringConfig.prefix_length : '1',

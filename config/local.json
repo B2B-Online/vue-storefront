@@ -58,7 +58,7 @@
             "scoreValues": { "attribute_value": { "weight": 1 } }
           }
         },
-        "fuzziness": 2,
+        "fuzziness": 0,
         "cutoff_frequency":  0.01,
         "max_expansions": 3,
         "minimum_should_match": "75%",

@@ -3,7 +3,7 @@
     <img
       :width="width"
       :height="height"
-      src="/assets/atat/logo_sub.png"
+      src="/assets/atat/logo.svg"
       alt="Sklep ATAT.pl - Przedsiębiorstwo Handlowe A-T S.A."
     >
   </router-link>

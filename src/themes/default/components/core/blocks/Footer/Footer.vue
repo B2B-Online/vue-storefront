@@ -251,7 +251,9 @@ export default {
       display: block;
       width: 43px;
       height: 34px;
-      background: url("/assets/atat/logo_footer.png");
+      background: url("/assets/atat/logo.svg");
+      background-repeat: no-repeat;
+      background-size: contain;
     }
   }
   .links{

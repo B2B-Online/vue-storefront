@@ -249,7 +249,7 @@ header {
       content: "";
       display: block;
       width: 28px;
-      height: 28pxxxxxxxxxx;
+      height: 28px;
       background: url("/assets/atat/ico_marker.svg") no-repeat;
       background-size: 100%;
     }

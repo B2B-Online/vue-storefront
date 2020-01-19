@@ -1,17 +1,14 @@
 <template>
   <div id="category">
-    <header class="bg-cl-secondary py35 pl20">
+    <header class="category-header bg-cl-secondary py35 pl20">
       <div class="container">
         <breadcrumbs :routes="breadcrumbs.routes" :active-route="category.name" />
         <div class="row middle-sm">
-          <h1 class="col-sm-8 category-title mb10">
+          <h1 class="col-xs category-title">
             {{ category.name }}
           </h1>
-          <div class="sorting col-sm-2 align-right mt50">
-            <label class="mr10">{{ $t('Columns') }}:</label>
+          <div class="sorting col-xs align-right">
             <columns @change-column="columnChange" />
-          </div>
-          <div class="sorting col-sm-2 align-right mt50">
             <sort-by :has-label="true" />
           </div>
         </div>
@@ -19,42 +16,42 @@
       <div class="container">
         <div class="row m0">
           <button
-            class="col-xs-5 mt25 mr15 p15 mobile-filters-button bg-cl-th-accent brdr-none cl-white h5 sans-serif fs-medium-small"
+            class="col-xs mt25 mr10 p15 mobile-filters-button bg-cl-th-accent brdr-none cl-white h5 sans-serif fs-medium-small"
             @click="openFilters"
           >
             {{ $t('Filters') }}
           </button>
-          <div class="mobile-sorting col-xs-6 mt25">
+          <div class="mobile-sorting col-xs mt25 ml10 p0">
             <sort-by />
           </div>
         </div>
       </div>
     </header>
     <div class="container pb60">
-      <div class="row m0 pt15">
-        <div class="col-md-3 start-xs category-filters">
+      <div class="row m0 listing-wrapper">
+        <div class="col-md-4 col-lg-3 start-xs category-filters">
           <sidebar :filters="filters.available" />
         </div>
         <div class="col-md-3 start-xs mobile-filters" v-show="mobileFilters">
-          <div class="close-container absolute w-100">
+          <div class="close-container">
             <i class="material-icons p15 close cl-accent" @click="closeFilters">close</i>
           </div>
           <sidebar class="mobile-filters-body" :filters="filters.available" />
-          <div class="relative pb20 pt15">
-            <div class="brdr-top-1 brdr-cl-primary absolute divider w-100" />
+
+          <div class="align-right">
+             <button-full
+               class="mb20 mt20 btn__filter p10 bg-cl-th-accent brdr-none cl-white h5 sans-serif fs-medium-small"
+               @click.native="closeFilters"
+             >
+               {{ $t('Filter') }}
+             </button-full>
           </div>
-          <button-full
-            class="mb20 btn__filter"
-            @click.native="closeFilters"
-          >
-            {{ $t('Filter') }}
-          </button-full>
         </div>
-        <div class="col-md-9 px10 border-box products-list">
-          <p class="col-xs-12 end-md m0 pb20 cl-secondary">
+        <div class="col-md-8 col-lg-9 border-box products-list">
+          <!-- <p class="col-xs-12 end-md m0 pb20 cl-secondary">
             {{ productsTotal }} {{ $t('items') }}
-          </p>
-          <div v-if="isCategoryEmpty" class="hidden-xs">
+          </p> -->
+          <div v-if="isCategoryEmpty">
             <h4 data-testid="noProductsInfo">
               {{ $t('No products found!') }}
             </h4>
@@ -86,6 +83,7 @@ export default {
     SortBy,
     Columns
   },
+
   data () {
     return {
       mobileFilters: false,
@@ -121,6 +119,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import '~theme/css/variables/colors';
+  @import '~theme/css/helpers/functions/color';
+  $color-gainsboro: color(gainsboro);
+  $color-white: color(white);
+  $color-white-smoke: color(white-smoke);
+
   .btn {
     &__filter {
       min-width: 100px;
@@ -133,6 +137,11 @@ export default {
   }
   .category-filters {
     width: 242px;
+
+    @media (min-width: 770px) {
+      padding-right: 30px;
+      padding-left: 0;   
+    }
   }
 
   .mobile-filters {
@@ -149,24 +158,38 @@ export default {
   }
 
   .category-title {
-    line-height: 65px;
+    // line-height: 65px;
+    font-size: 28px;
   }
 
-  .sorting {
-    label {
-      margin-right: 10px;
+  .category-header {
+    padding: 40px 0 100px;
+  }
+
+  .products-list {
+    border: 1px solid $color-gainsboro;
+    border-radius: 3px;
+    background: $color-white;
+
+    @media (min-width: 770px) {
+      padding: 0 20px;
     }
   }
 
+  .listing-wrapper {
+    margin-top: -90px;
+  }
+
+
   @media (max-width: 64em) {
     .products-list {
-      max-width: 530px;
+      // max-width: 530px;
     }
   }
 
   @media (max-width: 770px) {
     .category-title {
-      margin: 0;
+      margin: 10px 0;
       font-size: 36px;
       line-height: 40px;
     }
@@ -203,9 +226,9 @@ export default {
 
     .mobile-filters {
       position: fixed;
-      background-color: #F2F2F2;
+      background-color: $color-white-smoke;
       z-index: 5;
-      padding: 0 40px;
+      padding: 20px;
       left: 0;
       width: 100vw;
       height: 100vh;
@@ -214,12 +237,15 @@ export default {
     }
 
     .mobile-filters-body {
-      padding-top: 50px;
+      border: 1px solid $color-gainsboro;
+      border-radius: 3px;
+      background: $color-white;
+      padding: 0 20px 30px;
     }
   }
 
   .close-container {
-    left: 0;
+    text-align: right;
   }
 
   .close {

@@ -7,7 +7,7 @@
     >
       <span class="bg-cl-transparent absolute block square" />
     </button>
-    <span>{{ content }}</span>
+    <span class="price-selector-label">{{ content }}</span>
   </div>
 </template>
 
@@ -24,10 +24,17 @@ export default {
   @import '~theme/css/helpers/functions/color';
   $color-event: color(tertiary);
   $color-active: color(accent);
+  $color-mid-grey: color(mid-grey);
+  $color-white-smoke: color(white-smoke);
 
   .price-selector {
     width: 20px;
     height: 20px;
+    border-radius: 3px;
+    $color-gainsboro: color(gainsboro);
+    border: 1px solid $color-gainsboro;
+    background: $color-white-smoke;
+
 
     &:hover {
       .square {
@@ -42,9 +49,13 @@ export default {
     }
   }
 
+  .price-selector-label {
+    color: $color-mid-grey;
+  }
+
   .square {
-    width: 80%;
-    height: 80%;
+    width: 55%;
+    height: 55%;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);

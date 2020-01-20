@@ -94,11 +94,11 @@ export default {
     mix-blend-mode: multiply;
     &__thumb{
       max-width: 100%;
-      height: auto;
+      max-height: 100%;
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 100%;
+      width: auto;
       transform: translate3d(-50%, -50%, 0);
       &--placeholder{
         width: auto;

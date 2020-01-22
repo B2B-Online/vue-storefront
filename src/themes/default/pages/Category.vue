@@ -51,7 +51,7 @@
           <!-- <p class="col-xs-12 end-md m0 pb20 cl-secondary">
             {{ productsTotal }} {{ $t('items') }}
           </p> -->
-          <div v-if="isCategoryEmpty">
+          <div v-if="isCategoryEmpty" class="px10">
             <h4 data-testid="noProductsInfo">
               {{ $t('No products found!') }}
             </h4>

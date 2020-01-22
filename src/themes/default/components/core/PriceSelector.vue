@@ -34,6 +34,7 @@ export default {
     $color-gainsboro: color(gainsboro);
     border: 1px solid $color-gainsboro;
     background: $color-white-smoke;
+    vertical-align: bottom;
 
 
     &:hover {
@@ -51,6 +52,7 @@ export default {
 
   .price-selector-label {
     color: $color-mid-grey;
+    vertical-align: bottom;
   }
 
   .square {

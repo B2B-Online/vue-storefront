@@ -23,6 +23,8 @@
         />
       </div>
 
+      <product-status :status="product.status" v-if="showStatus"></product-status>
+
       <router-link :to="productLink" class="product__name" v-if="!onlyImage">
         {{ product.name | htmlDecode }}
       </router-link>
@@ -80,6 +82,7 @@ import rootStore from '@vue-storefront/core/store';
 import { ProductTile } from '@vue-storefront/core/modules/catalog/components/ProductTile.ts';
 import config from 'config';
 import ProductImage from './ProductImage';
+import ProductStatus from './ProductStatus';
 import AddToCart from 'theme/components/core/AddToCart';
 import Badge from 'theme/components/core/Badge';
 
@@ -89,6 +92,7 @@ export default {
   mixins: [ProductTile],
   components: {
     ProductImage,
+    ProductStatus,
     AddToCart,
     Badge
   },
@@ -100,6 +104,11 @@ export default {
     onlyImage: {
       type: Boolean,
       default: false
+    },
+    showStatus: {
+      type: Boolean,
+      default: true,
+      required: false
     }
   },
   computed: {

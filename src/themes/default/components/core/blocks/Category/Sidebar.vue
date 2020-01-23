@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar">
-    <h4 class="sidebar__header relative mt35 mb20 flex">
+    <h4 class="sidebar__header relative flex">
       <span> {{ $t('Filter') }} </span>
       <span
         class="weight-400 sidebar__header__clear pointer sans-serif flex lh25"
@@ -104,10 +104,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '~theme/css/variables/colors';
+@import '~theme/css/helpers/functions/color';
+$color-gainsboro: color(gainsboro);
+$color-white: color(white);
 .sidebar {
+  @media (min-width: 771px) {
+    border: 1px solid $color-gainsboro;
+    border-radius: 3px;
+    background: $color-white;
+    padding: 0 20px 30px;
+  }
+
+
   &__header {
     justify-content: space-between;
-    min-height: 47px;
+    // min-height: 47px;
     flex-wrap: wrap;
     &__clear {
       font-size: .8em;

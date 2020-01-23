@@ -324,7 +324,7 @@ const actions: ActionTree<CategoryState, RootState> = {
                     id: option.key,
                     from: option.from,
                     to: option.to,
-                    label: (index === 0 || (index === count - 1)) ? (option.to ? '< ' + currencySign + option.to : '> ' + currencySign + option.from) : currencySign + option.from + (option.to ? ' - ' + option.to : '')// TODO: add better way for formatting, extract currency sign
+                    label: (index === 0 || (index === count - 1)) ? (option.to ? '< '  + option.to + currencySign : '> ' + option.from + currencySign) : option.from + currencySign + (option.to ? ' - ' + option.to + currencySign : '')// TODO: add better way for formatting, extract currency sign
                   })
                   index++
                 }

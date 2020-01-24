@@ -23,14 +23,17 @@
         />
       </div>
 
-      <product-status :status="product.status" v-if="showStatus"></product-status>
+      <product-status
+        :status="product.status"
+        v-if="showStatus"
+      ></product-status>
 
       <router-link :to="productLink" class="product__name" v-if="!onlyImage">
         {{ product.name | htmlDecode }}
       </router-link>
 
-      <div class="row price align-items-center middle-xs ">
-        <div class="col-xs-6 center">
+      <div class="price center-xs middle-xs flex">
+        <div>
           <span
             class="price--original"
             v-if="
@@ -64,13 +67,11 @@
             {{ product.priceInclTax | price }}
           </span>
         </div>
-        <div class="col-xs-6">
-          <add-to-cart
-            :product="product"
-            :disabled="$v.product.qty.$error && !$v.product.qty.minValue"
-            class="product-add-to-cart btn--orange btn--small btn--add-to-cart"
-          />
-        </div>
+        <add-to-cart
+          :product="product"
+          :disabled="$v.product.qty.$error && !$v.product.qty.minValue"
+          class="product-add-to-cart btn--orange btn--small btn--add-to-cart"
+        />
       </div>
     </div>
     <!-- {{product}} -->
@@ -78,15 +79,15 @@
 </template>
 
 <script>
-import rootStore from '@vue-storefront/core/store';
-import { ProductTile } from '@vue-storefront/core/modules/catalog/components/ProductTile.ts';
-import config from 'config';
-import ProductImage from './ProductImage';
-import ProductStatus from './ProductStatus';
-import AddToCart from 'theme/components/core/AddToCart';
-import Badge from 'theme/components/core/Badge';
+import rootStore from "@vue-storefront/core/store";
+import { ProductTile } from "@vue-storefront/core/modules/catalog/components/ProductTile.ts";
+import config from "config";
+import ProductImage from "./ProductImage";
+import ProductStatus from "./ProductStatus";
+import AddToCart from "theme/components/core/AddToCart";
+import Badge from "theme/components/core/Badge";
 
-import { minValue } from 'vuelidate/lib/validators';
+import { minValue } from "vuelidate/lib/validators";
 
 export default {
   mixins: [ProductTile],
@@ -112,7 +113,7 @@ export default {
     }
   },
   computed: {
-    thumbnailObj () {
+    thumbnailObj() {
       return {
         src: this.thumbnail,
         loading: this.thumbnail
@@ -120,18 +121,18 @@ export default {
     }
   },
   methods: {
-    goTo (event, link) {
-      if (event.target.classList.contains('product-add-to-cart')) {
+    goTo(event, link) {
+      if (event.target.classList.contains("product-add-to-cart")) {
         return false;
       }
       this.$router.push({ path: link });
     },
-    onProductPriceUpdate (product) {
+    onProductPriceUpdate(product) {
       if (product.sku === this.product.sku) {
         Object.assign(this.product, product);
       }
     },
-    visibilityChanged (isVisible, entry) {
+    visibilityChanged(isVisible, entry) {
       if (isVisible) {
         if (
           config.products.configurableChildrenStockPrefetchDynamic &&
@@ -139,18 +140,18 @@ export default {
         ) {
           const skus = [this.product.sku];
           if (
-            this.product.type_id === 'configurable' &&
+            this.product.type_id === "configurable" &&
             this.product.configurable_children &&
             this.product.configurable_children.length > 0
           ) {
             for (const confChild of this.product.configurable_children) {
               const cachedItem = rootStore.state.stock.cache[confChild.id];
-              if (typeof cachedItem === 'undefined' || cachedItem === null) {
+              if (typeof cachedItem === "undefined" || cachedItem === null) {
                 skus.push(confChild.sku);
               }
             }
             if (skus.length > 0) {
-              rootStore.dispatch('stock/list', { skus: skus }); // store it in the cache
+              rootStore.dispatch("stock/list", { skus: skus }); // store it in the cache
             }
           }
         }
@@ -164,11 +165,11 @@ export default {
       }
     }
   },
-  beforeMount () {
-    this.$bus.$on('product-after-priceupdate', this.onProductPriceUpdate);
+  beforeMount() {
+    this.$bus.$on("product-after-priceupdate", this.onProductPriceUpdate);
   },
-  beforeDestroy () {
-    this.$bus.$off('product-after-priceupdate', this.onProductPriceUpdate);
+  beforeDestroy() {
+    this.$bus.$off("product-after-priceupdate", this.onProductPriceUpdate);
   }
 };
 </script>
@@ -197,7 +198,7 @@ export default {
     left: 10px;
     font-weight: 400;
     right: 10px;
-    &:hover{
+    &:hover {
       max-height: 200px;
       background: rgba(#fff, 1);
     }
@@ -218,18 +219,20 @@ export default {
       }
     }
   }
-  .price{
-    padding-top: 110px;
-    &--standard{
-      color: #0B5CA2;
+  .price {
+    position: relative;
+    margin-top: 110px;
+    min-height: 40px;
+    padding-right: 53px;
+    &--standard {
+      color: #0b5ca2;
       font-size: 20px;
       text-align: center;
     }
-    .col-xs-6:nth-child(1){
-      text-align: center;
-    }
-    .col-xs-6:nth-child(2){
-      text-align: right;
+    .product-add-to-cart {
+      position: absolute;
+      top: 0px;
+      right: 0px;
     }
   }
 }

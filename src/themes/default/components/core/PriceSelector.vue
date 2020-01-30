@@ -36,7 +36,6 @@ export default {
     background: $color-white-smoke;
     vertical-align: bottom;
 
-
     &:hover {
       .square {
         background-color: $color-event;

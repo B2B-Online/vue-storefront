@@ -1,7 +1,7 @@
 <template>
   <header class="header-simple">
     <div class="container center-xs">
-      <img src="/assets/atat/logo.svg" alt class="logo" srcset="/assets/atat/logo@2 x.png 2x" />
+      <img src="/assets/atat/logo.svg" alt class="logo" srcset="/assets/atat/logo@2 x.png 2x">
     </div>
   </header>
 </template>

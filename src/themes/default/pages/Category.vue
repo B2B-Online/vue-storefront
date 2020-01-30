@@ -39,12 +39,12 @@
           <sidebar class="mobile-filters-body" :filters="filters.available" />
 
           <div class="align-right">
-             <button-full
-               class="mb20 mt20 btn__filter p10 bg-cl-th-accent brdr-none cl-white h5 sans-serif fs-medium-small"
-               @click.native="closeFilters"
-             >
-               {{ $t('Filter') }}
-             </button-full>
+            <button-full
+              class="mb20 mt20 btn__filter p10 bg-cl-th-accent brdr-none cl-white h5 sans-serif fs-medium-small"
+              @click.native="closeFilters"
+            >
+              {{ $t('Filter') }}
+            </button-full>
           </div>
         </div>
         <div class="col-md-8 col-lg-9 border-box products-list">
@@ -87,7 +87,7 @@ export default {
   data () {
     return {
       mobileFilters: false,
-      defaultColumn: 3
+      defaultColumn: 4
     }
   },
   async asyncData ({ store, route }) { // this is for SSR purposes to prefetch data - and it's always executed before parent component methods
@@ -140,7 +140,7 @@ export default {
 
     @media (min-width: 770px) {
       padding-right: 30px;
-      padding-left: 0;   
+      padding-left: 0;
     }
   }
 
@@ -179,7 +179,6 @@ export default {
   .listing-wrapper {
     margin-top: -90px;
   }
-
 
   @media (max-width: 64em) {
     .products-list {

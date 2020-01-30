@@ -116,7 +116,6 @@ $color-white: color(white);
     padding: 0 20px 30px;
   }
 
-
   &__header {
     justify-content: space-between;
     // min-height: 47px;

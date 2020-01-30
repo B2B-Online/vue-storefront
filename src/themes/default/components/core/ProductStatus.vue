@@ -1,15 +1,15 @@
 <template>
   <div class="product-status-wrapper">
-      <div class="status" :class="cssClasses">
-        <template v-if="status === 1">
-          <i class="material-icons">check</i>
-          <span>{{ $t('available') }}</span>
-        </template>
-        <template v-else>
-          <i class="material-icons">close</i>
-          <span>{{ $t('unavailable') }}</span>
-        </template>
-      </div>
+    <div class="status" :class="cssClasses">
+      <template v-if="status === 1">
+        <i class="material-icons">check</i>
+        <span>{{ $t('available') }}</span>
+      </template>
+      <template v-else>
+        <i class="material-icons">close</i>
+        <span>{{ $t('unavailable') }}</span>
+      </template>
+    </div>
   </div>
 </template>
 
@@ -24,7 +24,7 @@ export default {
   },
 
   computed: {
-    cssClasses() {
+    cssClasses () {
       return {
         'status--available': this.status === 1,
         'status--unavailable': this.status === 0

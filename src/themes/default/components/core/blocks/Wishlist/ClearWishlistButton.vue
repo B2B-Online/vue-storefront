@@ -1,6 +1,6 @@
 <template>
-  <button class="brdr-none bg-cl-transparent p0 middle-xs inline-flex cl-secondary weight-400 h4 sans-serif fs-medium" @click="$emit('click')">
-    <span class="clearcart-btn cl-accent">
+  <button class="brdr-none bg-cl-transparent middle-xs inline-flex cl-secondary weight-400 sans-serif" @click="$emit('click')">
+    <span class="clearcart-btn cl-black">
       <i class="material-icons cl-accent mr5">
         cancel
       </i>
@@ -14,6 +14,7 @@
     &-btn {
       display: flex;
       align-items: center;
+      font-size: 16px;
     }
   }
 </style>

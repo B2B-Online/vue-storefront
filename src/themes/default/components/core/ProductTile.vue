@@ -23,14 +23,17 @@
         />
       </div>
 
-      <product-status :status="product.status" v-if="showStatus"></product-status>
+      <product-status
+        :status="product.status"
+        v-if="showStatus"
+      />
 
       <router-link :to="productLink" class="product__name" v-if="!onlyImage">
         {{ product.name | htmlDecode }}
       </router-link>
 
-      <div class="row price align-items-center middle-xs ">
-        <div class="col-xs-6 center">
+      <div class="price center-xs middle-xs flex">
+        <div>
           <span
             class="price--original"
             v-if="
@@ -64,13 +67,11 @@
             {{ product.priceInclTax | price }}
           </span>
         </div>
-        <div class="col-xs-6">
-          <add-to-cart
-            :product="product"
-            :disabled="$v.product.qty.$error && !$v.product.qty.minValue"
-            class="product-add-to-cart btn--orange btn--small btn--add-to-cart"
-          />
-        </div>
+        <add-to-cart
+          :product="product"
+          :disabled="$v.product.qty.$error && !$v.product.qty.minValue"
+          class="product-add-to-cart btn--orange btn--small btn--add-to-cart"
+        />
       </div>
     </div>
     <!-- {{product}} -->
@@ -197,7 +198,7 @@ export default {
     left: 10px;
     font-weight: 400;
     right: 10px;
-    &:hover{
+    &:hover {
       max-height: 200px;
       background: rgba(#fff, 1);
     }
@@ -218,18 +219,20 @@ export default {
       }
     }
   }
-  .price{
-    padding-top: 110px;
-    &--standard{
-      color: #0B5CA2;
+  .price {
+    position: relative;
+    margin-top: 110px;
+    min-height: 40px;
+    padding-right: 53px;
+    &--standard {
+      color: #0b5ca2;
       font-size: 20px;
       text-align: center;
     }
-    .col-xs-6:nth-child(1){
-      text-align: center;
-    }
-    .col-xs-6:nth-child(2){
-      text-align: right;
+    .product-add-to-cart {
+      position: absolute;
+      top: 0px;
+      right: 0px;
     }
   }
 }

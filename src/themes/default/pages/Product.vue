@@ -165,7 +165,7 @@
               <div class="col-xs-6 col-sm-3 col-md-6">
                 <wishlist-button :product="product" />
               </div>
-              <div class="col-xs-6 col-sm-3 col-md-6 product__add-to-compare">
+              <!-- <div class="col-xs-6 col-sm-3 col-md-6 product__add-to-compare">
                 <button
                   @click="isOnCompare ? removeFromList('compare') : addToList('compare')"
                   class="
@@ -183,7 +183,7 @@
                     {{ $t('Remove from compare') }}
                   </template>
                 </button>
-              </div>
+              </div> -->
             </div>
           </div>
         </section>

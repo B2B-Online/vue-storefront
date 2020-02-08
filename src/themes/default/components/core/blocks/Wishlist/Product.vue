@@ -26,18 +26,15 @@
         </div>
       </div>
     </div>
-    <div class="col-xs flex align-right py5">
-      <div >
-        <span class="price-special" v-if="product.special_price">{{ product.priceInclTax | price }}</span>&nbsp;
-        <span class="price-original" v-if="product.special_price">{{ product.originalPriceInclTax | price }}</span>
-
-        <span v-if="!product.special_price">
-          {{ product.priceInclTax | price }}
-        </span>
-      </div>
-      <div class="mt5 h-100 flex end-xs bottom-xs">
-        <span @click="removeFromWishlist(product)"><remove-button class="cl-accent" /></span>
-      </div>
+    <div class="col-xs flex center-xs py5">
+      <span class="price-special" v-if="product.special_price">{{ product.priceInclTax | price }}</span>&nbsp;
+      <span class="price-original" v-if="product.special_price">{{ product.originalPriceInclTax | price }}</span>
+      <span v-if="!product.special_price">
+        {{ product.priceInclTax | price }}
+      </span>
+    </div>
+    <div class="col-xs flex center-xs py5">
+      <span @click="removeFromWishlist(product)"><remove-button class="cl-accent" /></span>
     </div>
   </li>
 </template>

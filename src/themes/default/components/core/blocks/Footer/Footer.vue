@@ -182,11 +182,14 @@
     </div>
     <div class="container-fluid">
       <div class="row bottom-links">
-        <div class="col-md-5">
+        <div class="col-md-6">
           <p class="copy">
             Copyright 2019 © atat.pl
           </p>
           <language-switcher v-if="multistoreEnabled" />
+        </div>
+        <div class="col-md-6">
+          <p class="powered-by">powered by <a href="http://www.b2bonline.pl" title="B2BOnline"><span class="b2bonline"><em>B2B</em> Online</span></a></p>
         </div>
       </div>
     </div>
@@ -229,12 +232,13 @@ export default {
 <style lang="scss" scoped>
 .bottom-links {
   padding: 20px 0px;
-  .col-md-5{
-    text-align: left;
+
+  .col-md-6 {
     @media (max-width: 767px) {
       text-align: center;
     }
   }
+
   .copy{
     position: relative;
     color: #626D79;
@@ -256,6 +260,26 @@ export default {
       background-size: contain;
     }
   }
+
+  .powered-by {
+    font-size: 14px;
+    color: #626D79;
+
+    @media only screen and (min-width: 768px) {
+      padding-right: 70px;
+      text-align: right;
+    }
+
+    em {
+      color: #e87801;
+      font-style: normal;
+    }
+
+    .b2bonline {
+      font-weight: 700;
+    }
+  }
+
   .links{
     text-align: right;
     ul{

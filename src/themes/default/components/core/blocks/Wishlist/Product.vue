@@ -1,6 +1,6 @@
 <template>
-  <li class="row pr20 py15">
-    <div class="image" @click="closeWishlist">
+  <li class="product pr20 py15">
+    <div class="product__image" @click="closeWishlist">
       <router-link :to="localizedRoute({
         name: product.type_id + '-product',
         fullPath: product.url_path,
@@ -10,7 +10,7 @@
         <product-image :image="image" />
       </router-link>
     </div>
-    <div class="col-xs between-xs flex pl40 py5">
+    <div class="product__details py5">
       <div @click="closeWishlist">
         <router-link :to="localizedRoute({
                        name: product.type_id + '-product',
@@ -26,14 +26,20 @@
         </div>
       </div>
     </div>
-    <div class="col-xs flex center-xs py5">
+    <div class="product__price">
       <span class="price-special" v-if="product.special_price">{{ product.priceInclTax | price }}</span>&nbsp;
       <span class="price-original" v-if="product.special_price">{{ product.originalPriceInclTax | price }}</span>
       <span v-if="!product.special_price">
         {{ product.priceInclTax | price }}
       </span>
     </div>
-    <div class="col-xs flex center-xs py5">
+    <div class="product__add-to-cart">
+      <add-to-cart
+        :product="product"
+        class="product-add-to-cart btn btn--orange btn--add-to-cart btn--no-txt"
+      />
+    </div>
+    <div class="product__remove">
       <span @click="removeFromWishlist(product)"><remove-button class="cl-accent" /></span>
     </div>
   </li>
@@ -42,12 +48,14 @@
 <script>
 import Product from '@vue-storefront/core/compatibility/components/blocks/Wishlist/Product'
 import RemoveButton from './RemoveButton'
+import AddToCart from 'theme/components/core/AddToCart'
 import ProductImage from 'theme/components/core/ProductImage'
 
 export default {
   components: {
     RemoveButton,
-    ProductImage
+    ProductImage,
+    AddToCart
   },
   mixins: [Product],
   computed: {
@@ -66,22 +74,66 @@ export default {
 @import '~theme/css/helpers/functions/color';
 $color-black: color(black);
 $color-mid-grey: color(mid-grey);
+$color-gainsboro: color(gainsboro);
 
-.product__name {
+.product {
+  position: relative;
   color: $color-black;
+  display: flex;
+
+  &:not(:last-of-type) {
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: -30px;
+      border-bottom: 1px solid $color-gainsboro;
+      width: calc(100% + 30px);
+    }
+  }
+
+  &__add-to-cart, &__remove, &__price {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+  }
+
+  &__price {
+    flex: 0 0 80px;
+    justify-content: center;
+  }
+
+  &__remove {
+    padding: 5px;
+  }
+
+  &__name {
+    color: $color-black;
+  }
+
+  &__details {
+    flex: auto;
+    display: flex;
+    flex-flow: column;
+    @media only screen and (min-width: 576px) {
+      padding-left: 40px;
+    }
+  }
+
+  &__image {
+    display: none;
+
+    @media only screen and (min-width: 576px) {
+      display: block;
+      flex: 0 0 63px;
+    }
+  }
+
+  .sku {
+    color: $color-mid-grey;
+  }
 }
-.sku {
-  color: $color-mid-grey;
-}
-.col-xs {
-  flex-direction: column;
-}
-input {
-  width: 30px;
-}
-.image{
-  flex: 0 0 63px;
-}
+
 .price-original {
   text-decoration: line-through;
   color: #828282;

@@ -1,4 +1,3 @@
 <template>
-  <button class="btn btn--bin" :title="$t('Remove')">
-  </button>
+  <button class="btn btn--bin" :title="$t('Remove')" />
 </template>

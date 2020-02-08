@@ -24,7 +24,7 @@
       {{ $t('to find something beautiful for You!') }}
     </div>
     <ul class="products pl30">
-      <product v-for="wishlistProduct in productsInWishlist" :key="wishlistProduct.id" :product="wishlistProduct" class="product"/>
+      <product v-for="wishlistProduct in productsInWishlist" :key="wishlistProduct.id" :product="wishlistProduct" class="product" />
     </ul>
   </div>
 </template>
@@ -88,7 +88,7 @@ $color-black: color(black);
     a.product__name {
       color: $color-black;
     }
-    
+
     &:not(:last-of-type) {
       &:after {
         content: '';

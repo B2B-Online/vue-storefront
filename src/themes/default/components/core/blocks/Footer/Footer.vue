@@ -189,7 +189,9 @@
           <language-switcher v-if="multistoreEnabled" />
         </div>
         <div class="col-md-6">
-          <p class="powered-by">powered by <a href="http://www.b2bonline.pl" title="B2BOnline"><span class="b2bonline"><em>B2B</em> Online</span></a></p>
+          <p class="powered-by">
+            powered by <a href="http://www.b2bonline.pl" title="B2BOnline"><span class="b2bonline"><em>B2B</em> Online</span></a>
+          </p>
         </div>
       </div>
     </div>

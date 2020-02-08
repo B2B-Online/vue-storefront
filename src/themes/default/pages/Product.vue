@@ -158,7 +158,7 @@
               <add-to-cart
                 :product="product"
                 :disabled="$v.product.qty.$error && !$v.product.qty.minValue"
-                class="col-xs-12 col-sm-4 col-md-6"
+                class="btn btn--orange btn--add-to-cart"
               />
             </div>
             <div class="row py40 add-to-buttons">

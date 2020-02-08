@@ -13,11 +13,11 @@
     <div class="col-xs between-xs flex pl40 py5">
       <div @click="closeWishlist">
         <router-link :to="localizedRoute({
-          name: product.type_id + '-product',
-          fullPath: product.url_path,
-          params: { parentSku: product.parentSku ? product.parentSku : product.sku, slug: product.slug, childSku: product.sku }
-        })"
-          class="product__name"
+                       name: product.type_id + '-product',
+                       fullPath: product.url_path,
+                       params: { parentSku: product.parentSku ? product.parentSku : product.sku, slug: product.slug, childSku: product.sku }
+                     })"
+                     class="product__name"
         >
           {{ product.name | htmlDecode }}
         </router-link>
@@ -87,6 +87,5 @@ input {
   color: #828282;
   font-size: .95rem;
 }
-
 
 </style>

@@ -70,7 +70,7 @@
         <add-to-cart
           :product="product"
           :disabled="$v.product.qty.$error && !$v.product.qty.minValue"
-          class="product-add-to-cart btn--orange btn--small btn--add-to-cart"
+          class="product-add-to-cart btn btn--orange btn--add-to-cart btn--no-txt"
         />
       </div>
     </div>
@@ -222,7 +222,7 @@ export default {
   .price {
     position: relative;
     margin-top: 110px;
-    min-height: 40px;
+    min-height: 48px;
     padding-right: 53px;
     &--standard {
       color: #0b5ca2;

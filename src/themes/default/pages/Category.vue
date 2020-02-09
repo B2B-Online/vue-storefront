@@ -34,7 +34,7 @@
           <sidebar :filters="filters.available" />
           <main-category-menu />
         </div>
-  
+
         <div class="col-md-3 start-xs mobile-filters" v-show="mobileFilters">
           <div class="close-container">
             <i class="material-icons p15 close cl-accent" @click="closeFilters">close</i>

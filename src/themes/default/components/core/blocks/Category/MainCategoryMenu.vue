@@ -5,7 +5,7 @@
       class="main-category-menu__elem main-category-menu__elem--electric"
     >
       <h3 class="main-category-menu__title icon icon--electric">
-        {{ $t("Electricity") }}
+        {{ $t("Electrical") }}
       </h3>
     </router-link>
     <router-link
@@ -13,7 +13,7 @@
       class="main-category-menu__elem main-category-menu__elem--lights"
     >
       <h3 class="main-category-menu__title icon icon--lights">
-        {{ $t("Oświetlenie") }}
+        {{ $t("Lightning") }}
       </h3>
     </router-link>
     <router-link
@@ -21,7 +21,7 @@
       class="main-category-menu__elem main-category-menu__elem--chemistry"
     >
       <h3 class="main-category-menu__title icon icon--chemistry">
-        {{ $t("Chemistry") }}
+        {{ $t("Detergents") }}
       </h3>
     </router-link>
     <router-link

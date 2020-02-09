@@ -109,7 +109,7 @@ export default {
 $color-gainsboro: color(gainsboro);
 $color-white: color(white);
 .sidebar {
-  @media (min-width: 771px) {
+  @media (min-width: 768px) {
     border: 1px solid $color-gainsboro;
     border-radius: 3px;
     background: $color-white;

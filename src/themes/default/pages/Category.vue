@@ -25,13 +25,16 @@
             <sort-by />
           </div>
         </div>
+        <main-category-menu class="mobile-only" />
       </div>
     </header>
     <div class="container pb60">
       <div class="row m0 listing-wrapper">
         <div class="col-md-4 col-lg-3 start-xs category-filters">
           <sidebar :filters="filters.available" />
+          <main-category-menu />
         </div>
+  
         <div class="col-md-3 start-xs mobile-filters" v-show="mobileFilters">
           <div class="close-container">
             <i class="material-icons p15 close cl-accent" @click="closeFilters">close</i>
@@ -72,6 +75,8 @@ import Breadcrumbs from '../components/core/Breadcrumbs.vue'
 import SortBy from '../components/core/SortBy.vue'
 import Columns from '../components/core/Columns.vue'
 import ButtonFull from 'theme/components/theme/ButtonFull.vue'
+import MainCategoryMenu from 'theme/components/core/blocks/Category/MainCategoryMenu';
+
 // import builder from 'bodybuilder'
 
 export default {
@@ -81,7 +86,8 @@ export default {
     Breadcrumbs,
     Sidebar,
     SortBy,
-    Columns
+    Columns,
+    MainCategoryMenu
   },
 
   data () {
@@ -125,6 +131,22 @@ export default {
   $color-white: color(white);
   $color-white-smoke: color(white-smoke);
 
+  .main-category-menu {
+    margin: 20px 0;
+
+    &.mobile-only {
+      @media (min-width: 768px) {
+        display: none;
+      }
+    }
+  }
+
+  .sidebar {
+    .main-category-menu {
+      display: none;
+    }
+  }
+
   .btn {
     &__filter {
       min-width: 100px;
@@ -138,7 +160,7 @@ export default {
   .category-filters {
     width: 242px;
 
-    @media (min-width: 770px) {
+    @media (min-width: 768px) {
       padding-right: 30px;
       padding-left: 0;
     }
@@ -171,7 +193,7 @@ export default {
     border-radius: 3px;
     background: $color-white;
 
-    @media (min-width: 770px) {
+    @media (min-width: 768px) {
       padding: 0 20px;
     }
   }
@@ -186,7 +208,7 @@ export default {
     }
   }
 
-  @media (max-width: 770px) {
+  @media (max-width: 767px) {
     .category-title {
       margin: 10px 0;
       font-size: 36px;

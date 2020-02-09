@@ -132,7 +132,7 @@
     text-align: center;
     margin: 0px;
     padding: 0px;
-    font-size: 20x;
+    font-size: 20px;
     font-family: "Roboto";
     font-weight: 400;
     color: #fff;

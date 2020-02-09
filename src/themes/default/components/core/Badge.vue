@@ -60,7 +60,7 @@ export default {
   vertical-align: middle;
   justify-content: center;
   opacity: 1;
-  z-index: 10;
+  z-index: 1;
   border-radius: 100%;
   &--promotion {
     background: #e71756;

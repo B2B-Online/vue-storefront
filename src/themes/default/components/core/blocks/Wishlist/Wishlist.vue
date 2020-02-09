@@ -70,7 +70,6 @@ export default {
 @import '~theme/css/variables/colors';
 @import '~theme/css/helpers/functions/color';
 
-
 .wishlist {
   &__title {
     margin: 0;

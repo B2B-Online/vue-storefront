@@ -14,28 +14,28 @@
 </template>
 
 <script>
-  export default {
-    props: {
-      product: {
-        type: Object,
-        required: true
-      }
+export default {
+  props: {
+    product: {
+      type: Object,
+      required: true
+    }
+  },
+
+  computed: {
+    cssClasses () {
+      return {
+        'status--available': this.isInStock,
+        'status--unavailable': !this.isInStock
+      };
     },
 
-    computed: {
-      cssClasses() {
-        return {
-          'status--available': this.isInStock,
-          'status--unavailable': !this.isInStock
-        };
-      },
-
-      isInStock() {
-        const { stock } = this.product;
-        return stock[0].is_in_stock && stock[0].qty > 0;
-      }
+    isInStock () {
+      const { stock } = this.product;
+      return stock[0].is_in_stock && stock[0].qty > 0;
     }
-  };
+  }
+};
 </script>
 
 <style lang="scss" scoped>

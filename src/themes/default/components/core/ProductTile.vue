@@ -83,99 +83,99 @@
 </template>
 
 <script>
-  import rootStore from '@vue-storefront/core/store';
-  import { ProductTile } from '@vue-storefront/core/modules/catalog/components/ProductTile.ts';
-  import config from 'config';
-  import ProductImage from './ProductImage';
-  import ProductStatus from './ProductStatus';
-  import AddToCart from 'theme/components/core/AddToCart';
-  import Badge from 'theme/components/core/Badge';
+import rootStore from '@vue-storefront/core/store';
+import { ProductTile } from '@vue-storefront/core/modules/catalog/components/ProductTile.ts';
+import config from 'config';
+import ProductImage from './ProductImage';
+import ProductStatus from './ProductStatus';
+import AddToCart from 'theme/components/core/AddToCart';
+import Badge from 'theme/components/core/Badge';
 
-  import { minValue } from 'vuelidate/lib/validators';
+import { minValue } from 'vuelidate/lib/validators';
 
-  export default {
-    mixins: [ProductTile],
-    components: {
-      ProductImage,
-      ProductStatus,
-      AddToCart,
-      Badge
+export default {
+  mixins: [ProductTile],
+  components: {
+    ProductImage,
+    ProductStatus,
+    AddToCart,
+    Badge
+  },
+  props: {
+    labelsActive: {
+      type: Boolean,
+      default: true
     },
-    props: {
-      labelsActive: {
-        type: Boolean,
-        default: true
-      },
-      onlyImage: {
-        type: Boolean,
-        default: false
-      },
-      showStatus: {
-        type: Boolean,
-        default: true,
-        required: false
+    onlyImage: {
+      type: Boolean,
+      default: false
+    },
+    showStatus: {
+      type: Boolean,
+      default: true,
+      required: false
+    }
+  },
+  computed: {
+    thumbnailObj () {
+      return {
+        src: this.thumbnail,
+        loading: this.thumbnail
+      };
+    }
+  },
+  methods: {
+    goTo (event, link) {
+      if (event.target.classList.contains('product-add-to-cart')) {
+        return false;
+      }
+      this.$router.push({ path: link });
+    },
+    onProductPriceUpdate (product) {
+      if (product.sku === this.product.sku) {
+        Object.assign(this.product, product);
       }
     },
-    computed: {
-      thumbnailObj() {
-        return {
-          src: this.thumbnail,
-          loading: this.thumbnail
-        };
-      }
-    },
-    methods: {
-      goTo(event, link) {
-        if (event.target.classList.contains('product-add-to-cart')) {
-          return false;
-        }
-        this.$router.push({ path: link });
-      },
-      onProductPriceUpdate(product) {
-        if (product.sku === this.product.sku) {
-          Object.assign(this.product, product);
-        }
-      },
-      visibilityChanged(isVisible, entry) {
-        if (isVisible) {
-          if (
-            config.products.configurableChildrenStockPrefetchDynamic &&
+    visibilityChanged (isVisible, entry) {
+      if (isVisible) {
+        if (
+          config.products.configurableChildrenStockPrefetchDynamic &&
             rootStore.products.filterUnavailableVariants
-          ) {
-            const skus = [this.product.sku];
-            if (
-              this.product.type_id === 'configurable' &&
+        ) {
+          const skus = [this.product.sku];
+          if (
+            this.product.type_id === 'configurable' &&
               this.product.configurable_children &&
               this.product.configurable_children.length > 0
-            ) {
-              for (const confChild of this.product.configurable_children) {
-                const cachedItem = rootStore.state.stock.cache[confChild.id];
-                if (typeof cachedItem === 'undefined' || cachedItem === null) {
-                  skus.push(confChild.sku);
-                }
+          ) {
+            for (const confChild of this.product.configurable_children) {
+              const cachedItem = rootStore.state.stock.cache[confChild.id];
+              if (typeof cachedItem === 'undefined' || cachedItem === null) {
+                skus.push(confChild.sku);
               }
-              if (skus.length > 0) {
-                rootStore.dispatch('stock/list', { skus: skus }); // store it in the cache
-              }
+            }
+            if (skus.length > 0) {
+              rootStore.dispatch('stock/list', { skus: skus }); // store it in the cache
             }
           }
         }
       }
-    },
-    validations: {
-      product: {
-        qty: {
-          minValue: minValue(1)
-        }
-      }
-    },
-    beforeMount() {
-      this.$bus.$on('product-after-priceupdate', this.onProductPriceUpdate);
-    },
-    beforeDestroy() {
-      this.$bus.$off('product-after-priceupdate', this.onProductPriceUpdate);
     }
-  };
+  },
+  validations: {
+    product: {
+      qty: {
+        minValue: minValue(1)
+      }
+    }
+  },
+  beforeMount () {
+    this.$bus.$on('product-after-priceupdate', this.onProductPriceUpdate);
+  },
+  beforeDestroy () {
+    this.$bus.$off('product-after-priceupdate', this.onProductPriceUpdate);
+  }
+};
 </script>
 
 <style lang="scss" scoped>

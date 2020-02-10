@@ -1,36 +1,51 @@
 <template>
   <div>
-    <div class="bg-cl-secondary py35 pl20">
+    <div class="bg-cl-secondary py35 px20">
       <div class="container">
-        <breadcrumbs
-          :routes="[{ name: 'Homepage', route_link: '/' }]"
-          :active-route="$props.title"
-        />
-        <h2 class="fs-big">
-          {{ $props.title }}
-        </h2>
+        <div class="row">
+          <div class="col-xs">
+            <breadcrumbs
+              :routes="[{ name: 'Homepage', route_link: '/' }]"
+              :active-route="$props.title"
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs">
+            <h2 class="fs-big">
+              {{ $props.title }}
+            </h2>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="container pt45 pb70">
-      <div class="row pl20 pt0">
-        <div class="col-md-5 col-lg-3 menu-wrapper">
-          <nav class="static-menu serif h4 mb35">
-            <ul class="m0 p0">
-              <li class="mb10" v-for="element in navigation" :key="element.id">
-                <router-link
-                  :to="localizedRoute(element.link)"
-                  class="cl-accent relative"
+    <div class="px20">
+      <div class="container pt45 pb70">
+        <div class="row pt0">
+          <div class="col-lg-3 menu-wrapper">
+            <nav class="static-menu serif h4 mb35">
+              <ul class="m0 p0">
+                <li
+                  class="mb10"
+                  v-for="element in navigation"
+                  :key="element.id"
                 >
-                  {{ element.title }}
-                </router-link>
-              </li>
-            </ul>
-          </nav>
-          <main-category-menu></main-category-menu>
-        </div>
-        <div class="col-md-7 col-lg-9 static-content h4 lh35">
-          <component :is="activeComponent" />
+                  <router-link
+                    :to="localizedRoute(element.link)"
+                    class="cl-accent relative"
+                  >
+                    {{ element.title }}
+                  </router-link>
+                </li>
+              </ul>
+            </nav>
+            <main-category-menu />
+          </div>
+          <div class="col-lg-9 static-content h4 lh35">
+            <component :is="activeComponent" />
+          </div>
         </div>
       </div>
     </div>
@@ -155,20 +170,14 @@
       margin-top: 0;
     }
 
-    @media only screen and (min-width: 767px) {
+    @media only screen and (min-width: 992px) {
       padding-left: 20px;
     }
   }
 
   .menu-wrapper {
-    @media only screen and (min-width: 767px) {
+    @media only screen and (min-width: 992px) {
       padding-right: 10px;
-    }
-  }
-
-  .main-category-menu {
-    &__elem {
-      max-width: auto;
     }
   }
 </style>
@@ -181,6 +190,14 @@
       @media (max-width: 767px) {
         margin-top: 35px;
         margin-bottom: 10px;
+      }
+    }
+  }
+
+  .menu-wrapper {
+    .main-category-menu {
+      &__elem {
+        margin: 0 0 20px;
       }
     }
   }

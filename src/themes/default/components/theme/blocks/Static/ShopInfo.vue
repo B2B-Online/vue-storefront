@@ -60,16 +60,16 @@
 </template>
 
 <script>
-  import NoSSR from 'vue-no-ssr';
+import NoSSR from 'vue-no-ssr';
 
-  export default {
-    name: 'ShopInfo',
+export default {
+  name: 'ShopInfo',
 
-    components: {
-      Carousel: () => import('vue-carousel').then(Slider => Slider.Carousel),
-      Slide: () => import('vue-carousel').then(Slider => Slider.Slide)
-    }
-  };
+  components: {
+    Carousel: () => import('vue-carousel').then(Slider => Slider.Carousel),
+    Slide: () => import('vue-carousel').then(Slider => Slider.Slide)
+  }
+};
 </script>
 
 <style lang="scss" scoped>

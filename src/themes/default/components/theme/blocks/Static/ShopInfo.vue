@@ -1,47 +1,24 @@
 <template>
   <div class="shop-info">
     <div class="container">
-      <ul class="highlights">
-        <li class="highlight highlight--delivery">
-          <h1 class="highlight__title">Dostawa Gratis</h1>
-          <p class="highlight__text">
-            od 300 zł brutto
-          </p>
-        </li>
-        <li class="highlight highlight--return">
-          <h1 class="highlight__title">30 dni na zwrot</h1>
-          <p class="highlight__text">
-            Bez podania przyczyny
-          </p>
-        </li>
-        <li class="highlight highlight--warranty">
-          <h1 class="highlight__title">Garancja oryginalności</h1>
-          <p class="highlight__text">
-            Sprzedajemy tylko oryginalne produkty
-          </p>
-        </li>
-        <li class="highlight highlight--security">
-          <h1 class="highlight__title">Bezpieczne zakupy</h1>
-          <p class="highlight__text">
-            Ochrona do 10 tys. zł i min. 2 lata gwarancji
-          </p>
-        </li>
-      </ul>
       <carousel
         :autoplay="true"
         :loop="true"
-        :paginationEnabled="false"
-        :perPageCustom="[
+        :pagination-enabled="false"
+        :per-page-custom="[
           [0, 1],
-          [576, 2]
+          [576, 2],
+          [992, 4]
         ]"
         :speed="1000"
-        :autoplayTimeout="5000"
-        class="highlights highlights--carousel"
+        :autoplay-timeout="5000"
+        class="highlights"
       >
         <slide>
           <div class="highlight highlight--delivery">
-            <h1 class="highlight__title">Dostawa Gratis</h1>
+            <h1 class="highlight__title">
+              Dostawa Gratis
+            </h1>
             <p class="highlight__text">
               od 300 zł brutto
             </p>
@@ -49,7 +26,9 @@
         </slide>
         <slide>
           <div class="highlight highlight--return">
-            <h1 class="highlight__title">30 dni na zwrot</h1>
+            <h1 class="highlight__title">
+              30 dni na zwrot
+            </h1>
             <p class="highlight__text">
               Bez podania przyczyny
             </p>
@@ -57,7 +36,9 @@
         </slide>
         <slide>
           <div class="highlight highlight--warranty">
-            <h1 class="highlight__title">Garancja oryginalności</h1>
+            <h1 class="highlight__title">
+              Garancja oryginalności
+            </h1>
             <p class="highlight__text">
               Sprzedajemy tylko oryginalne produkty
             </p>
@@ -65,7 +46,9 @@
         </slide>
         <slide>
           <div class="highlight highlight--security">
-            <h1 class="highlight__title">Bezpieczne zakupy</h1>
+            <h1 class="highlight__title">
+              Bezpieczne zakupy
+            </h1>
             <p class="highlight__text">
               Ochrona do 10 tys. zł i min. 2 lata gwarancji
             </p>
@@ -96,26 +79,35 @@
 
   .highlights {
     list-style: none;
-    margin: 0;
+    margin: 0 auto;
     padding: 10px 0;
-    display: none;
+    max-width: 1130px;
 
-    @media only screen and (min-width: 992px) {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    @media only screen and (max-width: 575px) {
+      .VueCarousel-slide {
+        text-align: center;
+      }
     }
 
-    &--carousel {
-      display: none;
+    @media only screen and (min-width: 992px) {
+      .VueCarousel-slide {
+        flex-basis: auto;
 
-      @media only screen and (max-width: 575px) {
-        .VueCarousel-slide {
-          text-align: center;
+        &:not(:last-of-type) {
+          margin-right: 10px;
         }
       }
-      @media only screen and (max-width: 991px) {
-        display: block;
+    }
+    @media only screen and (min-width: 992px) and (max-width: 1199px) {
+      .VueCarousel-slide {
+        flex: 1;
+      }
+    }
+    @media only screen and (min-width: 1200px) {
+      .VueCarousel-slide {
+        &:not(:last-of-type) {
+          margin-right: 40px;
+        }
       }
     }
   }
@@ -128,12 +120,6 @@
     @media only screen and (max-width: 575px) {
       display: inline-block;
       text-align: left;
-    }
-
-    &:not(:last-of-type) {
-      @media only screen and (min-width: 1200px) {
-        margin-right: 40px;
-      }
     }
 
     &__title {

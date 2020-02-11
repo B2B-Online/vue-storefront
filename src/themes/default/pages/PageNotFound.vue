@@ -53,7 +53,7 @@
             </div>
           </div>
           <div class="col-lg-3 first-lg menu-wrapper">
-            <main-category-menu></main-category-menu>
+            <main-category-menu />
           </div>
         </div>
 

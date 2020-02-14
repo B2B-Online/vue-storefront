@@ -28,8 +28,8 @@
       "verbosityLevel": "display-everything"
     },
     "redis": {
-      //"host": "vue-storefront-redis-develop.local",
-      "host":"localhost",
+      "host": "vue-storefront-redis-develop.local",
+      //"host":"localhost",
       "port": 6379,
       "db": 0
     },
@@ -70,8 +70,14 @@
       },
       "searchableAttributes": {
         "name": {
-          "boost": 4
+          "boost": 5
         },
+        "part_number": {
+          "boost": 4
+        }, 
+        "ean": {
+          "boost": 3
+        },        
         "sku": {
           "boost": 2
         },

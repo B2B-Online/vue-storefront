@@ -158,14 +158,14 @@
               <add-to-cart
                 :product="product"
                 :disabled="$v.product.qty.$error && !$v.product.qty.minValue"
-                class="col-xs-12 col-sm-4 col-md-6"
+                class="btn btn--orange btn--add-to-cart"
               />
             </div>
             <div class="row py40 add-to-buttons">
               <div class="col-xs-6 col-sm-3 col-md-6">
                 <wishlist-button :product="product" />
               </div>
-              <div class="col-xs-6 col-sm-3 col-md-6 product__add-to-compare">
+              <!-- <div class="col-xs-6 col-sm-3 col-md-6 product__add-to-compare">
                 <button
                   @click="isOnCompare ? removeFromList('compare') : addToList('compare')"
                   class="
@@ -183,7 +183,7 @@
                     {{ $t('Remove from compare') }}
                   </template>
                 </button>
-              </div>
+              </div> -->
             </div>
           </div>
         </section>

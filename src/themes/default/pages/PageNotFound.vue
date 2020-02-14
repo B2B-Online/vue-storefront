@@ -2,35 +2,61 @@
   <div id="page_not_found">
     <section class="bg-cl-secondary py35 px20">
       <div class="container">
-        <h2>
-          {{ $t("We can't find the page") }}
-        </h2>
+        <div class="row">
+          <div class="col-xs">
+            <h2>
+              {{ $t("We can't find the page") }}
+            </h2>
+          </div>
+        </div>
       </div>
     </section>
     <section class="bg-cl-primary py35 px20">
       <div class="container">
-        <div class="lh16 h5 weight-400">
-          <p>
-            {{ $t("Unfortunately we can't find the page you are looking for.") }}
-          </p>
-          <p>
-            {{ $t('If you need an assistance you can drop us a line on') }}
-            <router-link :to="localizedRoute('/')" class="cl-secondary no-underline">
-              {{ $t('a chat') }}
-            </router-link>
-            {{ $t('or write to us through') }}
-            <router-link :to="localizedRoute('/contact')" class="cl-secondary no-underline">
-              {{ $t('a contact page') }}
-            </router-link>.
-          </p>
-          <p>
-            {{ $t('You can also use') }}
-            <a href="#" class="cl-secondary no-underline" @click="toggleSearchpanel">
-              {{ $t('search') }}
-            </a>
-            {{ $t('to find product you were looking for.') }}
-          </p>
+        <div class="row">
+          <div class="col-lg-9 static-content mb20">
+            <div class="lh16 h5 weight-400">
+              <p>
+                {{
+                  $t(
+                    "Unfortunately we can't find the page you are looking for."
+                  )
+                }}
+              </p>
+              <p>
+                {{ $t('If you need an assistance you can drop us a line on') }}
+                <router-link
+                  :to="localizedRoute('/')"
+                  class="cl-secondary no-underline"
+                >
+                  {{ $t('a chat') }}
+                </router-link>
+                {{ $t('or write to us through') }}
+                <router-link
+                  :to="localizedRoute('/contact')"
+                  class="cl-secondary no-underline"
+                >
+                  {{ $t('a contact page') }} </router-link
+                >.
+              </p>
+              <p>
+                {{ $t('You can also use') }}
+                <a
+                  href="#"
+                  class="cl-secondary no-underline"
+                  @click="toggleSearchpanel"
+                >
+                  {{ $t('search') }}
+                </a>
+                {{ $t('to find product you were looking for.') }}
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-3 first-lg menu-wrapper">
+            <main-category-menu />
+          </div>
         </div>
+
         <section class="container">
           <header class="col-md-12 pt40">
             <h3 class="align-center">
@@ -38,7 +64,11 @@
             </h3>
           </header>
           <div class="row center-xs">
-            <div v-for="product in ourBestsellersCollection" :key="product.id" class="col-md-3">
+            <div
+              v-for="product in ourBestsellersCollection"
+              :key="product.id"
+              class="col-md-3"
+            >
               <product-tile :product="product" />
             </div>
           </div>
@@ -49,30 +79,53 @@
 </template>
 
 <script>
-import PageNotFound from '@vue-storefront/core/pages/PageNotFound'
-import ProductTile from '../components/core/ProductTile.vue'
+  import PageNotFound from '@vue-storefront/core/pages/PageNotFound';
+  import ProductTile from '../components/core/ProductTile.vue';
+  import MainCategoryMenu from 'theme/components/core/blocks/Category/MainCategoryMenu';
 
-export default {
-  name: 'PageNotFound',
-  computed: {
-    ourBestsellersCollection () {
-      return this.$store.state.homepage.bestsellers
-    }
-  },
-  components: {
-    ProductTile
-  },
-  methods: {
-    toggleSearchpanel () {
-      this.$store.commit('ui/setSearchpanel', true)
-    }
-  },
-  mixins: [PageNotFound]
-}
+  export default {
+    name: 'PageNotFound',
+    computed: {
+      ourBestsellersCollection() {
+        return this.$store.state.homepage.bestsellers;
+      }
+    },
+    components: {
+      ProductTile,
+      MainCategoryMenu
+    },
+    methods: {
+      toggleSearchpanel() {
+        this.$store.commit('ui/setSearchpanel', true);
+      }
+    },
+    mixins: [PageNotFound]
+  };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  .menu-wrapper {
+    @media only screen and (min-width: 992px) {
+      padding-right: 10px;
+    }
+  }
+
+  .static-content {
+    @media only screen and (min-width: 992px) {
+      padding-left: 20px;
+    }
+  }
   a {
     text-decoration: underline;
+  }
+</style>
+
+<style lang="scss">
+  .menu-wrapper {
+    .main-category-menu {
+      &__elem {
+        margin: 0 0 20px;
+      }
+    }
   }
 </style>

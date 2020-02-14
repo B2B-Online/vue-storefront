@@ -24,8 +24,12 @@
       </div>
 
       <product-status
-        :status="product.status"
-        v-if="showStatus"
+        :product="product"
+        v-if="
+          showStatus &&
+            product.hasOwnProperty('stock') &&
+            product.stock.length > 0
+        "
       />
 
       <router-link :to="productLink" class="product__name" v-if="!onlyImage">
@@ -70,7 +74,7 @@
         <add-to-cart
           :product="product"
           :disabled="$v.product.qty.$error && !$v.product.qty.minValue"
-          class="product-add-to-cart btn--orange btn--small btn--add-to-cart"
+          class="product-add-to-cart btn btn--orange btn--add-to-cart btn--no-txt"
         />
       </div>
     </div>
@@ -136,13 +140,13 @@ export default {
       if (isVisible) {
         if (
           config.products.configurableChildrenStockPrefetchDynamic &&
-          rootStore.products.filterUnavailableVariants
+            rootStore.products.filterUnavailableVariants
         ) {
           const skus = [this.product.sku];
           if (
             this.product.type_id === 'configurable' &&
-            this.product.configurable_children &&
-            this.product.configurable_children.length > 0
+              this.product.configurable_children &&
+              this.product.configurable_children.length > 0
           ) {
             for (const confChild of this.product.configurable_children) {
               const cachedItem = rootStore.state.stock.cache[confChild.id];
@@ -175,65 +179,65 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.product {
-  position: relative;
-  &__link {
-    padding: 20px;
-    cursor: pointer;
-  }
-  &__name {
-    margin: 20px 0px;
-    display: block;
-    color: #000000;
-    font-size: 18px;
-    line-height: 24px;
-    display: block;
-    max-height: 62px;
-    overflow: hidden;
-    transition: all 0.5s ease-in-out;
-    position: absolute;
-    z-index: 1;
-    background: rgba(#fff, 0.5);
-    padding-bottom: 10px;
-    left: 10px;
-    font-weight: 400;
-    right: 10px;
-    &:hover {
-      max-height: 200px;
-      background: rgba(#fff, 1);
+  .product {
+    position: relative;
+    &__link {
+      padding: 20px;
+      cursor: pointer;
     }
-  }
-  &__link {
-    @media (min-width: 768px) {
-      .product-image {
-        &__content {
-          transition: all 0.5s ease-in-out;
-        }
-      }
+    &__name {
+      margin: 20px 0px;
+      display: block;
+      color: #000000;
+      font-size: 18px;
+      line-height: 24px;
+      display: block;
+      max-height: 62px;
+      overflow: hidden;
+      transition: all 0.5s ease-in-out;
+      position: absolute;
+      z-index: 1;
+      background: rgba(#fff, 0.5);
+      padding-bottom: 10px;
+      left: 10px;
+      font-weight: 400;
+      right: 10px;
       &:hover {
+        max-height: 200px;
+        background: rgba(#fff, 1);
+      }
+    }
+    &__link {
+      @media (min-width: 768px) {
         .product-image {
           &__content {
-            transform: scale(1.1);
+            transition: all 0.5s ease-in-out;
+          }
+        }
+        &:hover {
+          .product-image {
+            &__content {
+              transform: scale(1.1);
+            }
           }
         }
       }
     }
-  }
-  .price {
-    position: relative;
-    margin-top: 110px;
-    min-height: 40px;
-    padding-right: 53px;
-    &--standard {
-      color: #0b5ca2;
-      font-size: 20px;
-      text-align: center;
+    .price {
+      position: relative;
+      margin-top: 110px;
+      min-height: 48px;
+      padding-right: 53px;
+      &--standard {
+        color: #0b5ca2;
+        font-size: 20px;
+        text-align: center;
+      }
+      .product-add-to-cart {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+      }
     }
-    .product-add-to-cart {
-      position: absolute;
-      top: 0px;
-      right: 0px;
-    }
   }
-}
 </style>

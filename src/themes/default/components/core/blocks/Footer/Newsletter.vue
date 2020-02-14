@@ -15,7 +15,7 @@
       <div class="newsletter__button flex center-xs">
         <button
           @click="showNewsletterPopup"
-          class="btn--orange btn--big"
+          class="btn btn--orange btn--big"
           data-testid="openNewsletterButton"
         >
           {{ $t("Subscribe") }}

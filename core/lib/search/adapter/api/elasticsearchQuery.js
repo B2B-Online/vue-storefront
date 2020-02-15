@@ -44,10 +44,6 @@ export async function prepareElasticsearchQueryBody (searchQuery) {
           const isRange = valueKeys.filter(value => rangeOperators.indexOf(value) !== -1)
           if (isRange.length) {
             let rangeAttribute = catalogfilter.attribute
-            // filter by product fiunal price
-            if (rangeAttribute === 'price') {
-              rangeAttribute = 'final_price'
-            }
             // process range filters
             filterQr = filterQr.andFilter('range', rangeAttribute, catalogfilter.value)
           } else {

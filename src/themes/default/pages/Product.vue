@@ -27,8 +27,14 @@
             <div class="mb20 uppercase cl-secondary" itemprop="ean" :content="product.ean">
               {{ $t('EAN') }}: {{ product.ean }}
             </div>
-            <div class="mb20 uppercase cl-secondary" itemprop="part_number" :content="product.part_number">
+            <div class="mb20 uppercase cl-secondary" itemprop="part_number" :content="product.part_number" v-if="product.part_number">
               {{ $t('Manufacturer number') }}: {{ product.part_number }}
+            </div>
+            <div class="mb20 uppercase cl-secondary" itemprop="brand_name" :content="product.brand_name" v-if="product.brand_name">
+              {{ $t('Manufacturer') }}: {{ product.brand_name }}
+            </div>
+            <div class="mb20 uppercase cl-secondary" itemprop="unit_name" :content="product.unit_name" v-if="product.unit_name">
+              {{ $t('Unit name') }}: {{ product.unit_name }}
             </div>
             <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
               <meta itemprop="priceCurrency" :content="currentStore.i18n.currencyCode">
@@ -55,6 +61,12 @@
                   v-if="!product.special_price && product.priceInclTax"
                 >
                   {{ product.qty > 0 ? product.priceInclTax * product.qty : product.priceInclTax | price }}
+                  <span class="price-original h4">
+                    
+                  </span>
+                </div>
+                <div class="mb20 uppercase cl-secondary">
+                  {{ $t('Gross price') }}: {{ product.final_price * product.qty }}
                 </div>
               </div>
               <div

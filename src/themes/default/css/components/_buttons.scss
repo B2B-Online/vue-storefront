@@ -65,12 +65,25 @@ button,
     // transform: scale(1.07);
   }
 
-  &.disabled {
-    background: lighten($orange, 10%);
+
+  &--block {
+    display: block;
+    width: 100%;
   }
 
   &--orange {
     background: $orange;
+    
+    &.disabled {
+      background: lighten($orange, 10%);
+    }
+  }
+
+  &--dark-blue {
+    background: color(dark-blue);
+    &.disabled {
+      background: lighten($dark-blue, 1%);
+    }
   }
 
   &--big {
@@ -82,6 +95,15 @@ button,
     font-size: 14px;
   }
 
+  &--medium {
+    padding: 15px 10px;
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  &--add-coupon{
+    padding: 22px 20px;
+  }
   &--add-to-cart {
     position: relative;
     text-align: left;

@@ -62,14 +62,14 @@
 </template>
 
 <script>
-import NoSSR from "vue-no-ssr";
+import NoSSR from 'vue-no-ssr';
 
 export default {
-  name: "ShopInfo",
+  name: 'ShopInfo',
 
   components: {
-    Carousel: () => import("vue-carousel").then(Slider => Slider.Carousel),
-    Slide: () => import("vue-carousel").then(Slider => Slider.Slide),
+    Carousel: () => import('vue-carousel').then(Slider => Slider.Carousel),
+    Slide: () => import('vue-carousel').then(Slider => Slider.Slide),
     'no-ssr': NoSSR
   }
 };

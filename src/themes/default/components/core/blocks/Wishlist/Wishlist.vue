@@ -1,17 +1,17 @@
 <template>
   <div class="wishlist cl-accent">
-    <div class="row py15">
-      <div class="col-xs-8">
-        <h2 v-if="productsInWishlist.length" class="cl-black wishlist__title px30 py10">
-          {{ $t('Wishlist') }}:
+    <div class="row wishlist__head py15 mb25">
+      <div class="col-xs-8 center-self">
+        <h2 v-if="productsInWishlist.length" class="cl-black wishlist__title px30">
+          {{ $t('Wishlist') }}
         </h2>
       </div>
-      <div class="col-xs end-xs">
-        <i class="material-icons p10 mr20 pointer cl-black" @click="closeWishlist">close</i>
+      <div class="col-xs end-xs center-self">
+        <i class="material-icons p10 mr20 pointer wishlist__close" @click="closeWishlist">close</i>
       </div>
     </div>
-    <div class="row middle-xs">
-      <clear-wishlist-button v-if="productsInWishlist.length" @click="clearWishlist" class="col-xs-12 col-sm mb15 end-xs" />
+    <div class="row middle-xs my30">
+      <clear-wishlist-button v-if="productsInWishlist.length" @click="clearWishlist" class="col-xs-12 col-sm end-xs" />
     </div>
     <h4 v-if="!productsInWishlist.length" class="cl-accent ml30">
       {{ $t('Your wishlist is empty.') }}
@@ -73,8 +73,15 @@ export default {
 .wishlist {
   &__title {
     margin: 0;
-    font-size: 24px;
-    font-weight: 400;
+    font-size: 36px;
+    font-weight: 700;
+  }
+  &__head{
+    background: color(white-smoke);
+    min-height: 118px;
+  }
+  &__close{
+    color: color(gray-sec);
   }
 }
 

@@ -202,11 +202,6 @@ export default {
     margin-top: -90px;
   }
 
-  @media (max-width: 64em) {
-    .products-list {
-      // max-width: 530px;
-    }
-  }
 
   @media (max-width: 767px) {
     .category-title {

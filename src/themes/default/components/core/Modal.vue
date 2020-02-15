@@ -9,7 +9,8 @@
       <div class="modal-wrapper">
         <div class="modal-center">
           <div class="modal-container bg-cl-primary" ref="modal-content" :style="style">
-            <header class="modal-header py25 px65 h1 serif weight-700 bg-cl-secondary" v-if="$slots.header">
+            <header class="modal-header flex middle-xs between-xs bg-cl-secondary" v-if="$slots.header">
+              <slot class="center-self" name="header" />
               <i
                 slot="close"
                 class="modal-close material-icons p15 cl-bg-tertiary"
@@ -18,7 +19,6 @@
               >
                 close
               </i>
-              <slot name="header" />
             </header>
             <div class="modal-content pt30 pb60 px65" v-if="$slots.content">
               <slot name="content" />
@@ -147,6 +147,11 @@ $z-index-modal: map-get($z-index, modal);
 
   .modal-header {
     position: relative;
+    min-height: 118px;
+    box-sizing: border-box;
+    font-size: 36px;
+    padding-left: 50px;
+    font-weight: 700;
 
     > * {
         margin: 0;
@@ -164,10 +169,13 @@ $z-index-modal: map-get($z-index, modal);
   }
 
   .modal-close {
-    position: absolute;
+    margin-right: 20px;
+  //   position: absolute;
     cursor: pointer;
-    right: 0;
-    top: 0;
+  //   right: 20px;
+  //   top: 0px;
+  //   bottom: 0px;
+  //   margin: auto;
   }
 }
 </style>

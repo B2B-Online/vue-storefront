@@ -86,8 +86,8 @@ export default {
     opacity: 0;
     &:checked + label {
       &:before {
-        background-color: $color-silver;
-        border-color: $color-silver;
+        background-color: color(solitude);
+        border-color: color(gainsboro);
         cursor: pointer;
       }
       &:after {
@@ -97,10 +97,10 @@ export default {
         left: 5px;
         width: 11px;
         height: 5px;
-        border: 3px solid $color-white;
+        border: 3px solid color(mid-grey);
         border-top: none;
         border-right: none;
-        background-color: $color-silver;
+        background-color: color(solitude);
         transform: rotate(-45deg);
       }
     }

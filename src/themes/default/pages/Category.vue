@@ -202,7 +202,6 @@ export default {
     margin-top: -90px;
   }
 
-
   @media (max-width: 767px) {
     .category-title {
       margin: 10px 0;

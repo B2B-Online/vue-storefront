@@ -36,8 +36,8 @@
                   :to="localizedRoute('/contact')"
                   class="cl-secondary no-underline"
                 >
-                  {{ $t('a contact page') }} </router-link
-                >.
+                  {{ $t('a contact page') }}
+                </router-link>.
               </p>
               <p>
                 {{ $t('You can also use') }}
@@ -79,28 +79,28 @@
 </template>
 
 <script>
-  import PageNotFound from '@vue-storefront/core/pages/PageNotFound';
-  import ProductTile from '../components/core/ProductTile.vue';
-  import MainCategoryMenu from 'theme/components/core/blocks/Category/MainCategoryMenu';
+import PageNotFound from '@vue-storefront/core/pages/PageNotFound';
+import ProductTile from '../components/core/ProductTile.vue';
+import MainCategoryMenu from 'theme/components/core/blocks/Category/MainCategoryMenu';
 
-  export default {
-    name: 'PageNotFound',
-    computed: {
-      ourBestsellersCollection() {
-        return this.$store.state.homepage.bestsellers;
-      }
-    },
-    components: {
-      ProductTile,
-      MainCategoryMenu
-    },
-    methods: {
-      toggleSearchpanel() {
-        this.$store.commit('ui/setSearchpanel', true);
-      }
-    },
-    mixins: [PageNotFound]
-  };
+export default {
+  name: 'PageNotFound',
+  computed: {
+    ourBestsellersCollection () {
+      return this.$store.state.homepage.bestsellers;
+    }
+  },
+  components: {
+    ProductTile,
+    MainCategoryMenu
+  },
+  methods: {
+    toggleSearchpanel () {
+      this.$store.commit('ui/setSearchpanel', true);
+    }
+  },
+  mixins: [PageNotFound]
+};
 </script>
 
 <style lang="scss" scoped>

@@ -24,6 +24,12 @@
             <div class="mb20 uppercase cl-secondary" itemprop="sku" :content="product.sku">
               {{ $t('SKU') }}: {{ product.sku }}
             </div>
+            <div class="mb20 uppercase cl-secondary" itemprop="ean" :content="product.ean">
+              {{ $t('EAN') }}: {{ product.ean }}
+            </div>
+            <div class="mb20 uppercase cl-secondary" itemprop="part_number" :content="product.part_number">
+              {{ $t('Manufacturer number') }}: {{ product.part_number }}
+            </div>
             <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
               <meta itemprop="priceCurrency" :content="currentStore.i18n.currencyCode">
               <meta itemprop="price" :content="parseFloat(product.priceInclTax).toFixed(2)">

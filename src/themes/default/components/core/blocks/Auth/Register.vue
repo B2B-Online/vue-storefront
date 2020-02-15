@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <header class="modal-header py25 px65 h1 serif weight-700 bg-cl-secondary">
+  <div class="modal-register">
+    <header class="modal-header flex middle-xs between-xs bg-cl-secondary">
+      {{ $t("Register") }}
       <i
         slot="close"
         class="modal-close material-icons p15 cl-bg-tertiary"
@@ -8,9 +9,7 @@
       >
         close
       </i>
-      {{ $t('Register') }}
     </header>
-
     <div class="modal-content pt30 pb60 px65 cl-secondary">
       <form @submit.prevent="register" novalidate>
         <base-input
@@ -61,10 +60,12 @@
             v-model="lastName"
             @blur="$v.lastName.$touch()"
             :placeholder="$t('Last name *')"
-            :validations="[{
-              condition: !$v.lastName.required && $v.lastName.$error,
-              text: $t('Field is required.')
-            }]"
+            :validations="[
+              {
+                condition: !$v.lastName.required && $v.lastName.$error,
+                text: $t('Field is required.')
+              }
+            ]"
           />
         </div>
         <base-input
@@ -107,39 +108,71 @@
           ]"
         />
         <base-checkbox
-          class="mb10"
+          class="mb10 modal-register__checkbox"
           id="terms"
           v-model="conditions"
           @blur="$v.conditions.$reset()"
           @change="$v.conditions.$touch()"
-          :validations="[{
-            condition: !$v.conditions.required && $v.conditions.$error,
-            text: $t('You must accept the terms and conditions.')
-          }]"
+          :validations="[
+            {
+              condition: !$v.conditions.required && $v.conditions.$error,
+              text: $t('You must accept the terms and conditions.')
+            }
+          ]"
         >
-          {{ $t('I accept terms and conditions') }} *
+          {{ $t("I accept terms and conditions") }} *
         </base-checkbox>
-        <button-full class="mb20" type="submit">
-          {{ $t('Register an account') }}
-        </button-full>
-        <div class="center-xs">
-          <span>
-            {{ $t('or') }}
-            <a href="#" @click.prevent="switchElem">
-              {{ $t('login to your account') }}
+
+        <base-checkbox
+          v-model="aggrement1"
+          class="mb20 modal-register__checkbox"
+          id="aggrement1"
+        >
+          Wyrażam zgodę na otrzymywanie od Przedsiębiorstwa Handlowego A-T S.A.
+          drogą elektroniczną informacji stanowiących informacje handlowe
+          dotyczące produktów i usług P rzedsiębiorstwa Handlowego A-T S.A.
+        </base-checkbox>
+
+        <base-checkbox
+          v-model="aggrement2"
+          id="aggrement2"
+          class="mb20 modal-register__checkbox"
+        >
+          Wyrażam zgodę na kontaktowanie się ze mną przez Przedsiębiorstwo
+          Handlowe A-T S.A. przy użyciu telekomunikacyjnych urządzeń końcowych i
+          automatycznych systemów wywołujących dla celów marketingu
+          bezpośredniego.
+        </base-checkbox>
+
+        <div class="row mt30">
+          <div class="col-sm-6">
+            <button-full
+              class="mb20 btn btn--orange btn--medium btn--block"
+              type="submit"
+            >
+              {{ $t("Register an account") }}
+            </button-full>
+          </div>
+          <div class="col-sm-6">
+            <a
+              class="btn btn--dark-blue btn--medium btn--block"
+              href="#"
+              @click.prevent="switchElem"
+            >
+              {{ $t("return to log in") }}
             </a>
-          </span>
+          </div>
         </div>
       </form>
     </div>
   </div>
 </template>
 <script>
-import Register from '@vue-storefront/core/compatibility/components/blocks/Auth/Register'
-import ButtonFull from 'theme/components/theme/ButtonFull.vue'
-import BaseCheckbox from 'theme/components/core/blocks/Form/BaseCheckbox.vue'
-import BaseInput from 'theme/components/core/blocks/Form/BaseInput.vue'
-import { required, email, minLength, sameAs } from 'vuelidate/lib/validators'
+import Register from "@vue-storefront/core/compatibility/components/blocks/Auth/Register";
+import ButtonFull from "theme/components/theme/ButtonFull.vue";
+import BaseCheckbox from "theme/components/core/blocks/Form/BaseCheckbox.vue";
+import BaseInput from "theme/components/core/blocks/Form/BaseInput.vue";
+import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
 
 export default {
   validations: {
@@ -160,7 +193,7 @@ export default {
     },
     rPassword: {
       required,
-      sameAsPassword: sameAs('password')
+      sameAsPassword: sameAs("password")
     },
     conditions: {
       required
@@ -173,41 +206,48 @@ export default {
     BaseInput
   },
   methods: {
-    register () {
+    register() {
       if (this.$v.$invalid) {
-        this.$v.$touch()
-        this.$store.dispatch('notification/spawnNotification', {
-          type: 'error',
-          message: this.$t('Please fix the validation errors'),
-          action1: { label: this.$t('OK') }
-        })
-        return
+        this.$v.$touch();
+        this.$store.dispatch("notification/spawnNotification", {
+          type: "error",
+          message: this.$t("Please fix the validation errors"),
+          action1: { label: this.$t("OK") }
+        });
+        return;
       }
-      this.callRegister()
+      this.callRegister();
     },
-    onSuccess () {
-      this.$store.dispatch('notification/spawnNotification', {
-        type: 'success',
-        message: this.$t('You are logged in!'),
-        action1: { label: this.$t('OK') }
-      })
+    onSuccess() {
+      this.$store.dispatch("notification/spawnNotification", {
+        type: "success",
+        message: this.$t("You are logged in!"),
+        action1: { label: this.$t("OK") }
+      });
     },
-    onFailure (result) {
-      this.$store.dispatch('notification/spawnNotification', {
-        type: 'error',
+    onFailure(result) {
+      this.$store.dispatch("notification/spawnNotification", {
+        type: "error",
         message: this.$t(result.result),
-        action1: { label: this.$t('OK') }
-      })
+        action1: { label: this.$t("OK") }
+      });
     }
   }
-}
+};
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+.modal-register {
   .modal-content {
     @media (max-width: 400px) {
       padding-left: 20px;
       padding-right: 20px;
     }
   }
+  &__checkbox {
+    label {
+      font-size: 14px;
+    }
+  }
+}
 </style>

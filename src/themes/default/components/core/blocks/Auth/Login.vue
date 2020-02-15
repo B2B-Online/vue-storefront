@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <header class="modal-header py25 px65 h1 serif weight-700 bg-cl-secondary">
+  <div class="modal-login">
+    <header class="modal-header flex middle-xs between-xs bg-cl-secondary">
+      {{ $t("Log in") }}
       <i
         slot="close"
         class="modal-close material-icons p15 cl-bg-tertiary"
@@ -8,11 +9,10 @@
       >
         close
       </i>
-      {{ $t('Log in') }}
     </header>
     <div v-if="hasRedirect" class="pt10 pb10 px65 redirect-error">
       <p class="h5 mb0 mt0">
-        {{ $t('You need to be logged in to see this page') }}
+        {{ $t("You need to be logged in to see this page") }}
       </p>
     </div>
     <div class="modal-content pt30 pb60 px65 cl-secondary">
@@ -43,33 +43,38 @@
           v-model="password"
           @blur="$v.password.$touch()"
           :placeholder="$t('Password *')"
-          :validations="[{
-            condition: !$v.password.required && $v.password.$error,
-            text: $t('Field is required.')
-          }]"
+          :validations="[
+            {
+              condition: !$v.password.required && $v.password.$error,
+              text: $t('Field is required.')
+            }
+          ]"
         />
         <div class="row">
           <base-checkbox
-            class="col-xs-7 col-sm-6 mb20"
+            class="col-xs-7 col-sm-6 mb20 modal-login__remember"
             id="remember"
             v-model="remember"
           >
-            {{ $t('Remember me') }}
+            {{ $t("Remember me") }}
           </base-checkbox>
           <div class="col-xs-5 col-sm-6 mb35 flex end-xs middle-xs">
-            <a href="#" @click.prevent="remindPassword">
-              {{ $t('Forgot the password?') }}
+            <a class="modal-login__forgot-pass" href="#" @click.prevent="remindPassword">
+              {{ $t("Forgot the password?") }}
             </a>
           </div>
         </div>
-        <button-full class="mb20" type="submit" data-testid="loginSubmit">
-          {{ $t('Log in to your account') }}
-        </button-full>
-        <div class="center-xs">
-          {{ $t('or') }}
-          <a href="#" @click.prevent="switchElem" data-testid="registerLink">
-            {{ $t('register an account') }}
-          </a>
+        <div class="row">
+          <div class="col-sm-6">
+            <button-full class="mb20 btn btn--orange btn--medium btn--block" type="submit" data-testid="loginSubmit">
+              {{ $t("Log in to your account") }}
+            </button-full>
+          </div>
+          <div class="col-sm-6">
+            <a href="#" class="btn btn--dark-blue btn--medium btn--block" @click.prevent="switchElem" data-testid="registerLink">
+              {{ $t("Register an account") }}
+            </a>
+          </div>
         </div>
       </form>
     </div>
@@ -77,12 +82,12 @@
 </template>
 
 <script>
-import Login from '@vue-storefront/core/compatibility/components/blocks/Auth/Login'
+import Login from "@vue-storefront/core/compatibility/components/blocks/Auth/Login";
 
-import ButtonFull from 'theme/components/theme/ButtonFull.vue'
-import BaseCheckbox from '../Form/BaseCheckbox.vue'
-import BaseInput from '../Form/BaseInput.vue'
-import { required, email } from 'vuelidate/lib/validators'
+import ButtonFull from "theme/components/theme/ButtonFull.vue";
+import BaseCheckbox from "../Form/BaseCheckbox.vue";
+import BaseInput from "../Form/BaseInput.vue";
+import { required, email } from "vuelidate/lib/validators";
 
 export default {
   mixins: [Login],
@@ -95,52 +100,54 @@ export default {
       required
     }
   },
-  data () {
+  data() {
     return {
-      hasRedirect: !!localStorage.getItem('redirect')
-    }
+      hasRedirect: !!localStorage.getItem("redirect")
+    };
   },
   methods: {
-    close (e) {
-      if (e) localStorage.removeItem('redirect')
-      this.$bus.$emit('modal-hide', 'modal-signup')
+    close(e) {
+      if (e) localStorage.removeItem("redirect");
+      this.$bus.$emit("modal-hide", "modal-signup");
     },
-    login () {
+    login() {
       if (this.$v.$invalid) {
-        this.$v.$touch()
-        this.$store.dispatch('notification/spawnNotification', {
-          type: 'error',
-          message: this.$t('Please fix the validation errors'),
-          action1: { label: this.$t('OK') }
-        })
-        return
+        this.$v.$touch();
+        this.$store.dispatch("notification/spawnNotification", {
+          type: "error",
+          message: this.$t("Please fix the validation errors"),
+          action1: { label: this.$t("OK") }
+        });
+        return;
       }
-      this.callLogin()
+      this.callLogin();
     },
-    remindPassword () {
-      if (!(typeof navigator !== 'undefined' && navigator.onLine)) {
-        this.$store.dispatch('notification/spawnNotification', {
-          type: 'error',
-          message: this.$t('Reset password feature does not work while offline!'),
-          action1: { label: this.$t('OK') }
-        })
+    remindPassword() {
+      if (!(typeof navigator !== "undefined" && navigator.onLine)) {
+        this.$store.dispatch("notification/spawnNotification", {
+          type: "error",
+          message: this.$t(
+            "Reset password feature does not work while offline!"
+          ),
+          action1: { label: this.$t("OK") }
+        });
       } else {
-        this.callForgotPassword()
+        this.callForgotPassword();
       }
     },
-    onSuccess () {
-      this.$store.dispatch('notification/spawnNotification', {
-        type: 'success',
-        message: this.$t('You are logged in!'),
-        action1: { label: this.$t('OK') }
-      })
+    onSuccess() {
+      this.$store.dispatch("notification/spawnNotification", {
+        type: "success",
+        message: this.$t("You are logged in!"),
+        action1: { label: this.$t("OK") }
+      });
     },
-    onFailure (result) {
-      this.$store.dispatch('notification/spawnNotification', {
-        type: 'error',
+    onFailure(result) {
+      this.$store.dispatch("notification/spawnNotification", {
+        type: "error",
         message: this.$t(result.result),
-        action1: { label: this.$t('OK') }
-      })
+        action1: { label: this.$t("OK") }
+      });
     }
   },
   components: {
@@ -148,23 +155,34 @@ export default {
     BaseCheckbox,
     BaseInput
   }
-}
+};
 </script>
 
-<style lang="scss" scoped>
-@import '~theme/css/variables/colors';
-@import '~theme/css/helpers/functions/color';
+<style lang="scss" >
+@import "~theme/css/variables/colors";
+@import "~theme/css/helpers/functions/color";
 $color-error: color(error);
 $white: color(white);
 
-  .modal-content {
-    @media (max-width: 400px) {
-      padding-left: 20px;
-      padding-right: 20px;
+.modal-content {
+  @media (max-width: 400px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+.redirect-error {
+  background-color: $color-error;
+  color: $white;
+}
+.modal-login{
+  &__remember{
+    label{
+      font-size: 14px; 
     }
   }
-  .redirect-error {
-    background-color: $color-error;
-    color: $white;
+  &__forgot-pass{
+      font-size: 14px; 
+      line-height: 30px;
   }
+}
 </style>

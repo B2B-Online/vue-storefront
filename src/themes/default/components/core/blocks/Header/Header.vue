@@ -24,7 +24,7 @@
               <wishlist-icon class="hidden-xs pointer btn__top" />
               <compare-icon class="pointer btn__top" />
               <microcart-icon class="pointer btn__top" />
-              <account-icon class="pointer hidden-xs btn__top" />
+              <account-icon class="pointer btn__top" />
               <hamburger-icon class="pointer btn__top  btn__top--orange" />
             </div>
           </div>

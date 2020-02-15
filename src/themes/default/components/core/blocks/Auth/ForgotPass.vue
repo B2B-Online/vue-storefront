@@ -1,6 +1,7 @@
 <template>
   <div>
-    <header class="modal-header py25 px65 h1 serif weight-700 bg-cl-secondary">
+    <header class="modal-header flex middle-xs between-xs bg-cl-secondary">
+      {{ $t("Reset password") }}
       <i
         slot="close"
         class="modal-close material-icons p15 cl-bg-tertiary"
@@ -8,15 +9,17 @@
       >
         close
       </i>
-      {{ $t('Reset password') }}
     </header>
-
     <div class="modal-content pt30 pb60 px65 cl-secondary">
       <template v-if="!passwordSent">
         <form @submit.prevent="sendEmail" novalidate>
           <div class="mb20">
             <p class="mb45">
-              {{ $t('Enter your email to receive instructions on how to reset your password.') }}
+              {{
+                $t(
+                  "Enter your email to receive instructions on how to reset your password."
+                )
+              }}
             </p>
             <base-input
               type="email"
@@ -36,24 +39,34 @@
               ]"
             />
           </div>
-          <button-full class="mb35" type="submit">
-            {{ $t('Reset password') }}
-          </button-full>
-          <div class="center-xs">
-            {{ $t('or') }}
-            <a href="#" @click.prevent="switchElem">
-              {{ $t('return to log in') }}
-            </a>
+          <div class="row">
+            <div class="col-sm-6">
+              <button-full
+                class="mb35 btn btn--orange btn--medium btn--block"
+                type="submit"
+              >
+                {{ $t("Reset password") }}
+              </button-full>
+            </div>
+            <div class="col-sm-6">
+              <a class="btn btn--dark-blue btn--medium btn--block" href="#" @click.prevent="switchElem">
+                {{ $t("return to log in") }}
+              </a>
+            </div>
           </div>
         </form>
       </template>
       <template v-if="passwordSent">
         <form class="py20">
           <p class="py30 mb80">
-            {{ $t("We've sent password reset instructions to your email. Check your inbox and follow the link.") }}
+            {{
+              $t(
+                "We've sent password reset instructions to your email. Check your inbox and follow the link."
+              )
+            }}
           </p>
           <button-full class="mb35" type="link" @click.native="switchElem">
-            {{ $t('Back to login') }}
+            {{ $t("Back to login") }}
           </button-full>
         </form>
       </template>
@@ -62,11 +75,10 @@
 </template>
 
 <script>
-
-import ButtonFull from 'theme/components/theme/ButtonFull.vue'
-import BaseInput from '../Form/BaseInput.vue'
-import { required, email } from 'vuelidate/lib/validators'
-import i18n from '@vue-storefront/i18n'
+import ButtonFull from "theme/components/theme/ButtonFull.vue";
+import BaseInput from "../Form/BaseInput.vue";
+import { required, email } from "vuelidate/lib/validators";
+import i18n from "@vue-storefront/i18n";
 
 export default {
   validations: {
@@ -76,62 +88,70 @@ export default {
     }
   },
   methods: {
-    close () {
-      this.$bus.$emit('modal-hide', 'modal-signup')
+    close() {
+      this.$bus.$emit("modal-hide", "modal-signup");
     },
-    sendEmail () {
+    sendEmail() {
       // todo: send email with reset password instructions
 
       if (this.$v.$invalid) {
-        this.$v.$touch()
-        this.$store.dispatch('notification/spawnNotification', {
-          type: 'error',
-          message: i18n.t('Please fix the validation errors'),
-          action1: { label: i18n.t('OK') }
-        })
-        return
+        this.$v.$touch();
+        this.$store.dispatch("notification/spawnNotification", {
+          type: "error",
+          message: i18n.t("Please fix the validation errors"),
+          action1: { label: i18n.t("OK") }
+        });
+        return;
       }
 
-      this.$bus.$emit('notification-progress-start', i18n.t('Resetting the password ... '))
-      this.$store.dispatch('user/resetPassword', { email: this.email }).then((response) => {
-        this.$bus.$emit('notification-progress-stop')
-        if (response.code === 200) {
-          this.passwordSent = true
-        } else {
-          this.$store.dispatch('notification/spawnNotification', {
-            type: 'error',
-            message: i18n.t(response.result) || i18n.t('Error while sending reset password e-mail'),
-            action1: { label: i18n.t('OK'), action: 'close' }
-          })
-        }
-      }).catch((err) => {
-        console.error(err)
-        this.$bus.$emit('notification-progress-stop')
-      })
+      this.$bus.$emit(
+        "notification-progress-start",
+        i18n.t("Resetting the password ... ")
+      );
+      this.$store
+        .dispatch("user/resetPassword", { email: this.email })
+        .then(response => {
+          this.$bus.$emit("notification-progress-stop");
+          if (response.code === 200) {
+            this.passwordSent = true;
+          } else {
+            this.$store.dispatch("notification/spawnNotification", {
+              type: "error",
+              message:
+                i18n.t(response.result) ||
+                i18n.t("Error while sending reset password e-mail"),
+              action1: { label: i18n.t("OK"), action: "close" }
+            });
+          }
+        })
+        .catch(err => {
+          console.error(err);
+          this.$bus.$emit("notification-progress-stop");
+        });
     },
-    switchElem () {
-      this.$store.commit('ui/setAuthElem', 'login')
+    switchElem() {
+      this.$store.commit("ui/setAuthElem", "login");
     }
   },
-  name: 'ForgotPass',
-  data () {
+  name: "ForgotPass",
+  data() {
     return {
-      email: '',
+      email: "",
       passwordSent: false
-    }
+    };
   },
   components: {
     ButtonFull,
     BaseInput
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-  .modal-content {
-    @media (max-width: 400px) {
-      padding-left: 20px;
-      padding-right: 20px;
-    }
+.modal-content {
+  @media (max-width: 400px) {
+    padding-left: 20px;
+    padding-right: 20px;
   }
+}
 </style>

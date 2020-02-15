@@ -60,6 +60,8 @@ button,
   font-weight: 300;
   padding: 10px 30px;
   transition: transform 0.2s ease-out;
+  box-sizing: border-box;
+  text-align: center;
 
   &:hover {
     // transform: scale(1.07);

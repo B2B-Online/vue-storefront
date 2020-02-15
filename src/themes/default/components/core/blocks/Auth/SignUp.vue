@@ -1,5 +1,5 @@
 <template>
-  <modal name="modal-signup" :width="620">
+  <modal name="modal-signup" :width="activeElem === 'register'?'820':'620'">
     <login v-if="activeElem === 'login'" />
     <register v-if="activeElem === 'register'" />
     <forgot-pass v-if="activeElem === 'forgot-pass'" />

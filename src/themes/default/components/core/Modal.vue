@@ -150,7 +150,7 @@ $z-index-modal: map-get($z-index, modal);
     min-height: 118px;
     box-sizing: border-box;
     font-size: 36px;
-    padding-left: 50px;
+    padding-left: 60px;
     font-weight: 700;
 
     > * {
@@ -169,13 +169,16 @@ $z-index-modal: map-get($z-index, modal);
   }
 
   .modal-close {
-    margin-right: 20px;
+    margin-right: 50px;
   //   position: absolute;
     cursor: pointer;
   //   right: 20px;
   //   top: 0px;
   //   bottom: 0px;
   //   margin: auto;
+    @media (max-width: 600px) {
+      margin-right: -10px;
+    }
   }
 }
 </style>

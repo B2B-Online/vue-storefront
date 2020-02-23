@@ -1,10 +1,10 @@
 <template>
   <div class="personal-details">
-    <div class="row pl20">
+    <div class="row">
       <div class="col-xs-1 col-sm-2 col-md-1">
         <div
           class="number-circle lh35 cl-white brdr-circle align-center weight-700"
-          :class="{ 'bg-cl-th-accent' : isActive || isFilled, 'bg-cl-tertiary' : !isFilled && !isActive }"
+          :class="{ 'bg-cl-dark-blue' : isActive || isFilled, 'bg-cl-tertiary' : !isFilled && !isActive }"
         >
           1
         </div>
@@ -29,7 +29,7 @@
         </div>
       </div>
     </div>
-    <div class="row pl20" v-if="isActive">
+    <div class="row" v-if="isActive">
       <div class="hidden-xs col-sm-2 col-md-1" />
       <div class="col-xs-11 col-sm-9 col-md-10">
         <div class="row">
@@ -159,9 +159,10 @@
       <div class="hidden-xs col-sm-2 col-md-1" />
       <div class="col-xs-11 col-sm-9 col-md-10">
         <div class="row my30">
-          <div class="col-xs-12 col-md-7 px20 button-container">
+          <div class="col-xs-12 col-md-7 mb20 button-container">
             <button-full
               data-testid="personalDetailsSubmit"
+              :class="'btn btn--orange'"
               @click.native="sendDataToCheckout"
               :disabled="createAccount ? $v.$invalid : $v.personalDetails.$invalid"
             >
@@ -169,10 +170,10 @@
             </button-full>
           </div>
           <div
-            class="col-xs-12 col-md-5 center-xs end-md"
+            class="col-xs-12 col-md-5 end-md"
             v-if="!currentUser"
           >
-            <p class="h4 cl-accent">
+            <p class="h4 cl-accent mt0 mb20">
               {{ $t('or') }}
               <span
                 class="link pointer"
@@ -185,7 +186,7 @@
         </div>
       </div>
     </div>
-    <div class="row pl20" v-if="!isActive && isFilled">
+    <div class="row" v-if="!isActive && isFilled">
       <div class="hidden-xs col-sm-2 col-md-1" />
       <div class="col-xs-12 col-sm-9 col-md-11">
         <div class="row fs16 mb35">

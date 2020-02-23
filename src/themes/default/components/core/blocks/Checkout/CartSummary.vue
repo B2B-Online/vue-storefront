@@ -1,31 +1,52 @@
 <template>
-  <div>
-    <div class="brdr-bottom-1 brdr-cl-primary pb60">
-      <h3 class="cl-accent ml30 mt50 summary-title">
+  <div class="pb60">
+    <div class="products-list mb20">
+      <product
+        v-for="product in productsInCart"
+        :key="product.sku"
+        :product="product"
+      />
+    </div>
+
+    <div
+      v-if="productsInCart && productsInCart.length"
+      class="checkout bg-cl-secondary pt10 pb10 serif cl-accent"
+    >
+      <h3 class="cl-black ml30 mb30 mt30 summary-title">
         {{ $t('Order Summary') }}
       </h3>
-      <product v-for="product in productsInCart" :key="product.sku" :product="product" />
-      <div v-if="productsInCart && productsInCart.length" class="checkout bg-cl-secondary pt10 serif cl-accent">
-        <div v-for="(segment, index) in totals" :key="index" class="row pt15 pb20 pl30 pr55 " v-if="segment.code !== 'grand_total'">
-          <div class="col-xs cl-accent">
-            {{ segment.title }}
-          </div>
-          <div v-if="segment.value != null" class="col-xs align-right cl-accent h4">
-            {{ segment.value | price }}
-          </div>
+      <div
+        v-for="(segment, index) in totals"
+        :key="index"
+        class="row pt10 pb10 pl30 pr30 "
+        v-if="segment.code !== 'grand_total'"
+      >
+        <div class="col-xs cl-accent">
+          {{ segment.title }}
         </div>
+        <div
+          v-if="segment.value != null"
+          class="col-xs align-right cl-accent h4"
+        >
+          {{ segment.value | price }}
+        </div>
+      </div>
 
-        <div class="row pt20 pb20 pl30 pr55 weight-400 h3" v-for="(segment, index) in totals" :key="index" v-if="segment.code === 'grand_total'">
-          <div class="col-xs">
-            {{ segment.title }}
-          </div>
-          <div class="col-xs align-right">
-            {{ segment.value | price }}
-          </div>
+      <div
+        class="row pt30 pb30 pl30 pr30 weight-700 h3 cl-black"
+        v-for="(segment, index) in totals"
+        :key="index"
+        v-if="segment.code === 'grand_total'"
+      >
+        <div class="col-xs">
+          {{ segment.title }}:
+        </div>
+        <div class="col-xs align-right">
+          {{ segment.value | price }}
         </div>
       </div>
     </div>
-    <div class="py50 px25">
+    <!-- <div class="py50 px25">
       <h4 class="h3 m0">
         {{ $t('Safety') }}
       </h4>
@@ -47,7 +68,7 @@
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Nullam sed tempor lorem. Vivamus volutpat eros id est semper accumsan.
       </p>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -63,10 +84,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-  .summary-title {
-    @media (max-width: 767px) {
-      margin-left: 0;
-    }
-  }
-</style>
+<style lang="scss" scoped></style>

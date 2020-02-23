@@ -1,10 +1,10 @@
 <template>
   <div class="payment pt20">
-    <div class="row pl20">
+    <div class="row">
       <div class="col-xs-1 col-sm-2 col-md-1">
         <div
           class="number-circle lh35 cl-white brdr-circle align-center weight-700"
-          :class="{ 'bg-cl-th-accent' : isActive || isFilled, 'bg-cl-tertiary' : !isFilled && !isActive }"
+          :class="{ 'bg-cl-dark-blue' : isActive || isFilled, 'bg-cl-tertiary' : !isFilled && !isActive }"
         >
           {{ (isVirtualCart ? 2 : 3) }}
         </div>
@@ -29,7 +29,7 @@
         </div>
       </div>
     </div>
-    <div class="row pl20" v-if="isActive">
+    <div class="row" v-if="isActive">
       <div class="hidden-xs col-sm-2 col-md-1" />
       <div class="col-xs-11 col-sm-9 col-md-10">
         <div class="row" v-if="isActive">
@@ -261,6 +261,7 @@
           <div class="col-xs-12 col-md-8 px20 my30">
             <button-full
               @click.native="sendDataToCheckout"
+              :class="'btn btn--orange'"
               data-testid="paymentSubmit"
               :disabled="$v.payment.$invalid"
             >
@@ -270,7 +271,7 @@
         </div>
       </div>
     </div>
-    <div class="row pl20" v-if="!isActive && isFilled">
+    <div class="row" v-if="!isActive && isFilled">
       <div class="hidden-xs col-sm-2 col-md-1" />
       <div class="col-xs-12 col-sm-9 col-md-11">
         <div class="row fs16 mb35">
@@ -295,10 +296,8 @@
             <p v-if="generateInvoice">
               {{ payment.company }} {{ payment.taxId }}
             </p>
-            <div class="col-xs-12">
-              <h4>{{ $t('Payment method') }}</h4>
-            </div>
-            <div class="col-md-6 mb15">
+            <h4>{{ $t('Payment method') }}</h4>
+            <div class="mb15">
               <label class="radioStyled"> {{ getPaymentMethod().title }}
                 <input type="radio" value="" checked disabled name="chosen-payment-method">
                 <span class="checkmark" />

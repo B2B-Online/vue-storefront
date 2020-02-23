@@ -127,6 +127,7 @@ export default {
   $color-tertiary: color(tertiary);
   $color-black: color(black);
   $color-puerto-rico: color(puerto-rico);
+  $color-orange: color(orange);
   $color-hover: color(tertiary, $colors-background);
 
   .base-input {
@@ -139,7 +140,7 @@ export default {
     &:hover,
     &:focus {
       outline: none;
-      border-color: $color-puerto-rico;
+      border-color: $color-orange;
     }
 
     &:disabled,
@@ -163,7 +164,7 @@ export default {
   input:focus ~ label, input:not(.empty) ~ label{
     top: -10px;
     font-size:14px;
-    color:$color-puerto-rico;
+    color:$color-orange;
   }
 
   .icon {

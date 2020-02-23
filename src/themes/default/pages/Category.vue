@@ -120,7 +120,11 @@ export default {
       this.defaultColumn = column
     }
   },
-  mixins: [Category]
+  mixins: [Category],
+
+  mounted() {
+    console.log(this.breadcrumbs)
+  }
 }
 </script>
 

@@ -220,7 +220,7 @@
                   $v.shipping.shippingMethod.$touch()
                   changeShippingMethod()
                 "
-              />
+              >
               <span class="checkmark" />
             </label>
           </div>
@@ -267,9 +267,11 @@
             </p>
             <div v-if="shipping.phoneNumber">
               <span class="pr15">{{ shipping.phoneNumber }}</span>
-              <tooltip>{{
-                $t('Phone number may be needed by carrier')
-              }}</tooltip>
+              <tooltip>
+                {{
+                  $t('Phone number may be needed by carrier')
+                }}
+              </tooltip>
             </div>
             <h4 class="">
               {{ $t('Shipping method') }}
@@ -284,7 +286,7 @@
                   checked
                   disabled
                   name="chosen-shipping-method"
-                />
+                >
                 <span class="checkmark" />
               </label>
             </div>
@@ -319,7 +321,7 @@ export default {
   },
   mixins: [Shipping],
   computed: {
-    countryOptions() {
+    countryOptions () {
       return this.countries.map(item => {
         return {
           value: item.code,

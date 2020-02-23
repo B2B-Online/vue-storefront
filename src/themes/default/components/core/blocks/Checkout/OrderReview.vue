@@ -78,7 +78,7 @@
               <button-full
                 @click.native="placeOrder"
                 data-testid="orderReviewSubmit"
-                
+
                 class="place-order-btn btn btn--orange"
                 :disabled="$v.orderReview.$invalid"
               >
@@ -167,8 +167,8 @@ export default {
     }
   },
   methods: {
-    onSuccess() {},
-    onFailure(result) {
+    onSuccess () {},
+    onFailure (result) {
       this.$store.dispatch('notification/spawnNotification', {
         type: 'error',
         message: this.$t(result.result),

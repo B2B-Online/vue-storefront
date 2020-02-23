@@ -2,7 +2,7 @@
   <div class="media-zoom-carousel">
     <div class="media-zoom-carousel__container row flex">
       <ul class="media-zoom-carousel__thumbs m0 p0">
-        <li class="media-zoom-carousel__thumb bg-cl-secondary" v-for="(images, index) in gallery" :key="images.src">
+        <li class="media-zoom-carousel__thumb" v-for="(images, index) in gallery" :key="images.src">
           <product-image
             :class="{'thumb-video': images.video}"
             @click="navigate(index)"
@@ -29,7 +29,7 @@
             v-for="(images, index) in gallery"
             :key="images.src"
           >
-            <div class="media-zoom-carousel__slide bg-cl-secondary"
+            <div class="media-zoom-carousel__slide"
                  :class="{'video-container h-100 flex relative': images.video}"
             >
               <product-image

@@ -1,6 +1,6 @@
 <template>
   <div id="category">
-    <header class="category-header bg-cl-secondary py35 pl20">
+    <header class="category-header bg-cl-secondary">
       <div class="container">
         <breadcrumbs :routes="breadcrumbs.routes" :active-route="category.name" />
         <div class="row middle-sm">
@@ -122,7 +122,7 @@ export default {
   },
   mixins: [Category],
 
-  mounted() {
+  mounted () {
     console.log(this.breadcrumbs)
   }
 }

@@ -64,7 +64,7 @@ export default {
   mixins: [Checkout],
 
   methods: {
-    notifyEmptyCart() {
+    notifyEmptyCart () {
       this.$store.dispatch('notification/spawnNotification', {
         type: 'warning',
         message: this.$t(
@@ -73,21 +73,21 @@ export default {
         action1: { label: this.$t('OK') }
       })
     },
-    notifyOutStock(chp) {
+    notifyOutStock (chp) {
       this.$store.dispatch('notification/spawnNotification', {
         type: 'error',
         message: chp.name + this.$t(' is out of the stock!'),
         action1: { label: this.$t('OK') }
       })
     },
-    notifyNotAvailable() {
+    notifyNotAvailable () {
       this.$store.dispatch('notification/spawnNotification', {
         type: 'error',
         message: this.$t('Some of the ordered products are not available!'),
         action1: { label: this.$t('OK') }
       })
     },
-    notifyStockCheck() {
+    notifyStockCheck () {
       this.$store.dispatch('notification/spawnNotification', {
         type: 'warning',
         message: this.$t(
@@ -96,7 +96,7 @@ export default {
         action1: { label: this.$t('OK') }
       })
     },
-    notifyNoConnection() {
+    notifyNoConnection () {
       this.$store.dispatch('notification/spawnNotification', {
         type: 'warning',
         message: this.$t(

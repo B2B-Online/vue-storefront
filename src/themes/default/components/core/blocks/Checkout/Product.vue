@@ -32,13 +32,12 @@
     </div>
     <div class="product__price">
       <div v-if="isOnline && product.totals">
-        <span class="h4 cl-error" v-if="product.totals.discount_amount"
-          >{{
-            (product.totals.row_total -
-              product.totals.discount_amount +
-              product.totals.tax_amount)
-              | price
-          }}
+        <span class="h4 cl-error" v-if="product.totals.discount_amount">{{
+          (product.totals.row_total -
+            product.totals.discount_amount +
+            product.totals.tax_amount)
+            | price
+        }}
         </span>
         <span class="price-original h5" v-if="product.totals.discount_amount">{{
           product.totals.row_total_incl_tax | price
@@ -48,8 +47,7 @@
         }}</span>
       </div>
       <div v-else>
-        <span class="h4 cl-error" v-if="product.special_price"
-          >{{ (product.priceInclTax * product.qty) | price }}
+        <span class="h4 cl-error" v-if="product.special_price">{{ (product.priceInclTax * product.qty) | price }}
         </span>
         <span class="price-original h5" v-if="product.special_price">{{
           (product.originalPriceInclTax * product.qty) | price
@@ -77,10 +75,10 @@ import ProductImage from 'theme/components/core/ProductImage'
 
 export default {
   computed: {
-    isOnline() {
+    isOnline () {
       return onlineHelper.isOnline
     },
-    image() {
+    image () {
       return {
         loading: this.thumbnail,
         src: this.thumbnail

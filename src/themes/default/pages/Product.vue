@@ -1,9 +1,21 @@
 <template>
   <div id="product" itemscope itemtype="http://schema.org/Product">
-    <section class="bg-cl-secondary px20 product-top-section">
+    <header class="product-header bg-cl-secondary">
       <div class="container">
-        <section class="row m0 between-xs">
-          <div class="col-xs-12 col-md-6 center-xs middle-xs image">
+        <breadcrumbs
+          class="pb20 hidden-xs"
+          :routes="breadcrumbs.routes"
+          :active-route="breadcrumbs.name"
+        />
+      </div>
+    </header>
+
+    <section class="product-top-section">
+      <div class="container">
+        <div class="row m0 between-xs product-top-section-inner">
+          <div class="col-xs-12 col-lg-6 center-xs middle-xs image relative">
+            <badge :product="product" />
+
             <product-gallery
               :offline="image"
               :gallery="gallery"
@@ -11,81 +23,134 @@
               :product="product"
             />
           </div>
-          <div class="col-xs-12 col-md-5 data">
-            <breadcrumbs
-              class="pt40 pb20 hidden-xs"
-              :routes="breadcrumbs.routes"
-              :active-route="breadcrumbs.name"
-            />
-            <h1 class="mb20 mt0 cl-mine-shaft product-name" data-testid="productName" itemprop="name">
+          <div class="col-xs-12 col-lg-5 data">
+            <h1
+              class="mb30 mt0 cl-black product-name"
+              data-testid="productName"
+              itemprop="name"
+            >
               {{ product.name | htmlDecode }}
-              <web-share :title="product.name | htmlDecode" text="Check this product!" class="web-share" />
+              <web-share
+                :title="product.name | htmlDecode"
+                text="Check this product!"
+                class="web-share"
+              />
             </h1>
-            <div class="mb20 uppercase cl-secondary" itemprop="sku" :content="product.sku">
-              {{ $t('SKU') }}: {{ product.sku }}
-            </div>
-            <div class="mb20 uppercase cl-secondary" itemprop="ean" :content="product.ean">
-              {{ $t('EAN') }}: {{ product.ean }}
-            </div>
-            <div class="mb20 uppercase cl-secondary" itemprop="part_number" :content="product.part_number" v-if="product.part_number">
-              {{ $t('Manufacturer number') }}: {{ product.part_number }}
-            </div>
-            <div class="mb20 uppercase cl-secondary" itemprop="brand_name" :content="product.brand_name" v-if="product.brand_name">
-              {{ $t('Manufacturer') }}: {{ product.brand_name }}
-            </div>
-            <div class="mb20 uppercase cl-secondary" itemprop="unit_name" :content="product.unit_name" v-if="product.unit_name">
-              {{ $t('Unit name') }}: {{ product.unit_name }}
-            </div>
+
             <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-              <meta itemprop="priceCurrency" :content="currentStore.i18n.currencyCode">
-              <meta itemprop="price" :content="parseFloat(product.priceInclTax).toFixed(2)">
-              <meta itemprop="availability" :content="structuredData.availability">
-              <meta itemprop="url" :content="product.url_path">
+              <meta
+                itemprop="priceCurrency"
+                :content="currentStore.i18n.currencyCode"
+              />
+              <meta
+                itemprop="price"
+                :content="parseFloat(product.priceInclTax).toFixed(2)"
+              />
+              <meta
+                itemprop="availability"
+                :content="structuredData.availability"
+              />
+              <meta itemprop="url" :content="product.url_path" />
+
               <div
                 class="mb40 price serif"
                 v-if="product.type_id !== 'grouped'"
               >
-                <div
+                <!-- <div
                   class="h3 cl-secondary"
-                  v-if="product.special_price && product.priceInclTax && product.originalPriceInclTax"
+                  v-if="
+                    product.special_price &&
+                      product.priceInclTax &&
+                      product.originalPriceInclTax
+                  "
                 >
                   <span class="h2 cl-mine-shaft weight-700">
-                    {{ product.priceInclTax * product.qty | price }}
-                  </span>&nbsp;
+                    {{ (product.priceInclTax * product.qty) | price }} </span
+                  >&nbsp;
                   <span class="price-original h3">
-                    {{ product.originalPriceInclTax * product.qty | price }}
+                    {{ (product.originalPriceInclTax * product.qty) | price }}
                   </span>
-                </div>
-                <div
+                </div> -->
+                <!-- <div
+                  class="h3 cl-secondary"
+                  v-if="
+                    product.special_price &&
+                      product.priceInclTax &&
+                      product.originalPriceInclTax
+                  "
+                >
+                  <span class="h2 cl-mine-shaft weight-700">
+                    {{ (product.priceInclTax * product.qty) | price }} </span
+                  >&nbsp;
+                  <span class="price-original h3">
+                    {{ (product.originalPriceInclTax * product.qty) | price }}
+                  </span>
+                </div> -->
+                <!-- <div
                   class="h2 cl-mine-shaft weight-700"
                   v-if="!product.special_price && product.priceInclTax"
                 >
-                  {{ product.qty > 0 ? product.priceInclTax * product.qty : product.priceInclTax | price }}
-                  <span class="price-original h4">
-                    
+                  {{
+                    product.qty > 0
+                      ? product.priceInclTax * product.qty
+                      : product.priceInclTax | price
+                  }}
+                  <span class="price-original h4" />
+                </div> -->
+
+                <div
+                  v-if="
+                    product.special_price &&
+                      product.priceInclTax &&
+                      product.originalPriceInclTax
+                  "
+                >
+                  <span class="price-original weight-700">
+                    {{ (product.originalPriceInclTax * product.qty) | price }}
                   </span>
+                  <span class="price-final cl-dark-blue weight-700">
+                    {{ (product.priceInclTax * product.qty) | price }} </span
+                  >&nbsp;
                 </div>
-                <div class="mb20 uppercase cl-secondary">
-                  {{ $t('Gross price') }}: {{ product.final_price * product.qty }}
+
+                <div class="price-final mb20 cl-dark-blue weight-700" v-else>
+                  {{ (product.final_price * product.qty) | price }}
+                  {{ $t('gross') }}
                 </div>
               </div>
+
               <div
                 class="cl-primary variants"
-                v-if="product.type_id =='configurable' && !loading"
+                v-if="product.type_id == 'configurable' && !loading"
               >
-                <div class="error" v-if="product.errors && Object.keys(product.errors).length > 0">
+                <div
+                  class="error"
+                  v-if="
+                    product.errors && Object.keys(product.errors).length > 0
+                  "
+                >
                   {{ product.errors | formatProductMessages }}
                 </div>
                 <div
                   class="h5"
                   v-for="(option, index) in product.configurable_options"
-                  v-if="(!product.errors || Object.keys(product.errors).length === 0) && Object.keys(configuration).length > 0"
+                  v-if="
+                    (!product.errors ||
+                      Object.keys(product.errors).length === 0) &&
+                      Object.keys(configuration).length > 0
+                  "
                   :key="index"
                 >
                   <div class="variants-label" data-testid="variantsLabel">
                     {{ option.label }}
                     <span class="weight-700">
-                      {{ configuration[option.attribute_code ? option.attribute_code : option.label.toLowerCase()].label }}
+                      {{
+                        configuration[
+                          option.attribute_code
+                            ? option.attribute_code
+                            : option.label.toLowerCase()
+                        ].label
+                      }}
                     </span>
                   </div>
                   <div class="row top-xs m0 pt15 pb40 variants-wrapper">
@@ -98,7 +163,10 @@
                         :label="c.label"
                         context="product"
                         :code="option.attribute_code"
-                        :class="{ active: c.id == configuration[option.attribute_code].id }"
+                        :class="{
+                          active:
+                            c.id == configuration[option.attribute_code].id
+                        }"
                       />
                     </div>
                     <div class="sizes" v-else-if="option.label == 'Size'">
@@ -111,7 +179,10 @@
                         context="product"
                         :code="option.attribute_code"
                         class="mr10 mb10"
-                        :class="{ active: s.id == configuration[option.attribute_code].id }"
+                        :class="{
+                          active:
+                            s.id == configuration[option.attribute_code].id
+                        }"
                         v-focus-clean
                       />
                     </div>
@@ -125,7 +196,10 @@
                         context="product"
                         :code="option.attribute_code"
                         class="mr10 mb10"
-                        :class="{ active: s.id == configuration[option.attribute_code].id }"
+                        :class="{
+                          active:
+                            s.id == configuration[option.attribute_code].id
+                        }"
                         v-focus-clean
                       />
                     </div>
@@ -146,40 +220,95 @@
                 </div>
               </div>
             </div>
+            <div class="mb10 cl-mid-grey" itemprop="sku" :content="product.sku">
+              {{ $t('SKU') }}: {{ product.sku }}
+            </div>
+            <div
+              class="mb10 uppercase cl-mid-grey"
+              itemprop="ean"
+              :content="product.ean"
+            >
+              {{ $t('EAN') }}: {{ product.ean }}
+            </div>
+            <div
+              class="mb10 cl-mid-grey"
+              itemprop="part_number"
+              :content="product.part_number"
+              v-if="product.part_number"
+            >
+              {{ $t('Manufacturer number') }}: {{ product.part_number }}
+            </div>
+            <div
+              class="mb10 cl-mid-grey"
+              itemprop="brand_name"
+              :content="product.brand_name"
+              v-if="product.brand_name"
+            >
+              {{ $t('Manufacturer') }}: {{ product.brand_name }}
+            </div>
+            <div
+              class="mb10 cl-mid-grey"
+              itemprop="stock"
+              :content="product.stock[0].qty"
+              v-if="product.stock"
+            >
+              {{ $t('Available quantity') }}: {{ product.stock[0].qty }}
+            </div>
+            <!-- <div
+              class="mb10 cl-mid-grey"
+              itemprop="unit_name"
+              :content="product.unit_name"
+              v-if="product.unit_name"
+            >
+              {{ $t('Unit name') }}: {{ product.unit_name }}
+            </div> -->
+
             <product-links
-              v-if="product.type_id =='grouped' && !loading"
+              v-if="product.type_id == 'grouped' && !loading"
               :products="product.product_links"
             />
             <product-bundle-options
-              v-if="product.bundle_options && product.bundle_options.length > 0 && !loading"
+              v-if="
+                product.bundle_options &&
+                  product.bundle_options.length > 0 &&
+                  !loading
+              "
               :product="product"
             />
             <product-custom-options
-              v-else-if="product.custom_options && product.custom_options.length > 0 && !loading"
+              v-else-if="
+                product.custom_options &&
+                  product.custom_options.length > 0 &&
+                  !loading
+              "
               :product="product"
             />
-            <div class="row m0 mb35" v-if="product.type_id !== 'grouped' && product.type_id !== 'bundle'">
+
+            <div class="product-actions mt50">
               <base-input-number
                 :name="$t('Quantity')"
                 v-model="product.qty"
+                :class="'mb20'"
+                v-if="
+                  product.type_id !== 'grouped' && product.type_id !== 'bundle'
+                "
                 :min="1"
                 @blur="$v.$touch()"
                 :validations="[
                   {
-                    condition: $v.product.qty.$error && !$v.product.qty.minValue,
+                    condition:
+                      $v.product.qty.$error && !$v.product.qty.minValue,
                     text: $t('Quantity must be above 0')
                   }
                 ]"
               />
-            </div>
-            <div class="row m0">
               <add-to-cart
                 :product="product"
                 :disabled="$v.product.qty.$error && !$v.product.qty.minValue"
-                class="btn btn--orange btn--add-to-cart"
+                class="btn btn--orange btn--add-to-cart mb20"
               />
             </div>
-            <div class="row py40 add-to-buttons">
+            <div class="row py10 add-to-buttons">
               <div class="col-xs-6 col-sm-3 col-md-6">
                 <wishlist-button :product="product" />
               </div>
@@ -204,7 +333,7 @@
               </div> -->
             </div>
           </div>
-        </section>
+        </div>
       </div>
     </section>
     <section class="container px15 pt50 pb35 cl-accent details">
@@ -213,7 +342,7 @@
       </h2>
       <div
         class="h4 details-wrapper"
-        :class="{'details-wrapper--open': detailsOpen}"
+        :class="{ 'details-wrapper--open': detailsOpen }"
       >
         <div class="row between-md m0">
           <div class="col-xs-12 col-sm-6">
@@ -234,10 +363,7 @@
               />
             </ul>
           </div>
-          <div
-            class="details-overlay"
-            @click="showDetails"
-          />
+          <div class="details-overlay" @click="showDetails" />
         </div>
       </div>
     </section>
@@ -273,10 +399,14 @@ import focusClean from 'theme/components/theme/directives/focusClean'
 import WebShare from '@vue-storefront/core/modules/social-share/components/WebShare'
 import BaseInputNumber from 'theme/components/core/blocks/Form/BaseInputNumber'
 import SizeGuide from 'theme/components/core/blocks/Product/SizeGuide'
+import Badge from 'theme/components/core/Badge'
 
 export default {
   components: {
-    'WishlistButton': () => import(/* webpackChunkName: "wishlist" */'theme/components/core/blocks/Wishlist/AddToWishlist'),
+    WishlistButton: () =>
+      import(
+        /* webpackChunkName: "wishlist" */ 'theme/components/core/blocks/Wishlist/AddToWishlist'
+      ),
     AddToCart,
     Breadcrumbs,
     ColorSelector,
@@ -292,42 +422,47 @@ export default {
     SizeSelector,
     WebShare,
     BaseInputNumber,
-    SizeGuide
+    SizeGuide,
+    Badge
   },
   mixins: [Product, VueOfflineMixin],
-  data () {
+  data() {
     return {
       detailsOpen: false
     }
   },
   directives: { focusClean },
   computed: {
-    structuredData () {
+    structuredData() {
       return {
-        availability: (this.product.stock.is_in_stock) ? 'InStock' : 'OutOfStock'
+        availability: this.product.stock.is_in_stock ? 'InStock' : 'OutOfStock'
       }
     }
   },
   methods: {
-    showDetails (event) {
+    showDetails(event) {
       this.detailsOpen = true
       event.target.classList.add('hidden')
     },
-    notifyOutStock () {
+    notifyOutStock() {
       this.$store.dispatch('notification/spawnNotification', {
         type: 'error',
-        message: this.$t('The product is out of stock and cannot be added to the cart!'),
+        message: this.$t(
+          'The product is out of stock and cannot be added to the cart!'
+        ),
         action1: { label: this.$t('OK') }
       })
     },
-    notifyWrongAttributes () {
+    notifyWrongAttributes() {
       this.$store.dispatch('notification/spawnNotification', {
         type: 'warning',
-        message: this.$t('No such configuration for the product. Please do choose another combination of attributes.'),
+        message: this.$t(
+          'No such configuration for the product. Please do choose another combination of attributes.'
+        ),
         action1: { label: this.$t('OK') }
       })
     },
-    openSizeGuide () {
+    openSizeGuide() {
       this.$bus.$emit('modal-show', 'modal-sizeguide')
     }
   },
@@ -345,17 +480,51 @@ export default {
 @import '~theme/css/variables/colors';
 @import '~theme/css/helpers/functions/color';
 $color-primary: color(primary);
+$color-black: color(black);
 $color-tertiary: color(tertiary);
 $color-secondary: color(secondary);
 $color-white: color(white);
 $bg-secondary: color(secondary, $colors-background);
+$color-gainsboro: color(gainsboro);
 
-.product {
-  &__add-to-compare {
-    display: none;
-    @media (min-width: 767px) {
-      display: block;
-    }
+.media-gallery {
+  align-items: flex-start;
+}
+
+.product-header {
+  padding: 60px 0;
+  @media (min-width: 768px) {
+    padding: 30px 0 120px;
+  }
+}
+
+.product-top-section {
+  @media (max-width: 767px) {
+    padding: 0;
+  }
+}
+
+.price-final {
+  font-size: 30px;
+}
+
+.price-original {
+  text-decoration: line-through;
+  font-size: 26px;
+}
+
+.product-top-section-inner {
+  border: 1px solid $color-gainsboro;
+  border-radius: 3px;
+  background: $color-white;
+  margin-top: -100px;
+
+  @media (min-width: 768px) {
+    padding: 20px;
+    margin-top: -100px;
+  }
+  @media (min-width: 1200px) {
+    padding: 30px 50px;
   }
 }
 
@@ -372,6 +541,7 @@ $bg-secondary: color(secondary, $colors-background);
   padding-bottom: 15px;
 }
 .data {
+  font-size: 14px;
   @media (max-width: 767px) {
     border-bottom: 1px solid $bg-secondary;
   }
@@ -384,9 +554,8 @@ $bg-secondary: color(secondary, $colors-background);
 }
 
 .product-name {
-  @media (max-width: 767px) {
-    font-size: 36px;
-  }
+  font-size: 30px;
+  line-height: 35px;
 }
 
 .price {
@@ -406,7 +575,7 @@ $bg-secondary: color(secondary, $colors-background);
     padding-bottom: 30px;
   }
 
- .sizes {
+  .sizes {
     @media (max-width: 767px) {
       width: 100%;
     }
@@ -418,13 +587,6 @@ $bg-secondary: color(secondary, $colors-background);
       width: 100%;
       margin-left: 0;
     }
-  }
-}
-
-.product-top-section {
-  @media (max-width: 767px) {
-    padding: 0;
-    background-color: $color-white;
   }
 }
 
@@ -480,10 +642,6 @@ $bg-secondary: color(secondary, $colors-background);
   }
 }
 
-.price-original {
-  text-decoration: line-through;
-}
-
 .action {
   &:hover {
     color: $color-tertiary;
@@ -511,5 +669,31 @@ $bg-secondary: color(secondary, $colors-background);
 
 .web-share {
   float: right;
+}
+</style>
+
+<style lang="scss">
+.product-top-section {
+  .badge {
+    width: 80px;
+    height: 80px;
+  }
+  .product-actions {
+    display: flex;
+    flex-wrap: wrap;
+
+    .base-input-number {
+      width: auto;
+      margin-right: 40px;
+      &__label {
+        display: inline-block;
+        margin-right: 10px;
+      }
+
+      &__input {
+        padding: 15px 10px;
+      }
+    }
+  }
 }
 </style>

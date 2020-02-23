@@ -8,6 +8,7 @@
       @click="goTo($event, productLink)"
     >
       <badge :product="product" />
+
       <div
         class="product-image relative"
         :class="[

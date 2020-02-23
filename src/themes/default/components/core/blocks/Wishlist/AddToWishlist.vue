@@ -2,10 +2,10 @@
   <button @click="isOnWishlist ? removeFromWishlist(product) : addToWishlist(product)" class="p0 inline-flex middle-xs bg-cl-transparent brdr-none action h5 pointer cl-secondary" type="button" data-testid="addToWishlist">
     <i class="pr5 material-icons">{{ favoriteIcon }}</i>
     <template v-if="!isOnWishlist">
-      {{ $t('Add to favorite') }}
+      {{ $t('Add to wishlist') }}
     </template>
     <template v-else>
-      {{ $t('Remove') }}
+      {{ $t('Remove from wishlist') }}
     </template>
   </button>
 </template>

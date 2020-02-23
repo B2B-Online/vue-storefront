@@ -237,13 +237,13 @@
 </template>
 
 <script>
-import config from 'config';
-import Product from '@vue-storefront/core/compatibility/components/blocks/Microcart/Product';
+import config from 'config'
+import Product from '@vue-storefront/core/compatibility/components/blocks/Microcart/Product'
 
-import ProductImage from 'theme/components/core/ProductImage';
-import RemoveButton from './RemoveButton';
-import BaseInputNumber from 'theme/components/core/blocks/Form/BaseInputNumber';
-import { onlineHelper } from '@vue-storefront/core/helpers';
+import ProductImage from 'theme/components/core/ProductImage'
+import RemoveButton from './RemoveButton'
+import BaseInputNumber from 'theme/components/core/blocks/Form/BaseInputNumber'
+import { onlineHelper } from '@vue-storefront/core/helpers'
 
 export default {
   components: {
@@ -253,27 +253,27 @@ export default {
   },
   mixins: [Product],
   computed: {
-    isOnline () {
-      return onlineHelper.isOnline;
+    isOnline() {
+      return onlineHelper.isOnline
     },
-    image () {
+    image() {
       return {
         loading: this.thumbnail,
         src: this.thumbnail
-      };
+      }
     }
   },
-  data () {
+  data() {
     return {
       displayItemDiscounts: config.cart.displayItemDiscounts
-    };
+    }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
-@import "~theme/css/variables/colors";
-@import "~theme/css/helpers/functions/color";
+@import '~theme/css/variables/colors';
+@import '~theme/css/helpers/functions/color';
 $color-black: color(black);
 $color-mid-grey: color(mid-grey);
 $color-gainsboro: color(gainsboro);
@@ -285,7 +285,7 @@ $color-gainsboro: color(gainsboro);
 
   &:not(:last-of-type) {
     &:after {
-      content: "";
+      content: '';
       position: absolute;
       bottom: 0;
       left: -40px;
@@ -338,11 +338,6 @@ $color-gainsboro: color(gainsboro);
 
   .sku {
     color: $color-mid-grey;
-  }
-  .base-input-number {
-    .base-input-number__label {
-      font-size: 14px;
-    }
   }
 }
 
@@ -422,4 +417,14 @@ $color-gainsboro: color(gainsboro);
 // .flex-nowrap {
 //   flex-wrap: nowrap;
 // }
+</style>
+<style lang="scss">
+.microcart {
+  .base-input-number {
+    &__label {
+      display: block;
+      font-size: 14px;
+    }
+  }
+}
 </style>

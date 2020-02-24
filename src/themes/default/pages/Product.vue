@@ -14,6 +14,7 @@
       <div class="container">
         <div class="row m0 between-xs product-top-section-inner">
           <div class="col-xs-12 col-lg-6 center-xs middle-xs image relative">
+
             <badge :product="product" />
 
             <product-gallery
@@ -518,13 +519,10 @@ $color-gainsboro: color(gainsboro);
   border-radius: 3px;
   background: $color-white;
   margin-top: -100px;
+  padding: 20px;
 
-  @media (min-width: 768px) {
-    padding: 20px;
-    margin-top: -100px;
-  }
   @media (min-width: 1200px) {
-    padding: 30px 50px;
+    padding: 50px 30px;
   }
 }
 
